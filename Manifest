@@ -1,0 +1,11 @@
+{
+    "id": "hello_world",
+    "display": {
+        "name": {
+            "rus": "Привет, мир!",
+            "eng": "Hello World!"
+        },
+        "icon": "2048.png"
+    },
+    "application": { }
+}
