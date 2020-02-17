@@ -5,7 +5,7 @@
             "rus": "Привет, мир!",
             "eng": "Hello World!"
         },
-        "icon": "2048.png"
+        "icon": "pomodoro.jpg"
     },
     "application": { }
 }
