@@ -2,10 +2,10 @@
     "id": "hello_world",
     "display": {
         "name": {
-            "rus": "Привет, мир!",
-            "eng": "Hello World!"
+            "rus": "Помодоро",
+            "eng": "Pomodoro"
         },
-        "icon": "2048.png"
+        "icon": "Pomodoro.png"
     },
     "application": { }
 }

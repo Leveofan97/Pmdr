@@ -1,5 +1,6 @@
 import controls.Button;
 
+
 Application {
 
 	id: helloWorld;
@@ -51,15 +52,68 @@ Application {
 		height: 600;
 		anchors.verticalCenter: parent.verticalCenter;
 		anchors.right: parent.right;
-		radius: 5;
+		radius: 10;
+		rotation: 90;
 		//color: "#CCC0B2";
+
+
 		Gradient
 		{
+			Rectangle
+			{
+				id: but;
+				anchors.horizontalCenter: menu.horizontalCenter;
+				anchors.top: menu.top;
+				anchors.topMargin: 20;
+				width:140;
+				height:40;
+				radius: 10;
+
+
+				Gradient
+				{
+					Text
+					{
+						anchors.centerIn: parent;
+						text: "+ Добавить";
+						font: bodyFont;
+						color: "#000000";
+						pixelSize: 10;
+					}
+					orientation: Horizonral;
+					anchors.verticalCenter: but.verticalCenter;
+					width:140;
+					height:40;
+					GradientStop
+					{
+						position: 0;
+						color: "#ffffff";
+						Behavior on color { animation : Animation {duration: 500; } }
+
+					}
+					GradientStop
+					{
+						position: 1;
+						color: "#434445";
+						Behavior on color { animation : Animation {duration: 500; } }
+
+					}
+				}
+			}
+			Text
+			{
+				anchors.horizontalCenter: menu.horizontalCenter;
+				anchors.bottom: menu.bottom;
+				anchors.bottomMargin: 15;
+				text: "История...";
+				font: bodyFont;
+				color: "#ffffff";
+			}
+
 			orientation: Vertical;
-			anchors.left: menu.left;
-			anchors.top: menu.top;
-			anchors.right: menu.right;
-			anchors.bottom: menu.bottom;
+			anchors.verticalCenter: menu.verticalCenter;
+			width:200;
+			height: 400;
 			GradientStop
 			{
 				position: 0;
@@ -100,10 +154,12 @@ Item
 {
 	x: 510;
 	y: 500;
-	paint: true;
+	id: timer;
+
 
 	Rectangle
 	{
+
 				id: timercyrcle;
 
 				anchors.horizontalCenter: parent.horizontalCenter;
@@ -112,37 +168,66 @@ Item
         width: 350;
 				height: 350;
 				radius: 175;
+				//rotation: 90;
+				Text
+				{
+					anchors.horizontalCenter: timercyrcle.horizontalCenter;
+					anchors.bottom: parent.top;
+					anchors.bottomMargin: 20;
+					font: titleFont;
+					text: "Pomodoro";
+					color: "#ffffff";
+				}
 
 				Text
 				{
+					focus: true;
 					anchors.centerIn: parent;
 					text: "25";
 					color: "#000000";
 					font: titleFont;
 				}
-				Image
-				{
+			Item
+			{
+
+				focus: true;
+				anchors.horizontalCenter: parent.verticalCenter;
+				anchors.top: parent.bottom;
+				anchors.topMargin: 20;
+			Image
+			{
+					focus: true;
 			 		id: pause;
 					anchors.horizontalCenter: parent.verticalCenter;
 					anchors.top: parent.bottom;
-		      anchors.topMargin: 20;
+		      //anchors.topMargin: 20;
 					source: "apps/hello_world/img/pause.png";
-				}
+			}
+			}
+			Item
+			{
+				anchors.right: parent.right;
+				anchors.bottom: parent.bottom;
 				Image
 				{
-			 		id: reset;
 					anchors.right: parent.right;
 					anchors.bottom: parent.bottom;
+			 		id: reset;
 					source: "apps/hello_world/img/reset.png";
 				}
+			}
+			Item
+			{
+				anchors.left: parent.left;
+				anchors.bottom: parent.bottom;
 				Image
 				{
 			 		id: cancel;
-					anchors.left: parent.left;
+					//anchors.left: parent.left;
 					anchors.bottom: parent.bottom;
 					source: "apps/hello_world/img/cancel.png";
 				}
-
+			}
   }
 }
 /*----------------------------------------------------------------------------*/
