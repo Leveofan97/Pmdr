@@ -1,0 +1,11 @@
+{
+    "id": "Pomodoro",
+    "display": {
+        "name": {
+            "rus": "Помодоро",
+            "eng": "Pomodoro"
+        },
+        "icon": "Pomodoro.png"
+    },
+    "application": { }
+}
