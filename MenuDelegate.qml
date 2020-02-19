@@ -1,23 +1,25 @@
 Item {
-	height: 60;
+	height: 30;
 
 	focus: true;
 
 	Rectangle {
-		width: parent.width;
-		height: parent.height - 25;
-
-		anchors.centerIn: parent;
-
-		color: parent.activeFocus ? "#115511" : "#4c744c";
-
+		anchors.left: parent;
+		//anchors.rightMargin: 60;
+		width: 20;
+		height: 20;
 		radius: 10;
+		borderWidth: 2;
+		borderColor: parent.activeFocus ? "#fff" : "#000";
+		opacity: parent.activeFocus ? 1.0 : 0.2;
+		color: parent.activeFocus ? "#fff" : "#fff";
 
-		TitleText {
-			anchors.centerIn: parent;
 
-			text: tr(model.text);
-			color: "#000";
-		}
+	}
+	TitleText {
+		anchors.centerIn: parent;
+		text: tr(model.text);
+		font: bodyFont;
+		color: "#fff";
 	}
 }

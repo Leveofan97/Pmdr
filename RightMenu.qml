@@ -120,6 +120,12 @@ Rectangle {
 			ListElement { text: "Task11"; }
 			ListElement { text: "Task12"; }
 			ListElement { text: "Task13"; }
+			ListElement { text: "Task14"; }
+			ListElement { text: "Task15"; }
+			ListElement { text: "Task16"; }
+			ListElement { text: "Task17"; }
+			ListElement { text: "Task18"; }
+			ListElement { text: "Task19"; }
 		}
 
 		delegate: MenuDelegate {width: 150;}
