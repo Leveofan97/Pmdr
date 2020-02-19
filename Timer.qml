@@ -32,102 +32,116 @@ Item {
 			font: titleFont;
 		}
 
-		FocusablePanel {
-			id: pauseButton;
 
+		Image {
+	 		id: pause;
 			anchors.horizontalCenter: parent.verticalCenter;
 			anchors.top: parent.bottom;
 			anchors.topMargin: 20;
+			source: "apps/Pomodoro/img/pause.png";
 
-			width: 50;
-			height: 50;
-			enabled: true;
-			radius: 25;
+			FocusablePanel {
+				id: pauseButton;
+				anchors.centerIn: parent;
 
-			//opacity: 0.1;
 
-			Image {
-		 		id: pause;
-	      anchors.centerIn: parent;
-				source: "apps/Pomodoro/img/pause.png";
-			}
+				width: 46;
+				height: 46;
+				enabled: true;
+				radius: 23;
+				opacity: active ? 0.2 : 0;
+				color: active ? "#fff" : "#000";
 
-			onLeftPressed: {
-				error("left pressed");
-				cancelButton.setFocus();
-			}
+				Behavior on color { animation: Animation { duration: 500; } }
+				Behavior on borderColor { animation: Animation { duration: 500; } }
 
-			onRightPressed: {
-				error("right pressed");
-				resetButton.setFocus();
-			}
+				onLeftPressed: {
+					error("left pressed");
+					cancelButton.setFocus();
+				}
 
-			onSelectPressed: {
-				error("click pause!");
+				onRightPressed: {
+					error("right pressed");
+					resetButton.setFocus();
+				}
+
+				onSelectPressed: {
+					error("click pause!");
+				}
 			}
 		}
 
-		FocusablePanel {
-			id: resetButton;
-
+		Image {
+	 		id: reset;
 			anchors.right: parent.right;
 			anchors.bottom: parent.bottom;
 
-			width: 50;
-			height: 50;
-			enabled: true;
-			radius: 25;
+			source: "apps/Pomodoro/img/reset.png";
 
-			Image {
-		 		id: reset;
+			FocusablePanel {
+				id: resetButton;
+
 				anchors.centerIn: parent;
-				source: "apps/Pomodoro/img/reset.png";
-			}
 
-			onLeftPressed: {
-				error("left pressed");
-				pauseButton.setFocus();
-			}
+				width: 46;
+				height: 46;
+				enabled: true;
+				radius: 23;
+				opacity: active ? 0.2 : 0;
+				color: active ? "#fff" : "#000";
 
-			onRightPressed: {
-				error("right pressed");
-				menuList.setFocus();
-			}
+				Behavior on color { animation: Animation { duration: 500; } }
+				Behavior on borderColor { animation: Animation { duration: 500; } }
 
-			onSelectPressed: {
-				error("click reset!");
+				onLeftPressed: {
+					error("left pressed");
+					pauseButton.setFocus();
+				}
+
+				onRightPressed: {
+					error("right pressed");
+					menuList.setFocus();
+				}
+
+				onSelectPressed: {
+					error("click reset!");
+				}
 			}
 		}
 
-		FocusablePanel {
-			id: cancelButton;
 
+		Image {
+	 		id: cancel;
 			anchors.left: parent.left;
 			anchors.bottom: parent.bottom;
-
-			width: 50;
-			height: 50;
-			enabled: true;
-			radius: 25;
-
-			Image {
-		 		id: cancel;
+			source: "apps/Pomodoro/img/cancel.png";
+			FocusablePanel {
+				id: cancelButton;
 				anchors.centerIn: parent;
-				source: "apps/Pomodoro/img/cancel.png";
-			}
 
-			onLeftPressed: {
-				error("left pressed");
-				faqButton.setFocus();
-			}
+				width: 46;
+				height: 46;
+				enabled: true;
+				radius: 23;
+				opacity: active ? 0.2 : 0;
+				color: active ? "#fff" : "#000";
 
-			onRightPressed: {
-				error("right pressed");
-				pauseButton.setFocus();
-			}
+				Behavior on color { animation: Animation { duration: 500; } }
+				Behavior on borderColor { animation: Animation { duration: 500; } }
 
-			onSelectPressed: {
-				error("click cansel!");
+				onLeftPressed: {
+					error("left pressed");
+					faqButton.setFocus();
+				}
+
+				onRightPressed: {
+					error("right pressed");
+					pauseButton.setFocus();
+				}
+
+				onSelectPressed: {
+					error("click cansel!");
+				}
 			}
 		}
   }
