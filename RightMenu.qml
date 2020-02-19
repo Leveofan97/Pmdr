@@ -91,51 +91,60 @@ Rectangle {
 			}
 		}
 
-		FocusablePanel {
-			id: historyButton;
 
-			anchors.horizontalCenter: menu.horizontalCenter;
-			anchors.bottom: menu.bottom;
-			anchors.bottomMargin: 15;
-
-			width:140;
-			height:40;
-			radius: 10;
-
-			enabled: true;
 
 			Text {
-				anchors.centerIn: parent;
+				id: statist;
+				anchors.horizontalCenter: menu.horizontalCenter;
+				anchors.bottom: menu.bottom;
+				anchors.bottomMargin: 30;
+
 
 				text: "История...";
 				font: bodyFont;
 				color: "#ffffff";
+
+				FocusablePanel {
+					id: historyButton;
+					anchors.horizontalCenter: statist.horizontalCenter;
+					anchors.bottom: statist.bottom;
+					anchors.topMargin: 10;
+
+					width:110;
+					height:1;
+					//radius: 10;
+					opacity: active ? 1 : 0;
+					color: "#ffffff";
+
+					enabled: true;
+
+					onRightPressed: {
+						error("right pressed");
+						blueButton.setFocus();
+					}
+
+					onLeftPressed: {
+						error("left pressed");
+						resetButton.setFocus();
+					}
+
+					onUpPressed: {
+						error("up pressed");
+						menuList.setFocus();
+					}
+
+					onDownPressed: {
+						error("down pressed");
+						addTaskButton.setFocus();
+					}
+
+					onSelectPressed: {
+						error("History!");
+					}
+				}
 			}
 
-			onRightPressed: {
-				error("right pressed");
-				blueButton.setFocus();
-			}
 
-			onLeftPressed: {
-				error("left pressed");
-				resetButton.setFocus();
-			}
-
-			onUpPressed: {
-				error("up pressed");
-				menuList.setFocus();
-			}
-
-			onDownPressed: {
-				error("down pressed");
-				addTaskButton.setFocus();
-			}
-
-			onSelectPressed: {
-				error("History!");
-			}
-		}
 
 		orientation: Vertical;
 
