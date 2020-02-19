@@ -30,7 +30,35 @@ Item {
 			text: "25:00";
 			color: "#000000";
 			font: titleFont;
+
+			FocusablePanel {
+				id: timePanel;
+
+				anchors.centerIn: parent;
+
+				width: 125;
+				height: 50;
+				radius: 25;
+
+				enabled: true;
+				opacity: active ? 0.5 : 0;
+				color: active ? "#00f" : "#f00";
+
+				Behavior on color { animation: Animation { duration: 500; } }
+				Behavior on borderColor { animation: Animation { duration: 500; } }
+
+				onDownPressed: {
+					error("down pressed");
+					pauseButton.setFocus();
+				}
+
+				onSelectPressed: {
+					error("25:00!");
+				}
+
+			}
 		}
+
 
 
 		Image {
@@ -54,6 +82,11 @@ Item {
 
 				Behavior on color { animation: Animation { duration: 500; } }
 				Behavior on borderColor { animation: Animation { duration: 500; } }
+
+				onUpPressed: {
+					error("up pressed");
+					timePanel.setFocus();
+				}
 
 				onLeftPressed: {
 					error("left pressed");
@@ -93,6 +126,11 @@ Item {
 				Behavior on color { animation: Animation { duration: 500; } }
 				Behavior on borderColor { animation: Animation { duration: 500; } }
 
+				onUpPressed: {
+					error("up pressed");
+					timePanel.setFocus();
+				}
+
 				onLeftPressed: {
 					error("left pressed");
 					pauseButton.setFocus();
@@ -115,6 +153,7 @@ Item {
 			anchors.left: parent.left;
 			anchors.bottom: parent.bottom;
 			source: "apps/Pomodoro/img/cancel.png";
+
 			FocusablePanel {
 				id: cancelButton;
 				anchors.centerIn: parent;
@@ -128,6 +167,11 @@ Item {
 
 				Behavior on color { animation: Animation { duration: 500; } }
 				Behavior on borderColor { animation: Animation { duration: 500; } }
+
+				onUpPressed: {
+					error("up pressed");
+					timePanel.setFocus();
+				}
 
 				onLeftPressed: {
 					error("left pressed");
