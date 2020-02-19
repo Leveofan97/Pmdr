@@ -12,62 +12,136 @@ Rectangle {
 	//color: "#CCC0B2";
 
 	Gradient {
-		Rectangle {
-			id: but;
+		FocusablePanel {
+			id: addTaskButton;
 
 			anchors.horizontalCenter: menu.horizontalCenter;
 			anchors.top: menu.top;
 			anchors.topMargin: 20;
 
 			width:140;
-			height:40;
-			radius: 10;
+ 		  height:40;
+ 		  radius: 10;
 
-			Gradient {
-				Text {
-					anchors.centerIn: parent;
+	    enabled: true;
 
-					text: "+ Добавить";
-					font: bodyFont;
-					color: "#000000";
-					pixelSize: 10;
-				}
+			Rectangle {
+				id: but;
 
-				orientation: Horizonral;
-
-				anchors.verticalCenter: but.verticalCenter;
+				anchors.horizontalCenter: menu.horizontalCenter;
+				anchors.top: menu.top;
+				anchors.topMargin: 20;
 
 				width:140;
 				height:40;
+				radius: 10;
 
-				GradientStop {
-					position: 0;
-					color: "#ffffff";
-					Behavior on color { animation : Animation {duration: 500; } }
+				Gradient {
+					Text {
+						anchors.centerIn: parent;
+
+						text: "+ Добавить";
+						font: bodyFont;
+						color: "#000000";
+						pixelSize: 10;
+					}
+
+					orientation: Horizonral;
+
+					anchors.verticalCenter: but.verticalCenter;
+
+					width:140;
+					height:40;
+
+					GradientStop {
+						position: 0;
+						color: addTaskButton.activeFocus ? "#434445" : "#ffffff";
+						Behavior on color { animation : Animation {duration: 300; } }
+					}
+					GradientStop {
+						position: 1;
+						color: addTaskButton.activeFocus ? "#ffffff" : "#434445";
+						Behavior on color { animation : Animation {duration: 300; } }
+					}
 				}
-				GradientStop {
-					position: 1;
-					color: "#434445";
-					Behavior on color { animation : Animation {duration: 500; } }
-				}
+			}
+
+			onRightPressed: {
+				error("right pressed");
+				blueButton.setFocus();
+			}
+
+			onLeftPressed: {
+				error("left pressed");
+				resetButton.setFocus();
+			}
+
+			onUpPressed: {
+				error("up pressed");
+				historyButton.setFocus();
+			}
+
+			onDownPressed: {
+				error("down pressed");
+				menuList.setFocus();
+			}
+
+			onSelectPressed: {
+				error("Add Task!");
 			}
 		}
 
-		Text {
+		FocusablePanel {
+			id: historyButton;
+
 			anchors.horizontalCenter: menu.horizontalCenter;
 			anchors.bottom: menu.bottom;
 			anchors.bottomMargin: 15;
 
-			text: "История...";
-			font: bodyFont;
-			color: "#ffffff";
+			width:140;
+			height:40;
+			radius: 10;
+
+			enabled: true;
+
+			Text {
+				anchors.centerIn: parent;
+
+				text: "История...";
+				font: bodyFont;
+				color: "#ffffff";
+			}
+
+			onRightPressed: {
+				error("right pressed");
+				blueButton.setFocus();
+			}
+
+			onLeftPressed: {
+				error("left pressed");
+				resetButton.setFocus();
+			}
+
+			onUpPressed: {
+				error("up pressed");
+				menuList.setFocus();
+			}
+
+			onDownPressed: {
+				error("down pressed");
+				addTaskButton.setFocus();
+			}
+
+			onSelectPressed: {
+				error("History!");
+			}
 		}
 
 		orientation: Vertical;
 
 		anchors.verticalCenter: menu.verticalCenter;
 
-		width:200;
+		width: 200;
 		height: 400;
 
 		GradientStop {
@@ -129,6 +203,16 @@ Rectangle {
 		}
 
 		delegate: MenuDelegate {width: 150;}
+
+		onDownPressed: {
+			error("up pressed");
+			historyButton.setFocus();
+		}
+
+		onUpPressed: {
+			error("up pressed");
+			addTaskButton.setFocus();
+		}
 
 		onLeftPressed: {
 			error("left pressed");
