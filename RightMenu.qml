@@ -238,17 +238,19 @@ Rectangle {
 		}
 
 		onSelectPressed: {
-			switch (this.currentIndex) {
-			case 0:
-				error("0");
-				break;
-			case 1:
-				error("1");
-				break;
-			case 2:
-				error("2");
-				break;
-			}
+			// switch (this.currentIndex) {
+			// case 0:
+				taskName.text = engine.tasks[this.currentIndex].name;
+				taskContent.text = engine.tasks[this.currentIndex].content;
+			// 	error("0");
+			// 	break;
+			// case 1:
+			// 	error("1");
+			// 	break;
+			// case 2:
+			// 	error("2");
+			// 	break;
+			// }
 		}
 	}
 

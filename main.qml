@@ -5,6 +5,7 @@ import "Background.qml";
 import "RightMenu.qml";
 import "Timer.qml";
 import "LeftMenu.qml";
+import "BottomTaskSelected.qml";
 
 Application {
 
@@ -44,6 +45,11 @@ Application {
 //				воспроизведение звука после того как закончится время
 // BUG:   при переходе в правое или в левое меню остаётся след
 	Timer {}
+
+/*---------------------------------Таймер-------------------------------------*/
+
+// TODO:  
+	BottomTaskSelected{}
 
 /*------------------------Левое меню персонализации---------------------------*/
 
