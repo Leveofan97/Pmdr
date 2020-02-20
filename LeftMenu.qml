@@ -59,12 +59,7 @@ Item {
 
       }
     }
-
-
-
-
-
-
+    
     Rectangle {
       id: yellow;
       anchors.top: blue.bottom;

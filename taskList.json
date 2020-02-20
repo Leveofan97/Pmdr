@@ -2,19 +2,19 @@
     "tasks":
     [
       {
-    	    "name" : "taskFromS",
+    	    "name" : "Задача1",
     	    "isDone"  : false,
     	    "difficulty": 1,
     	    "content" : "qwertyuiop[]asdfghjkl;'zxcvbnm,./'"
     	},
       {
-    	    "name" : "taskFromA",
+    	    "name" : "Задача2",
     	    "isDone"  : false,
     	    "difficulty": 1,
     	    "content" : "1234567890-="
     	},
       {
-    	    "name" : "taskFromE",
+    	    "name" : "Задача3",
     	    "isDone"  : false,
     	    "difficulty": 1,
     	    "content" : "qwertyuiop[]asdfghjkl;'zxcvbnm,./'"
