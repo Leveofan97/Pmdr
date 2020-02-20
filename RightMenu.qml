@@ -1,3 +1,5 @@
+import "engine.js" as engine;
+
 Rectangle {
 	id: menu;
 
@@ -178,6 +180,21 @@ Rectangle {
 		}
 	}
 
+	Resource {
+		id: f123;
+		url: "apps/Pomodoro/taskList.json";
+
+		onDataChanged: {
+		  engine.load(JSON.parse(this.data));
+		}
+
+		// onCompleted: {
+		// 	menuList.load(JSON.parse(this.data));
+		// 	error(engine.tasks[1].name);
+		// }
+
+	}
+
 	ListView {
 		id: menuList;
 
@@ -189,29 +206,16 @@ Rectangle {
 
 		focus: true;
 
-		model: ListModel {
-			ListElement { text: "Task1"; }
-			ListElement { text: "Task2"; }
-			ListElement { text: "Task3"; }
-			ListElement { text: "Task4"; }
-			ListElement { text: "Task5"; }
-			ListElement { text: "Task6"; }
-			ListElement { text: "Task7"; }
-			ListElement { text: "Task8"; }
-			ListElement { text: "Task9"; }
-			ListElement { text: "Task10"; }
-			ListElement { text: "Task11"; }
-			ListElement { text: "Task12"; }
-			ListElement { text: "Task13"; }
-			ListElement { text: "Task14"; }
-			ListElement { text: "Task15"; }
-			ListElement { text: "Task16"; }
-			ListElement { text: "Task17"; }
-			ListElement { text: "Task18"; }
-			ListElement { text: "Task19"; }
-		}
+		model: ListModel {}
 
 		delegate: MenuDelegate {width: 150;}
+
+		onCompleted: {
+// TODO: добавить другие параметры из json
+			engine.tasks.forEach(function (task){
+				model.append( { text: task.name });
+			})
+		}
 
 		onDownPressed: {
 			error("up pressed");
@@ -246,7 +250,6 @@ Rectangle {
 				break;
 			}
 		}
-
 	}
 
 }
