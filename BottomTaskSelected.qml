@@ -1,32 +1,20 @@
-Rectangle {
-	id: taskSelected;
-
-	width: 300;
-	height: 100;
-
-  anchors.horizontalCenter: mainView.horizontalCenter;
-  anchors.verticalCenter: mainView.verticalCenter;
-	anchors.bottom: parent.bottom;
-
-  color: "#f00";
-
-  Text {
+Text {
     id: taskName;
-    anchors.horizontalCenter: parent.horizontalCenter;
-    anchors.top: parent.top;
-
-    font: titleFont;
-    text: "Pomodoro";
+    anchors.horizontalCenter: timercyrcle.horizontalCenter;
+		anchors.top: pauseButton.bottom;
+		anchors.topMargin: 20;
+    font: bodyFont;
+    //text: "NameTask";
     color: "#ffffff";
-  }
+
 
   Text {
     id: taskContent;
-    anchors.horizontalCenter: parent.horizontalCenter;
-    anchors.top: taskName.bottom;
+    anchors.horizontalCenter: taskName.horizontalCenter;
+		anchors.top: taskName.bottom;
 
-    font: titleFont;
-    text: "Pomodoro123123";
+    font: bodyFont;
+    //text: "Красивый дизайн +";
     color: "#ffffff";
   }
 }

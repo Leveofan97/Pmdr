@@ -1,5 +1,5 @@
 Gradient {
-  //radius:5;
+  id: backgroundcolor;
 
   anchors.left: mainView.left;
   anchors.top: mainView.top;
