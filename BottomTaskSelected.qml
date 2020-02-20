@@ -4,7 +4,7 @@ Text {
 		anchors.top: pauseButton.bottom;
 		anchors.topMargin: 20;
     font: bodyFont;
-    //text: "NameTask";
+    text: "NameTask";
     color: "#ffffff";
 
 
@@ -14,7 +14,7 @@ Text {
 		anchors.top: taskName.bottom;
 
     font: bodyFont;
-    //text: "Красивый дизайн +";
+    text: "Красивый дизайн +";
     color: "#ffffff";
   }
 }
