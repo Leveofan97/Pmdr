@@ -7,325 +7,330 @@ Item {
   anchors.verticalCenter: parent.verticalCenter;
   anchors.left: parent.left;
 
+  FocusablePanel {
+    id: blueButton;
+    anchors.right: custom.right;
+    anchors.horizontalCenter: blue.horizontalCenter;
+    anchors.verticalCenter: blue.verticalCenter;
+    width: 44;
+    height: 44;
+    radius: 22;
+    color: active ? "#fff" : "#0017FD";
+    enabled: true;
+    Behavior on color { animation: Animation { duration: 500; } }
+    //Behavior on borderColor { animation: Animation { duration: 500; } }
 
     Rectangle {
       id: blue;
-      anchors.right: custom.right;
+      //property bool active: activeFocus;
+      anchors.horizontalCenter: blueButton.horizontalCenter;
+      anchors.verticalCenter: blueButton.verticalCenter;
       width: 40;
       height: 40;
       radius: 20;
-      color: "#0017FD"; // blue
-
-      FocusablePanel {
-        id: blueButton;
-
-        anchors.horizontalCenter: blue.horizontalCenter;
-        anchors.verticalCenter: blue.verticalCenter;
-
-        width: 46;
-        height: 46;
-        radius: 23;
-        opacity: active ? 1 : 0;
-				color: active ? "#0017FD" : "#000";
-        borderWidth: 2;
-        borderColor: active ? "#fff" : "#0017FD";
-        enabled: true;
-        Behavior on color { animation: Animation { duration: 500; } }
-				Behavior on borderColor { animation: Animation { duration: 500; } }
-
-        onUpPressed: {
-          error("up pressed");
-          faqButton.setFocus();
-        }
-
-        onDownPressed: {
-          error("down pressed");
-          yellowButton.setFocus();
-        }
-
-        onRightPressed: {
-          error("right pressed");
-          cancelButton.setFocus();
-        }
-
-        onLeftPressed: {
-          error("left pressed");
-          menuList.setFocus();
-        }
-
-        onSelectPressed: {
-          error("click blue!");
-        }
-
-      }
-    }
-    
-    Rectangle {
-      id: yellow;
-      anchors.top: blue.bottom;
-      anchors.topMargin: 20;
-      anchors.right: custom.right;
-      width: 40;
-      height: 40;
-      radius: 20;
-      color: "#FDDE00"; // yellow
-
-      FocusablePanel {
-        id: yellowButton;
-        anchors.horizontalCenter: yellow.horizontalCenter;
-        anchors.verticalCenter: yellow.verticalCenter;
-
-        width: 46;
-        height: 46;
-        radius: 23;
-        opacity: active ? 1 : 0;
-        color: active ? "#FDDE00" : "#000";
-        borderWidth: 2;
-        borderColor: active ? "#fff" : "#FDDE00";
-        enabled: true;
-
-        onUpPressed: {
-          error("up pressed");
-          blueButton.setFocus();
-        }
-
-        onDownPressed: {
-          error("down pressed");
-          blackButton.setFocus();
-        }
-
-        onRightPressed: {
-          error("right pressed");
-          cancelButton.setFocus();
-        }
-
-        onLeftPressed: {
-          error("left pressed");
-          menuList.setFocus();
-        }
-
-        onSelectPressed: {
-          error("click yellow!");
-        }
-
-      }
+      color: "#0017FD";
     }
 
+    onUpPressed: {
+      error("up pressed");
+      faqButton.setFocus();
+    }
+
+    onDownPressed: {
+      error("down pressed");
+      yellowButton.setFocus();
+    }
+
+    onRightPressed: {
+      error("right pressed");
+      cancelButton.setFocus();
+    }
+
+    onLeftPressed: {
+      error("left pressed");
+      menuList.setFocus();
+    }
+
+    onSelectPressed: {
+      error("click blue!");
+    }
+
+  }
 
 
-
-
-    Rectangle {
-      id: black;
-
-      anchors.top: yellow.bottom;
-      anchors.topMargin: 20;
+FocusablePanel
+{
+      id: yellowButton;
       anchors.right: custom.right;
-      width: 40;
-      height: 40;
-      radius: 20;
-      color: "#121212"; // black
+      anchors.horizontalCenter: yellow.horizontalCenter;
+      anchors.verticalCenter: yellow.verticalCenter;
+      width: 44;
+      height: 44;
+      radius: 22;
+      color: active ? "#fff" : "#FDDE00";
+      enabled: true;
+      Behavior on color { animation: Animation { duration: 500; } }
+      //Behavior on borderColor { animation: Animation { duration: 500; } }
 
-      FocusablePanel {
-        id: blackButton;
-        anchors.horizontalCenter: black.horizontalCenter;
-        anchors.verticalCenter: black.verticalCenter;
-
-        width: 46;
-        height: 46;
-        radius: 23;
-        opacity: active ? 1 : 0;
-        color: active ? "#121212" : "#000";
-        borderWidth: 2;
-        borderColor: active ? "#fff" : "#121212";
-        enabled: true;
-
-
-        onUpPressed: {
-          error("up pressed");
-          yellowButton.setFocus();
+        Rectangle
+        {
+          id: yellow;
+          anchors.top: blue.bottom;
+          anchors.topMargin: 20;
+          anchors.horizontalCenter: yellowButton.horizontalCenter;
+          width: 40;
+          height: 40;
+          radius: 20;
+          color: "#FDDE00"; // yellow
         }
+
+      onUpPressed:
+      {
+        error("up pressed");
+        blueButton.setFocus();
+      }
+
+      onDownPressed:
+      {
+        error("down pressed");
+        blackButton.setFocus();
+      }
+
+      onRightPressed:
+      {
+        error("right pressed");
+        cancelButton.setFocus();
+      }
+
+      onLeftPressed:
+      {
+        error("left pressed");
+        menuList.setFocus();
+      }
+
+      onSelectPressed:
+      {
+        log("Выбрана другая тема!");
+      }
+}
+
+
+FocusablePanel
+{
+      id: blackButton;
+      anchors.right: custom.right;
+      anchors.horizontalCenter: black.horizontalCenter;
+      anchors.verticalCenter: black.verticalCenter;
+      width: 44;
+      height: 44;
+      radius: 22;
+      color: active ? "#fff" : "#121212";
+      enabled: true;
+      Behavior on color { animation: Animation { duration: 500; } }
+
+        Rectangle
+        {
+          id: black;
+          anchors.top: yellow.bottom;
+          anchors.topMargin: 20;
+          anchors.horizontalCenter: blackButton.horizontalCenter;
+          width: 40;
+          height: 40;
+          radius: 20;
+          color: "#121212"; // black
+        }
+
+      onUpPressed:
+      {
+        error("up pressed");
+        yellowButton.setFocus();
+      }
 
         onDownPressed: {
           error("down pressed");
           redButton.setFocus();
         }
 
-        onRightPressed: {
-          error("right pressed");
-          cancelButton.setFocus();
-        }
-
-        onLeftPressed: {
-          error("left pressed");
-          menuList.setFocus();
-        }
-
-        onSelectPressed: {
-          error("click black!");
-        }
+      onRightPressed:
+      {
+        error("right pressed");
+        cancelButton.setFocus();
+        focus: false;
       }
-    }
 
+      onLeftPressed:
+      {
+        error("left pressed");
+        menuList.setFocus();
+        focus: false;
+      }
 
+      onSelectPressed:
+      {
+        error("click black!");
+      }
+}
 
-
-
-    Rectangle {
-      id: red;
-      anchors.top: black.bottom;
-      anchors.topMargin: 20;
+FocusablePanel
+{
+      id: redButton;
       anchors.right: custom.right;
-      width: 40;
-      height: 40;
-      radius: 20;
-      color: "#ff0000"; // red
+      anchors.horizontalCenter: red.horizontalCenter;
+      anchors.verticalCenter: red.verticalCenter;
+      width: 44;
+      height: 44;
+      radius: 22;
+      color: active ? "#fff" : "#ff0000";
+      enabled: true;
+      Behavior on color { animation: Animation { duration: 500; } }
 
-      FocusablePanel {
-        id: redButton;
-
-        anchors.horizontalCenter: red.horizontalCenter;
-        anchors.verticalCenter: red.verticalCenter;
-
-        width: 46;
-        height: 46;
-        radius: 23;
-        opacity: active ? 1 : 0;
-        color: active ? "#ff0000" : "#000";
-        borderWidth: 2;
-        borderColor: active ? "#fff" : "#ff0000";
-        enabled: true;
-
-
-
-        onUpPressed: {
-          error("up pressed");
-          blackButton.setFocus();
-        }
-
-        onDownPressed: {
-          error("down pressed");
-          musicButton.setFocus();
-        }
-
-        onRightPressed: {
-          error("right pressed");
-          cancelButton.setFocus();
-        }
-
-        onLeftPressed: {
-          error("left pressed");
-          menuList.setFocus();
-        }
-
-        onSelectPressed: {
-          error("click red!");
-        }
-
+      Rectangle
+      {
+        id: red;
+        anchors.top: black.bottom;
+        anchors.topMargin: 20;
+        anchors.horizontalCenter: redButton.horizontalCenter;
+        width: 40;
+        height: 40;
+        radius: 20;
+        color: "#ff0000"; // red
       }
 
-    }
+      onUpPressed:
+      {
+        error("up pressed");
+        blackButton.setFocus();
+      }
 
+      onDownPressed:
+      {
+        error("down pressed");
+        musicButton.setFocus();
+      }
 
+      onRightPressed:
+      {
+        error("right pressed");
+        cancelButton.setFocus();
+      }
 
+      onLeftPressed:
+      {
+        error("left pressed");
+        menuList.setFocus();
+      }
 
-    Image {
-      id: musicImage;
-      anchors.top: red.bottom;
-      anchors.topMargin: 20;
+      onSelectPressed:
+      {
+        error("click red!");
+      }
+
+}
+
+FocusablePanel
+{
+      id: musicButton;
       anchors.right: custom.right;
-      source: "apps/Pomodoro/img/music.png";
+      anchors.horizontalCenter: musicImage.horizontalCenter;
+      anchors.verticalCenter: musicImage.verticalCenter;
+      width: 45;
+      height: 45;
+      radius: 23;
+      color: active ? "#8FBC8B" : "#121212";
+      enabled: true;
+      Behavior on color { animation: Animation { duration: 500; } }
 
-      FocusablePanel {
-        id: musicButton;
-        anchors.horizontalCenter: musicImage.horizontalCenter;
-        anchors.verticalCenter: musicImage.verticalCenter;
-        width: 46;
-        height: 46;
-        enabled: true;
-        radius: 23;
-        opacity: active ? 0.2 : 0;
-        color: active ? "#fff" : "#000";
-        Behavior on color { animation: Animation { duration: 500; } }
-        Behavior on borderColor { animation: Animation { duration: 500; } }
-
-        onUpPressed: {
-          error("up pressed");
-          redButton.setFocus();
-        }
-
-        onDownPressed: {
-          error("down pressed");
-          faqButton.setFocus();
-        }
-
-        onRightPressed: {
-          error("right pressed");
-          cancelButton.setFocus();
-        }
-
-        onLeftPressed: {
-          error("left pressed");
-          menuList.setFocus();
-        }
-
-        onSelectPressed: {
-          error("click music!");
-        }
-
+      Image
+      {
+        id: musicImage;
+        anchors.top: red.bottom;
+        anchors.topMargin: 20;
+        anchors.horizontalCenter: musicButton.horizontalCenter;
+        source: "apps/Pomodoro/img/music.png";
       }
-    }
 
+      onUpPressed:
+      {
+        error("up pressed");
+        redButton.setFocus();
+      }
 
+      onDownPressed:
+      {
+        error("down pressed");
+        faqButton.setFocus();
+      }
 
+      onRightPressed:
+      {
+        error("right pressed");
+        cancelButton.setFocus();
+      }
 
+      onLeftPressed:
+      {
+        error("left pressed");
+        menuList.setFocus();
+      }
 
-    Image {
-      id: faqImage;
-      anchors.top: musicImage.bottom;
-      anchors.topMargin: 20;
+      onSelectPressed:
+      {
+        error("click music!");
+      }
+
+}
+
+FocusablePanel
+{
+      id: faqButton;
       anchors.right: custom.right;
-      source: "apps/Pomodoro/img/faq.png";
-
-      FocusablePanel {
-        id: faqButton;
-        anchors.horizontalCenter: faqImage.horizontalCenter;
-        anchors.verticalCenter: faqImage.verticalCenter;
-        width: 46;
-        height: 46;
-        enabled: true;
-        radius: 23;
-        opacity: active ? 0.2 : 0;
-        color: active ? "#fff" : "#000";
-        Behavior on color { animation: Animation { duration: 500; } }
-        Behavior on borderColor { animation: Animation { duration: 500; } }
+      anchors.horizontalCenter: faqImage.horizontalCenter;
+      anchors.verticalCenter: faqImage.verticalCenter;
+      width: 44;
+      height: 44;
+      radius: 22;
+      color: active ? "#8FBC8B" : "#121212";
+      enabled: true;
+      Behavior on color { animation: Animation { duration: 500; } }
 
 
-        onUpPressed: {
-          error("up pressed");
-          musicButton.setFocus();
+        Image
+        {
+          id: faqImage;
+          anchors.top: musicImage.bottom;
+          anchors.topMargin: 20;
+          anchors.horizontalCenter: faqButton.horizontalCenter;
+          source: "apps/Pomodoro/img/faq.png";
         }
 
-        onDownPressed: {
-          error("down pressed");
-          blueButton.setFocus();
-        }
-
-        onRightPressed: {
-          error("right pressed");
-          cancelButton.setFocus();
-        }
-
-        onLeftPressed: {
-          error("left pressed");
-          menuList.setFocus();
-        }
-
-        onSelectPressed: {
-          error("click faq!");
-        }
-
+      onUpPressed:
+      {
+        error("up pressed");
+        musicButton.setFocus();
       }
-    }
 
+      onDownPressed:
+      {
+        error("down pressed");
+        blueButton.setFocus();
+      }
+
+      onRightPressed:
+      {
+        error("right pressed");
+        cancelButton.setFocus();
+      }
+
+      onLeftPressed:
+      {
+        error("left pressed");
+        menuList.setFocus();
+      }
+
+      onSelectPressed:
+      {
+        error("click faq!");
+      }
+
+}
 }
