@@ -17,7 +17,25 @@
     	    "name" : "Задача3",
     	    "isDone"  : false,
     	    "difficulty": 1,
-    	    "content" : "qwertyuiop[]asdfghjkl;'zxcvbnm,./'"
+    	    "content" : "qwerty"
+    	},
+      {
+    	    "name" : "Задача4",
+    	    "isDone"  : false,
+    	    "difficulty": 1,
+    	    "content" : "Hello World!"
+    	},
+      {
+    	    "name" : "Задача5",
+    	    "isDone"  : false,
+    	    "difficulty": 1,
+    	    "content" : "Let's start"
+    	},
+      {
+    	    "name" : "Задача6",
+    	    "isDone"  : false,
+    	    "difficulty": 1,
+    	    "content" : "Bye"
     	}
     ]
 }

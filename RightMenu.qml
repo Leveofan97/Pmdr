@@ -89,6 +89,8 @@ Rectangle {
 			}
 
 			onSelectPressed: {
+				menuList.model.append({ text: "New Task" });
+				engine.addTask("Content qwerty");
 				error("Add Task!");
 			}
 		}
@@ -181,7 +183,7 @@ Rectangle {
 	}
 
 	Resource {
-		id: f123;
+		id: resJSON;
 		url: "apps/Pomodoro/taskList.json";
 
 		onDataChanged: {
@@ -239,32 +241,43 @@ Rectangle {
 
 		onRedPressed: {
 			error("red1");
-			model.set(1,{text: "123"});
-			engine.tasks[1].name = "123";
+			error(model.count);
+			if(model.count != 0){model.remove(this.currentIndex,1);
+				engine.deleteTask(this.currentIndex);
+				if (this.currentIndex == taskName.elem){
+					taskName.text = "";
+					taskContent.text = "";
+				}
+			}
 			error("red2");
 		}
 
 		onGreenPressed: {
 			error("green1");
-			engine.saveTasks();
-			engine.tasks[1].name = "sosi";
-			engine.loadf();
-			engine.tasks.forEach(function (task){
-				model.append( { text: task.name });
-			});
-			engine.createFile();
+			// engine.saveTasks();
+			// engine.tasks[1].name = "sosi";
+			// engine.loadf();
+			// engine.tasks.forEach(function (task){
+			// 	model.append( { text: task.name });
+			// });
+
+
+			//engine.createFile();
+
 			error("green2");
 		}
 
-		// onDataChanged: {
-		// 	error("data1");
-		// 	engine.saveTasks();
-		// 	error("data2");
-		// }
+		onYellowPressed: {
+			error("yellow1");
+			model.set(1,{text: "123"});
+			engine.tasks[1].name = "123";
+			error("yellow2");
+		}
 
 		onSelectPressed: {
 			// switch (this.currentIndex) {
 			// case 0:
+				taskName.elem = this.currentIndex;
 				taskName.text = engine.tasks[this.currentIndex].name;
 				taskContent.text = engine.tasks[this.currentIndex].content;
 			// 	error("0");
