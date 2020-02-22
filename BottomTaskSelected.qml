@@ -1,5 +1,6 @@
 Text {
     id: taskName;
+    property int elem: 0;
     anchors.horizontalCenter: timercyrcle.horizontalCenter;
 		anchors.top: pauseButton.bottom;
 		anchors.topMargin: 20;
