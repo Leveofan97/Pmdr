@@ -88,7 +88,7 @@ this.addTask = function (data) {
                  difficulty: "123",
                  content: data
   });
-  
+
   log("appTasks" + this.tasks);
   save("appTasks", statistic);
 }
