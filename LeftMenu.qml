@@ -52,8 +52,12 @@ Item {
     }
 
     onSelectPressed: {
-      bgb.opacity = 0; // may be enable mojno?
-      error("click blue!");
+      blu.visible = true;
+      blu.opacity = 1;
+      yel.visible = false;
+      redcolor.visible = false;
+      mainback.visible = false;
+      log("Выбрана синяя тема");
     }
 
   }
@@ -111,7 +115,12 @@ FocusablePanel
 
       onSelectPressed:
       {
-        log("Выбрана другая тема!");
+        log("Выбрана синяя тема");
+        yel.visible = true;
+        yel.opacity = 1;
+        blu.visible = false;
+        mainback.visible = false;
+        redcolor.visible = false;
       }
 }
 
@@ -168,7 +177,12 @@ FocusablePanel
 
       onSelectPressed:
       {
-        error("click black!");
+        log("Выбрана другая тема!");
+        mainback.visible = true;
+        mainback.opacity = 1;
+        blu.visible = false;
+        yel.visible = false;
+        redcolor.visible = false;
       }
 }
 
@@ -223,7 +237,12 @@ FocusablePanel
 
       onSelectPressed:
       {
-        error("click red!");
+        log("Выбрана другая тема!");
+        redcolor.visible = true;
+        redcolor.opacity = 1;
+        blu.visible = false;
+        yel.visible = false;
+        mainback.visible = false;
       }
 
 }

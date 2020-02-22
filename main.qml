@@ -6,7 +6,9 @@ import "RightMenu.qml";
 import "Timer.qml";
 import "LeftMenu.qml";
 import "BottomTaskSelected.qml";
-import "BGB.qml";
+import "BlueTheme.qml";
+import "YellowTheme.qml";
+import "RedTheme.qml";
 Application {
 
 // TODO:  сделать рефакторинг кода
@@ -24,7 +26,10 @@ Application {
 
 // TODO:  добавить логику для изменения фона
 	Background {}
-	BGB {}
+	YellowTheme {}
+	BlueTheme {}
+	RedTheme {}
+
 /*--------------------------Правое меню задач---------------------------------*/
 
 // TODO:  добавить навигацию для истории и создания новых задач +
