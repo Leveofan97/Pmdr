@@ -52,6 +52,7 @@ Item {
     }
 
     onSelectPressed: {
+      bgb.opacity = 0; // may be enable mojno?
       error("click blue!");
     }
 

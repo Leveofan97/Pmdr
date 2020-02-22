@@ -214,7 +214,7 @@ Rectangle {
 // TODO: добавить другие параметры из json
 			engine.tasks.forEach(function (task){
 				model.append( { text: task.name });
-			})
+			});
 		}
 
 		onDownPressed: {
@@ -236,6 +236,31 @@ Rectangle {
 			error("right pressed");
 			blueButton.setFocus();
 		}
+
+		onRedPressed: {
+			error("red1");
+			model.set(1,{text: "123"});
+			engine.tasks[1].name = "123";
+			error("red2");
+		}
+
+		onGreenPressed: {
+			error("green1");
+			engine.saveTasks();
+			engine.tasks[1].name = "sosi";
+			engine.loadf();
+			engine.tasks.forEach(function (task){
+				model.append( { text: task.name });
+			});
+			engine.createFile();
+			error("green2");
+		}
+
+		// onDataChanged: {
+		// 	error("data1");
+		// 	engine.saveTasks();
+		// 	error("data2");
+		// }
 
 		onSelectPressed: {
 			// switch (this.currentIndex) {
