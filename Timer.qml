@@ -36,7 +36,8 @@ Item {
 		radius: 25;
 
 		enabled: true;
-		color: active ? "#96CEB4" : "#FBE9E7";
+		property string colorfocus: active ? (clockFace.selectflag ? "#EBBAB5" : "#96CEB4") : "#FBE9E7";
+		color: colorfocus;
 
 		Behavior on color { animation: Animation { duration: 500; } }
 		Behavior on borderColor { animation: Animation { duration: 500; } }
