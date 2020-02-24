@@ -1,12 +1,13 @@
 Item {
+	id: casetimer;
 	x: 510;
-	y: 500;
-
+	y: 300;
+	visible: true;
 	Rectangle {
 		id: timercyrcle;
 
 		anchors.horizontalCenter: parent.horizontalCenter;
-		anchors.verticalCenter: mainView.verticalCenter;
+		anchors.verticalCenter: parent.verticalCenter;
 
 		color: "#FBE9E7";
 
