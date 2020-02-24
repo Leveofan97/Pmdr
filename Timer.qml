@@ -25,9 +25,13 @@ Item {
 		}
 
 		Text {
+			id: clockFace;
 			anchors.centerIn: parent;
-
-			text: "25:00";
+			property int seconds;
+			property int startseconds;
+			property bool selectflag: false;
+			property string delimiter: seconds % 60 < 10 ? ":0" : ":";
+			text: Math.floor(seconds / 60) + delimiter + seconds % 60;
 			color: "#000000";
 			font: titleFont;
 
@@ -48,12 +52,50 @@ Item {
 				Behavior on borderColor { animation: Animation { duration: 500; } }
 
 				onDownPressed: {
-					error("down pressed");
-					pauseButton.setFocus();
+					if(clockFace.selectflag){
+						if(clockFace.seconds > 0){
+							clockFace.seconds-=30;
+						}else{
+							error("Minimum or not selected");
+						}
+					}else{
+						controltimerButton.setFocus();
+					}
 				}
 
 				onSelectPressed: {
-					error("25:00!");
+					if(!controltimer.isTimerRun){
+						clockFace.selectflag = clockFace.selectflag ? false : true;
+						log(clockFace.selectflag);
+					}else{
+						error("Timer started");
+					}
+				}
+
+				onLeftPressed: {
+					if(clockFace.seconds > 299 && clockFace.selectflag){
+						clockFace.seconds-=300;
+					}else{
+						error("Minimum or not selected");
+					}
+				}
+
+				onRightPressed: {
+					if(clockFace.seconds<5101  && clockFace.selectflag){
+						clockFace.seconds+=300;
+					}else{
+						error("Maximum or not selected");
+					}
+				}
+
+				onUpPressed: {
+					if(clockFace.selectflag){
+						if(clockFace.seconds<5400){
+							clockFace.seconds+=30;
+						}else{
+							error("Maximum or not selected");
+						}
+					}
 				}
 
 			}
@@ -62,14 +104,16 @@ Item {
 
 
 		Image {
-	 		id: pause;
+	 		id: controltimer;
 			anchors.horizontalCenter: parent.verticalCenter;
 			anchors.top: parent.bottom;
 			anchors.topMargin: 20;
-			source: "apps/Pomodoro/img/pause.png";
+			property bool isTimerRun: false;
+			property string control: (this.isTimerRun ? "pause" : "play");
+			source: "apps/Pomodoro/img/"+control+".png";
 
 			FocusablePanel {
-				id: pauseButton;
+				id: controltimerButton;
 				anchors.centerIn: parent;
 
 
@@ -99,7 +143,12 @@ Item {
 				}
 
 				onSelectPressed: {
-					error("click pause!");
+					if(!controltimer.isTimerRun){
+						clockFace.startseconds = clockFace.seconds;
+						log("Start time: " + clockFace.startseconds);
+					}
+					controltimer.isTimerRun = (controltimer.isTimerRun ? false : true);
+					log("Timer run: " + controltimer.isTimerRun);
 				}
 			}
 		}
@@ -133,7 +182,7 @@ Item {
 
 				onLeftPressed: {
 					error("left pressed");
-					pauseButton.setFocus();
+					controltimer.setFocus();
 				}
 
 				onRightPressed: {
@@ -142,7 +191,9 @@ Item {
 				}
 
 				onSelectPressed: {
-					error("click reset!");
+					clockFace.seconds = clockFace.startseconds;
+					controltimer.isTimerRun = false;
+					log("Timer reset");
 				}
 			}
 		}
@@ -180,11 +231,13 @@ Item {
 
 				onRightPressed: {
 					error("right pressed");
-					pauseButton.setFocus();
+					controltimerButton.setFocus();
 				}
 
 				onSelectPressed: {
-					error("click cansel!");
+					clockFace.seconds = 0;
+					controltimer.isTimerRun = false;
+					log("Timer cancel");
 				}
 			}
 		}
