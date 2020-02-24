@@ -36,7 +36,8 @@ Item {
 		radius: 25;
 
 		enabled: true;
-		property string colorfocus: active ? (clockFace.selectflag ? "#EBBAB5" : "#96CEB4") : "#FBE9E7";
+		property string focusselect: (clockFace.selectflag ? "#EBBAB5" : "#96CEB4");
+		property string colorfocus: active ? focusselect : "#FBE9E7";
 		color: colorfocus;
 
 		Behavior on color { animation: Animation { duration: 500; } }
