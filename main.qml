@@ -9,6 +9,7 @@ import "BottomTaskSelected.qml";
 import "BlueTheme.qml";
 import "YellowTheme.qml";
 import "RedTheme.qml";
+import "FAQ.qml";
 
 Application {
 
@@ -59,6 +60,7 @@ Application {
 //				воспроизведение звука после того как закончится время
 // BUG:   при переходе в правое или в левое меню остаётся след + fixed
 	Timer {}
+	FAQ {}
 
 /*---------------------------------Таймер-------------------------------------*/
 
