@@ -3,7 +3,7 @@ SubheadText {
 
     property int elem: 0;
     anchors.horizontalCenter: timercyrcle.horizontalCenter;
-		//anchors.top: controltimerButton.bottom;
+		anchors.top: controltimerButton.bottom;
 		anchors.topMargin: 20;
 
     //font: bodyFont;
