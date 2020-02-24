@@ -9,6 +9,7 @@ import "BottomTaskSelected.qml";
 import "BlueTheme.qml";
 import "YellowTheme.qml";
 import "RedTheme.qml";
+
 Application {
 
 // TODO:  сделать рефакторинг кода
