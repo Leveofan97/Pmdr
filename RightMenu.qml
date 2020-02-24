@@ -3,7 +3,7 @@ import "engine.js" as engine;
 Rectangle {
 	id: menu;
 
-	width: 200;
+	width: 250;
 	height: 600;
 
 	anchors.verticalCenter: parent.verticalCenter;
@@ -17,9 +17,10 @@ Rectangle {
 		FocusablePanel {
 			id: addTaskButton;
 
-			anchors.horizontalCenter: menu.horizontalCenter;
+			anchors.left: menu.left;
 			anchors.top: menu.top;
 			anchors.topMargin: 20;
+			anchors.leftMargin: 20;
 
 			width:140;
  		  height:40;
@@ -30,9 +31,10 @@ Rectangle {
 			Rectangle {
 				id: but;
 
-				anchors.horizontalCenter: menu.horizontalCenter;
+				anchors.left: menu.left;
 				anchors.top: menu.top;
 				anchors.topMargin: 20;
+				anchors.leftMargin: 20;
 
 				width:140;
 				height:40;
@@ -69,29 +71,29 @@ Rectangle {
 			}
 
 			onRightPressed: {
-				error("right pressed");
+				log("Выбрана синяя кнопка изменения фона");
 				blueButton.setFocus();
 			}
 
 			onLeftPressed: {
-				error("left pressed");
+				log("Выбрана кнопка управления сбросом таймера");
 				resetButton.setFocus();
 			}
 
 			onUpPressed: {
-				error("up pressed");
+				log("Выбрана кнопка истории");
 				historyButton.setFocus();
 			}
 
 			onDownPressed: {
-				error("down pressed");
+				log("Выбран список задач");
 				menuList.setFocus();
 			}
 
 			onSelectPressed: {
 				menuList.model.append({ text: "New Task" });
 				engine.addTask("Content qwerty");
-				error("Add Task!");
+				log("Добавлена новая задача");
 			}
 		}
 
@@ -102,6 +104,7 @@ Rectangle {
 				anchors.horizontalCenter: menu.horizontalCenter;
 				anchors.bottom: menu.bottom;
 				anchors.bottomMargin: 30;
+				//anchors.leftMargin: 20;
 
 
 				text: "История...";
@@ -113,6 +116,7 @@ Rectangle {
 					anchors.horizontalCenter: statist.horizontalCenter;
 					anchors.bottom: statist.bottom;
 					anchors.topMargin: 10;
+					//anchors.leftMargin: 20;
 
 					width:110;
 					height:1;
@@ -123,17 +127,17 @@ Rectangle {
 					enabled: true;
 
 					onRightPressed: {
-						error("right pressed");
+						log("Выбрана синяя кнопка изменения фона");
 						blueButton.setFocus();
 					}
 
 					onLeftPressed: {
-						error("left pressed");
+						log("Выбрана кнопка сброса таймера");
 						resetButton.setFocus();
 					}
 
 					onUpPressed: {
-						error("up pressed");
+						log("Выбран список задач");
 						menuList.setFocus();
 					}
 
@@ -143,7 +147,7 @@ Rectangle {
 					}
 
 					onSelectPressed: {
-						error("History!");
+						log("Выбрана история");
 					}
 				}
 			}
@@ -154,7 +158,7 @@ Rectangle {
 
 		anchors.verticalCenter: menu.verticalCenter;
 
-		width: 200;
+		width: 250;
 		height: 400;
 
 		GradientStop {
@@ -203,7 +207,7 @@ Rectangle {
 		width: 200;
 		height: 400;
 
-		anchors.leftMargin: 50;
+		//anchors.leftMargin: 50;
 		anchors.centerIn: parent;
 
 		focus: true;
