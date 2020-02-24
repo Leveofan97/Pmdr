@@ -24,6 +24,23 @@ Item {
 			color: "#ffffff";
 		}
 
+
+
+	FocusablePanel {
+		id: timePanel;
+
+		anchors.centerIn: parent;
+
+		width: 125;
+		height: 50;
+		radius: 25;
+
+		enabled: true;
+		color: active ? "#96CEB4" : "#FBE9E7";
+
+		Behavior on color { animation: Animation { duration: 500; } }
+		Behavior on borderColor { animation: Animation { duration: 500; } }
+
 		Text {
 			id: clockFace;
 			anchors.centerIn: parent;
@@ -34,211 +51,194 @@ Item {
 			text: Math.floor(seconds / 60) + delimiter + seconds % 60;
 			color: "#000000";
 			font: titleFont;
+		}
 
-			FocusablePanel {
-				id: timePanel;
-
-				anchors.centerIn: parent;
-
-				width: 125;
-				height: 50;
-				radius: 25;
-
-				enabled: true;
-				opacity: active ? 0.5 : 0;
-				color: active ? "#00f" : "#f00";
-
-				Behavior on color { animation: Animation { duration: 500; } }
-				Behavior on borderColor { animation: Animation { duration: 500; } }
-
-				onDownPressed: {
-					if(clockFace.selectflag){
-						if(clockFace.seconds > 0){
-							clockFace.seconds-=30;
-						}else{
-							error("Minimum or not selected");
-						}
-					}else{
-						controltimerButton.setFocus();
-					}
+		onDownPressed: {
+			if(clockFace.selectflag){
+				if(clockFace.seconds > 0){
+					clockFace.seconds-=30;
+				}else{
+					error("Minimum or not selected");
 				}
-
-				onSelectPressed: {
-					if(!controltimer.isTimerRun){
-						clockFace.selectflag = clockFace.selectflag ? false : true;
-						log(clockFace.selectflag);
-					}else{
-						error("Timer started");
-					}
-				}
-
-				onLeftPressed: {
-					if(clockFace.seconds > 299 && clockFace.selectflag){
-						clockFace.seconds-=300;
-					}else{
-						error("Minimum or not selected");
-					}
-				}
-
-				onRightPressed: {
-					if(clockFace.seconds<5101  && clockFace.selectflag){
-						clockFace.seconds+=300;
-					}else{
-						error("Maximum or not selected");
-					}
-				}
-
-				onUpPressed: {
-					if(clockFace.selectflag){
-						if(clockFace.seconds<5400){
-							clockFace.seconds+=30;
-						}else{
-							error("Maximum or not selected");
-						}
-					}
-				}
-
+			}else{
+				controltimerButton.setFocus();
 			}
 		}
 
+		onSelectPressed: {
+			if(!controltimer.isTimerRun){
+				clockFace.selectflag = clockFace.selectflag ? false : true;
+				log(clockFace.selectflag);
+			}else{
+				error("Timer started");
+			}
+		}
+
+		onLeftPressed: {
+			if(clockFace.seconds > 299 && clockFace.selectflag){
+				clockFace.seconds-=300;
+			}else{
+				error("Minimum or not selected");
+			}
+		}
+
+		onRightPressed: {
+			if(clockFace.seconds<5101  && clockFace.selectflag){
+				clockFace.seconds+=300;
+			}else{
+				error("Maximum or not selected");
+			}
+		}
+
+		onUpPressed: {
+			if(clockFace.selectflag){
+				if(clockFace.seconds<5400){
+					clockFace.seconds+=30;
+				}else{
+					error("Maximum or not selected");
+				}
+			}
+		}
+
+	}
 
 
-		Image {
-	 		id: controltimer;
+		FocusablePanel {
+			id: controltimerButton;
 			anchors.horizontalCenter: parent.verticalCenter;
 			anchors.top: parent.bottom;
 			anchors.topMargin: 20;
-			property bool isTimerRun: false;
-			property string control: (this.isTimerRun ? "pause" : "play");
-			source: "apps/Pomodoro/img/"+control+".png";
 
-			FocusablePanel {
-				id: controltimerButton;
+
+			width: 46;
+			height: 46;
+			enabled: true;
+			radius: 23;
+			opacity: active ? 1 : 0.7;
+			color: active ? "#05878A" : "#121212";
+
+			Behavior on color { animation: Animation { duration: 500; } }
+			Behavior on borderColor { animation: Animation { duration: 500; } }
+
+			Image {
+		 		id: controltimer;
+				property bool isTimerRun: false;
+				property string control: (this.isTimerRun ? "pause" : "play");
+				source: "apps/Pomodoro/img/"+control+".png";
 				anchors.centerIn: parent;
+			}
 
+			onUpPressed: {
+				error("up pressed");
+				timePanel.setFocus();
+			}
 
-				width: 46;
-				height: 46;
-				enabled: true;
-				radius: 23;
-				opacity: active ? 0.2 : 0;
-				color: active ? "#fff" : "#000";
+			onLeftPressed: {
+				error("left pressed");
+				cancelButton.setFocus();
+			}
 
-				Behavior on color { animation: Animation { duration: 500; } }
-				Behavior on borderColor { animation: Animation { duration: 500; } }
+			onRightPressed: {
+				error("right pressed");
+				resetButton.setFocus();
+			}
 
-				onUpPressed: {
-					error("up pressed");
-					timePanel.setFocus();
+			onSelectPressed: {
+				if(!controltimer.isTimerRun){
+					clockFace.startseconds = clockFace.seconds;
+					log("Start time: " + clockFace.startseconds);
 				}
-
-				onLeftPressed: {
-					error("left pressed");
-					cancelButton.setFocus();
-				}
-
-				onRightPressed: {
-					error("right pressed");
-					resetButton.setFocus();
-				}
-
-				onSelectPressed: {
-					if(!controltimer.isTimerRun){
-						clockFace.startseconds = clockFace.seconds;
-						log("Start time: " + clockFace.startseconds);
-					}
-					controltimer.isTimerRun = (controltimer.isTimerRun ? false : true);
-					log("Timer run: " + controltimer.isTimerRun);
-				}
+				controltimer.isTimerRun = (controltimer.isTimerRun ? false : true);
+				log("Timer run: " + controltimer.isTimerRun);
 			}
 		}
 
-		Image {
-	 		id: reset;
+
+		FocusablePanel {
+			id: resetButton;
 			anchors.right: parent.right;
 			anchors.bottom: parent.bottom;
+			opacity: active ? 1 : 0.7;
+			color: active ? "#05878A" : "#121212";
 
-			source: "apps/Pomodoro/img/reset.png";
+			width: 46;
+			height: 46;
+			enabled: true;
+			radius: 23;
 
-			FocusablePanel {
-				id: resetButton;
+			Behavior on color { animation: Animation { duration: 500; } }
+			Behavior on borderColor { animation: Animation { duration: 500; } }
 
+			Image {
+		 		id: reset;
+				source: "apps/Pomodoro/img/reset.png";
 				anchors.centerIn: parent;
+			}
 
-				width: 46;
-				height: 46;
-				enabled: true;
-				radius: 23;
-				opacity: active ? 0.2 : 0;
-				color: active ? "#fff" : "#000";
+			onUpPressed: {
+				error("up pressed");
+				timePanel.setFocus();
+			}
 
-				Behavior on color { animation: Animation { duration: 500; } }
-				Behavior on borderColor { animation: Animation { duration: 500; } }
+			onLeftPressed: {
+				error("left pressed");
+				controltimerButton.setFocus();
+			}
 
-				onUpPressed: {
-					error("up pressed");
-					timePanel.setFocus();
-				}
+			onRightPressed: {
+				error("right pressed");
+				menuList.setFocus();
+			}
 
-				onLeftPressed: {
-					error("left pressed");
-					controltimer.setFocus();
-				}
-
-				onRightPressed: {
-					error("right pressed");
-					menuList.setFocus();
-				}
-
-				onSelectPressed: {
-					clockFace.seconds = clockFace.startseconds;
-					controltimer.isTimerRun = false;
-					log("Timer reset");
-				}
+			onSelectPressed: {
+				clockFace.seconds = clockFace.startseconds;
+				controltimer.isTimerRun = false;
+				log("Timer reset");
 			}
 		}
 
 
-		Image {
-	 		id: cancel;
+
+		FocusablePanel {
+			id: cancelButton;
 			anchors.left: parent.left;
 			anchors.bottom: parent.bottom;
-			source: "apps/Pomodoro/img/cancel.png";
+			opacity: active ? 1 : 0.7;
+			color: active ? "#05878A" : "#121212";
 
-			FocusablePanel {
-				id: cancelButton;
+			width: 46;
+			height: 46;
+			enabled: true;
+			radius: 23;
+
+			Behavior on color { animation: Animation { duration: 500; } }
+			Behavior on borderColor { animation: Animation { duration: 500; } }
+
+			Image {
+		 		id: cancel;
+				source: "apps/Pomodoro/img/cancel.png";
 				anchors.centerIn: parent;
+			}
 
-				width: 46;
-				height: 46;
-				enabled: true;
-				radius: 23;
-				opacity: active ? 0.2 : 0;
-				color: active ? "#fff" : "#000";
+			onUpPressed: {
+				error("up pressed");
+				timePanel.setFocus();
+			}
 
-				Behavior on color { animation: Animation { duration: 500; } }
-				Behavior on borderColor { animation: Animation { duration: 500; } }
+			onLeftPressed: {
+				error("left pressed");
+				faqButton.setFocus();
+			}
 
-				onUpPressed: {
-					error("up pressed");
-					timePanel.setFocus();
-				}
+			onRightPressed: {
+				error("right pressed");
+				controltimerButton.setFocus();
+			}
 
-				onLeftPressed: {
-					error("left pressed");
-					faqButton.setFocus();
-				}
-
-				onRightPressed: {
-					error("right pressed");
-					controltimerButton.setFocus();
-				}
-
-				onSelectPressed: {
-					clockFace.seconds = 0;
-					controltimer.isTimerRun = false;
-					log("Timer cancel");
-				}
+			onSelectPressed: {
+				clockFace.seconds = 0;
+				controltimer.isTimerRun = false;
+				log("Timer cancel");
 			}
 		}
   }
