@@ -349,7 +349,30 @@ FocusablePanel
 
       onSelectPressed:
       {
-        error("click faq!");
+        log("Вызвано окно FAQ");
+        if (faq.visible == false)
+        {
+          faq.visible = true;
+          casetimer.visible = false;
+          menu.opacity = 0.1;
+          activeTask.visible = false;
+          musicButton.opacity = 0.1;
+          redButton.opacity = 0.1;
+          yellowButton.opacity = 0.1;
+          blueButton.opacity = 0.1;
+          menu.opacity = 0.1;
+        }
+        else
+        {
+          faq.visible = false;
+          casetimer.visible = true;
+          activeTask.visible = true;
+          musicButton.opacity = 1;
+          redButton.opacity = 1;
+          yellowButton.opacity = 1;
+          blueButton.opacity = 1;
+          menu.opacity = 1;
+        }
       }
 
 }
