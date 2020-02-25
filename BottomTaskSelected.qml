@@ -21,7 +21,7 @@ SubheadText {
     horizontalAlignment: AlignHCenter;
     text: "Красивый дизайн +";
     color: "#ffffff";
-    width: 1000;
+    width: 900;
     wrapMode: WordWrap;
   }
 }

@@ -59,7 +59,7 @@ Rectangle {
 
 					GradientStop {
 						position: 0;
-						color: addTaskButton.activeFocus ? "#434445" : "#ffffff";
+						color: addTaskButton.activeFocus ? "#05878A" : "#ffffff";
 						Behavior on color { animation : Animation {duration: 300; } }
 					}
 					GradientStop {
