@@ -3,7 +3,7 @@ import controls.FocusablePanel;
 import "MenuDelegate.qml";
 import "Background.qml";
 import "RightMenu.qml";
-import "Timer.qml";
+import "ClockFaceTimer.qml";
 import "LeftMenu.qml";
 import "BottomTaskSelected.qml";
 import "BlueTheme.qml";
@@ -59,7 +59,7 @@ Application {
 //        добавить под таймером название таска и его содержимое +
 //				воспроизведение звука после того как закончится время
 // BUG:   при переходе в правое или в левое меню остаётся след + fixed
-	Timer {}
+	ClockFaceTimer {}
 	FAQ {}
 
 /*---------------------------------Таймер-------------------------------------*/
@@ -75,6 +75,7 @@ Application {
 
 /*----------------------------------------------------------------------------*/
   onStarted: {
+		controltimerButton.setFocus();
     log("Приложение запущено!");
   }
 }

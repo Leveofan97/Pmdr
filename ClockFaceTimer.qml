@@ -10,7 +10,7 @@ Item {
 		anchors.verticalCenter: parent.verticalCenter;
 
 		color: "#FBE9E7";
-
+		opacity: 0.85;
     width: 350;
 		height: 350;
 		radius: 175;
@@ -44,6 +44,20 @@ Item {
 		Behavior on color { animation: Animation { duration: 500; } }
 		Behavior on borderColor { animation: Animation { duration: 500; } }
 
+		Audio {
+			id: timefinish;
+			source: "Beep.wav";
+
+			onPlaying: {
+				log("Beep");
+			}
+		}
+
+		NotificatorManager {
+			id: beep;
+			text: "Таймер сработал!";
+		}
+
 		Text {
 			id: clockFace;
 			anchors.centerIn: parent;
@@ -56,11 +70,53 @@ Item {
 			font: titleFont;
 		}
 
+		function colorprocent() {
+				var delitel = (clockFace.startseconds < 0 ? 1 : clockFace.startseconds);
+		    var proc = (clockFace.seconds/delitel) * 100;
+
+				//"#64eef9" NOT
+				if(proc > 0 && proc < 20){
+					timercyrcle.color = "#F96464";
+				}
+				if(proc > 20 && proc < 40){
+					timercyrcle.color = "#f9be64";
+				}
+				if(proc > 40 && proc < 60){
+					timercyrcle.color = "#64eef9";
+				}
+				if(proc > 60 && proc < 80){
+					timercyrcle.color = "#c3f964";
+				}
+				if(proc > 80 && proc < 100){
+					timercyrcle.color = "#64f9a3";
+				}
+		}
+
+		Timer{
+			id: timer;
+			interval: 1000;
+			repeat: true;
+
+			onTriggered: {
+				if(clockFace.seconds > 0){
+					clockFace.seconds--;
+					this.timePanel.colorprocent();
+				}else{
+					log("Timer finish");
+					this.stop();
+					controltimer.isTimerRun = false;
+					timefinish.play();
+					beep.addNotify();
+				}
+			}
+		}
+
 		onDownPressed: {
 			if(clockFace.selectflag){
-				if(clockFace.seconds > 0){
-					clockFace.seconds-=30;
+				if(clockFace.seconds > 29){
+					clockFace.seconds -= 30;
 				}else{
+					clockFace.seconds = 0;
 					error("Minimum or not selected");
 				}
 			}else{
@@ -71,6 +127,9 @@ Item {
 		onSelectPressed: {
 			if(!controltimer.isTimerRun){
 				clockFace.selectflag = clockFace.selectflag ? false : true;
+				if(!clockFace.selectflag){
+					clockFace.startseconds = clockFace.seconds;
+				}
 				log(clockFace.selectflag);
 			}else{
 				error("Timer started");
@@ -79,25 +138,32 @@ Item {
 
 		onLeftPressed: {
 			if(clockFace.seconds > 299 && clockFace.selectflag){
-				clockFace.seconds-=300;
+				clockFace.seconds -= 300;
 			}else{
+				if(clockFace.selectflag){
+					clockFace.seconds = 0;
+				}
 				error("Minimum or not selected");
 			}
 		}
 
 		onRightPressed: {
-			if(clockFace.seconds<5101  && clockFace.selectflag){
-				clockFace.seconds+=300;
+			if(clockFace.seconds < 5101  && clockFace.selectflag){
+				clockFace.seconds += 300;
 			}else{
+				if(clockFace.selectflag){
+					clockFace.seconds = 5400;
+				}
 				error("Maximum or not selected");
 			}
 		}
 
 		onUpPressed: {
 			if(clockFace.selectflag){
-				if(clockFace.seconds<5400){
-					clockFace.seconds+=30;
+				if(clockFace.seconds < 5329){
+					clockFace.seconds += 30;
 				}else{
+					clockFace.seconds = 5400;
 					error("Maximum or not selected");
 				}
 			}
@@ -147,15 +213,18 @@ Item {
 			}
 
 			onSelectPressed: {
-				if(!controltimer.isTimerRun){
-					clockFace.startseconds = clockFace.seconds;
-					log("Start time: " + clockFace.startseconds);
+				if(!controltimer.isTimerRun && clockFace.seconds > 0){
+					timePanel.timer.start();
+					log("timer started");
+				}else{
+					timePanel.timer.stop();
+					log("timer stop");
 				}
-				controltimer.isTimerRun = (controltimer.isTimerRun ? false : true);
-				log("Timer run: " + controltimer.isTimerRun);
+				if(clockFace.seconds > 0){
+					controltimer.isTimerRun = (controltimer.isTimerRun ? false : true);
+				}
 			}
 		}
-
 
 		FocusablePanel {
 			id: resetButton;
@@ -196,6 +265,7 @@ Item {
 			onSelectPressed: {
 				clockFace.seconds = clockFace.startseconds;
 				controltimer.isTimerRun = false;
+				timePanel.timer.stop();
 				log("Timer reset");
 			}
 		}
@@ -241,6 +311,7 @@ Item {
 			onSelectPressed: {
 				clockFace.seconds = 0;
 				controltimer.isTimerRun = false;
+				timePanel.timer.stop();
 				log("Timer cancel");
 			}
 		}
