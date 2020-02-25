@@ -10,7 +10,7 @@ Item {
 		anchors.verticalCenter: parent.verticalCenter;
 
 		color: "#FBE9E7";
-		opacity: 0.85;
+		opacity: 1;
     width: 350;
 		height: 350;
 		radius: 175;
@@ -25,6 +25,7 @@ Item {
 			color: "#ffffff";
 		}
 
+		Behavior on color { animation : Animation {duration: 2000; } }
 
 
 	FocusablePanel {
@@ -75,20 +76,35 @@ Item {
 		    var proc = (clockFace.seconds/delitel) * 100;
 
 				//"#64eef9" NOT
-				if(proc > 0 && proc < 20){
-					timercyrcle.color = "#F96464";
+				if(proc > 0 && proc < 10){
+					timercyrcle.color = "#ff0000";
 				}
-				if(proc > 20 && proc < 40){
-					timercyrcle.color = "#f9be64";
+				if(proc > 10 && proc < 20){
+					timercyrcle.color = "#c23d01";
 				}
-				if(proc > 40 && proc < 60){
-					timercyrcle.color = "#64eef9";
+				if(proc > 20 && proc < 30){
+					timercyrcle.color = "#a85702";
 				}
-				if(proc > 60 && proc < 80){
-					timercyrcle.color = "#c3f964";
+				if(proc > 30 && proc < 40){
+					timercyrcle.color = "#966903";
 				}
-				if(proc > 80 && proc < 100){
-					timercyrcle.color = "#64f9a3";
+				if(proc > 40 && proc < 50){
+					timercyrcle.color = "#708f04";
+				}
+				if(proc > 50 && proc < 60){
+					timercyrcle.color = "#5ea105";
+				}
+				if(proc > 60 && proc < 70){
+					timercyrcle.color = "#45ba06";
+				}
+				if(proc > 70 && proc < 80){
+					timercyrcle.color = "#26d907";
+				}
+				if(proc > 80 && proc < 90){
+					timercyrcle.color = "#13ec08";
+				}
+				if(proc > 90 && proc < 100){
+					timercyrcle.color = "#00ff08";
 				}
 		}
 
