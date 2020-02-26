@@ -17,17 +17,20 @@ Item {
 
 
 	}
-	TitleText {
+	Text {
 		anchors.centerIn: parent;
-		width: 100;
-		//height: 50;
-		//try elide:
+		width: 200;
+		height: 30;
+		//horizontalAlignment: AlignHCenter;
 		//try numerable
-		//contentWidth: 110.5;
-    //contentHeight: 110.5;
-		text: tr(model.text);
+		//contentWidth: 200.5;
+    //contentHeight: 30.5;
+		text: tr(model.text); // +",,,"
 		font: bodyFont;
 		color: "#fff";
-		wrapMode: WrapAnywhere;
+		maximumLineCount: 1;
+		elide: ElideRight;
+		//wrapMode: WordWrap;
+		//wrapMode: WrapAnywhere;
 	}
 }

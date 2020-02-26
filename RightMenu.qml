@@ -214,7 +214,7 @@ Rectangle {
 
 		model: ListModel {}
 
-		delegate: MenuDelegate {width: 150;}
+		delegate: MenuDelegate {width: 250;}
 
 		onCompleted: {
 // TODO: добавить другие параметры из json
@@ -259,7 +259,7 @@ Rectangle {
 		onGreenPressed: {
 			error("green1");
 			// engine.saveTasks();
-			// engine.tasks[1].name = "sosi";
+			// engine.tasks[1].name = "123456";
 			// engine.loadf();
 			// engine.tasks.forEach(function (task){
 			// 	model.append( { text: task.name });
