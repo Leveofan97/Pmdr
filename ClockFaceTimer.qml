@@ -60,10 +60,27 @@ Item {
 		}
 
 		Text {
+			id: stateTimer;
+			anchors.centerIn: parent;
+			anchors.bottomMargin: 200;
+			property bool flagstate: true; //true - Work; false - Relax state;
+			text: (flagstate ? "Рабора" : "Отдых");
+			color: "#000000";
+			font: titleFont;
+			opacity: timePanel.active ? 1 : 0;
+
+			Behavior on opacity { animation: Animation { duration: 250; } }
+		}
+
+		Text {
 			id: clockFace;
 			anchors.centerIn: parent;
-			property int seconds;
-			property int startseconds;
+
+			property var defworksec: 1500;
+			property var defrelaxsec: 300;
+
+			property int seconds: 1500;
+			property int startseconds: 1500;
 			property bool selectflag: false;
 			property string delimiter: seconds % 60 < 10 ? ":0" : ":";
 			text: Math.floor(seconds / 60) + delimiter + seconds % 60;
@@ -123,6 +140,12 @@ Item {
 					controltimer.isTimerRun = false;
 					timefinish.play();
 					beep.addNotify();
+					stateTimer.flagstate = stateTimer.flagstate ? false : true;
+					if(stateTimer.flagstate){
+						clockFace.startseconds = clockFace.seconds = clockFace.defworksec;
+					}else{
+						clockFace.startseconds = clockFace.seconds = clockFace.defrelaxsec;
+					}
 				}
 			}
 		}
@@ -135,6 +158,12 @@ Item {
 					clockFace.seconds = 0;
 					error("Minimum or not selected");
 				}
+
+				if(stateTimer.flagstate){
+					clockFace.defworksec = clockFace.seconds;
+				}else{
+					clockFace.defrelaxsec = clockFace.seconds;
+				}
 			}else{
 				controltimerButton.setFocus();
 			}
@@ -143,6 +172,7 @@ Item {
 		onSelectPressed: {
 			if(!controltimer.isTimerRun){
 				clockFace.selectflag = clockFace.selectflag ? false : true;
+				clockFace.seconds = stateTimer.flagstate ? clockFace.defworksec : clockFace.defrelaxsec;
 				if(!clockFace.selectflag){
 					clockFace.startseconds = clockFace.seconds;
 				}
@@ -153,24 +183,55 @@ Item {
 		}
 
 		onLeftPressed: {
-			if(clockFace.seconds > 299 && clockFace.selectflag){
-				clockFace.seconds -= 300;
-			}else{
-				if(clockFace.selectflag){
+			if(clockFace.selectflag){
+				if(clockFace.seconds > 299){
+					clockFace.seconds -= 300;
+				}else{
 					clockFace.seconds = 0;
+					error("Minimum or not selected");
 				}
-				error("Minimum or not selected");
+
+				if(stateTimer.flagstate){
+					clockFace.defworksec = clockFace.seconds;
+				}else{
+					clockFace.defrelaxsec = clockFace.seconds;
+				}
+			}else{
+				if(!controltimer.isTimerRun){
+					stateTimer.flagstate = stateTimer.flagstate ? false : true;
+					if(stateTimer.flagstate){
+						clockFace.startseconds = clockFace.seconds = clockFace.defworksec;
+					}else{
+						clockFace.startseconds = clockFace.seconds = clockFace.defrelaxsec;
+					}
+				}
 			}
+
 		}
 
 		onRightPressed: {
-			if(clockFace.seconds < 5101  && clockFace.selectflag){
-				clockFace.seconds += 300;
-			}else{
-				if(clockFace.selectflag){
+			if(clockFace.selectflag){
+				if(clockFace.seconds < 5101){
+					clockFace.seconds += 300;
+				}else{
 					clockFace.seconds = 5400;
+					error("Maximum or not selected");
 				}
-				error("Maximum or not selected");
+
+				if(stateTimer.flagstate){
+					clockFace.defworksec = clockFace.seconds;
+				}else{
+					clockFace.defrelaxsec = clockFace.seconds;
+				}
+			}else{
+				if(!controltimer.isTimerRun){
+					stateTimer.flagstate = stateTimer.flagstate ? false : true;
+					if(stateTimer.flagstate){
+						clockFace.startseconds = clockFace.seconds = clockFace.defworksec;
+					}else{
+						clockFace.startseconds = clockFace.seconds = clockFace.defrelaxsec;
+					}
+				}
 			}
 		}
 
@@ -182,9 +243,14 @@ Item {
 					clockFace.seconds = 5400;
 					error("Maximum or not selected");
 				}
+
+				if(stateTimer.flagstate){
+					clockFace.defworksec = clockFace.seconds;
+				}else{
+					clockFace.defrelaxsec = clockFace.seconds;
+				}
 			}
 		}
-
 	}
 
 
@@ -279,7 +345,7 @@ Item {
 			}
 
 			onSelectPressed: {
-				clockFace.seconds = clockFace.startseconds;
+				clockFace.seconds = stateTimer.flagstate ? clockFace.defworksec : clockFace.defrelaxsec;
 				controltimer.isTimerRun = false;
 				timePanel.timer.stop();
 				log("Timer reset");
