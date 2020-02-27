@@ -213,7 +213,7 @@ Rectangle {
 
 		focus: true;
 
-		model: ListModel {}
+		model: ListModel {width: 200;}
 
 		delegate: MenuDelegate {width: 250; }
 

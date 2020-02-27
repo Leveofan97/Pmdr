@@ -22,15 +22,21 @@ Item {
 		//height: 30;
 		//horizontalAlignment: AlignHCenter;
 		//try numerable
-		//contentWidth: 200.5;
-    //contentHeight: 30.5;
+		//contentWidth: 20.5;
+    //contentHeight: 3.5;
 		text: tr(model.text); // +",,,"
 		font: bodyFont;
 		color: "#fff";
 		clip: true;
 		//maximumLineCount: 1;
+
 		//elide: ElideRight;
 		//wrapMode: WordWrap;
 		//wrapMode: WrapAnywhere;
+		// onCompleted: {
+		// 	// this.elide = ElideRight;
+		// 	log("test tr");
+		// 	log(this.clip);
+		// }
 	}
 }
