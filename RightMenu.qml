@@ -1,4 +1,5 @@
 import "engine.js" as engine;
+import "Confirmation.qml";
 
 Rectangle {
 	id: menu;
@@ -217,7 +218,6 @@ Rectangle {
 		delegate: MenuDelegate {width: 250; }
 
 		onCompleted: {
-// TODO: добавить другие параметры из json
 			engine.tasks.forEach(function (task){
 				model.append( { text: task.name, isdone: task.isDone });
 			});
@@ -245,14 +245,9 @@ Rectangle {
 
 		onRedPressed: {
 			log("red1");
-			log(model.count);
 			if(model.count != 0){
-				model.remove(this.currentIndex,1);
-				engine.deleteTask(this.currentIndex);
-				if (this.currentIndex == taskName.elem){
-					taskName.text = "";
-					taskContent.text = "";
-				}
+				confirmationBlock.visible = true;
+				yes.setFocus();
 			}
 			log("red2");
 		}
@@ -281,21 +276,22 @@ Rectangle {
 		}
 
 		onSelectPressed: {
-			// switch (this.currentIndex) {
-			// case 0:
-				taskName.elem = this.currentIndex;
-				taskName.text = engine.tasks[this.currentIndex].name;
-				taskContent.text = engine.tasks[this.currentIndex].content;
-			// 	error("0");
-			// 	break;
-			// case 1:
-			// 	error("1");
-			// 	break;
-			// case 2:
-			// 	error("2");
-			// 	break;
-			// }
+			taskName.elem = this.currentIndex;
+			taskName.text = engine.tasks[this.currentIndex].name;
+			taskContent.text = engine.tasks[this.currentIndex].content;
 		}
+
+		function removeTask() {
+			menuList.model.remove(this.currentIndex,1);
+			engine.deleteTask(this.currentIndex);
+			if (this.currentIndex == taskName.elem){
+				taskName.text = "";
+				taskContent.text = "";
+			}
+		}
+
 	}
+
+	Confirmation{}
 
 }
