@@ -142,7 +142,7 @@ Rectangle {
 					}
 
 					onDownPressed: {
-						error("down pressed");
+						log("down pressed");
 						addTaskButton.setFocus();
 					}
 
@@ -214,68 +214,70 @@ Rectangle {
 
 		model: ListModel {}
 
-		delegate: MenuDelegate {width: 250;}
+		delegate: MenuDelegate {width: 250; }
 
 		onCompleted: {
 // TODO: добавить другие параметры из json
 			engine.tasks.forEach(function (task){
-				model.append( { text: task.name });
+				model.append( { text: task.name, isdone: task.isDone });
 			});
 		}
 
 		onDownPressed: {
-			error("up pressed");
+			log("up pressed");
 			historyButton.setFocus();
 		}
 
 		onUpPressed: {
-			error("up pressed");
+			log("up pressed");
 			addTaskButton.setFocus();
 		}
 
 		onLeftPressed: {
-			error("left pressed");
+			log("left pressed");
 			resetButton.setFocus();
 		}
 
 		onRightPressed: {
-			error("right pressed");
+			log("right pressed");
 			blueButton.setFocus();
 		}
 
 		onRedPressed: {
-			error("red1");
-			error(model.count);
-			if(model.count != 0){model.remove(this.currentIndex,1);
+			log("red1");
+			log(model.count);
+			if(model.count != 0){
+				model.remove(this.currentIndex,1);
 				engine.deleteTask(this.currentIndex);
 				if (this.currentIndex == taskName.elem){
 					taskName.text = "";
 					taskContent.text = "";
 				}
 			}
-			error("red2");
+			log("red2");
 		}
 
 		onGreenPressed: {
-			error("green1");
-			// engine.saveTasks();
-			// engine.tasks[1].name = "123456";
-			// engine.loadf();
-			// engine.tasks.forEach(function (task){
-			// 	model.append( { text: task.name });
-			// });
-
-
-			//engine.createFile();
-
-			error("green2");
+			log("green1");
+			model.remove(0, model.count);
+			engine.addDoneTask(this.currentIndex);
+			engine.tasks.forEach(function (task){
+				model.append( { text: task.name, isdone: task.isDone });
+			});
+			log("green2");
 		}
 
 		onYellowPressed: {
-			error("yellow1");
+			log("yellow1");
 			model.set(1,{text: "123"});
 			engine.tasks[1].name = "123";
-			error("yellow2");
+			log("yellow2");
+		}
+
+		onBluePressed: {
+			log("blue1");
+
+			log("blue2");
 		}
 
 		onSelectPressed: {
