@@ -13,14 +13,13 @@ Item {
 		borderWidth: 2;
 		borderColor: parent.activeFocus ? "#fff" : "#000";
 		opacity: parent.activeFocus ? 1.0 : 0.2;
-		color: parent.activeFocus ? "#fff" : "#fff";
-
-
+		color: parent.activeFocus ? "#fff" : model.isdone === true ? "#0f0" : "#f00";
 	}
+
 	Text {
 		anchors.centerIn: parent;
 		width: 200;
-		height: 30;
+		//height: 30;
 		//horizontalAlignment: AlignHCenter;
 		//try numerable
 		//contentWidth: 200.5;
@@ -28,8 +27,9 @@ Item {
 		text: tr(model.text); // +",,,"
 		font: bodyFont;
 		color: "#fff";
-		maximumLineCount: 1;
-		elide: ElideRight;
+		clip: true;
+		//maximumLineCount: 1;
+		//elide: ElideRight;
 		//wrapMode: WordWrap;
 		//wrapMode: WrapAnywhere;
 	}
