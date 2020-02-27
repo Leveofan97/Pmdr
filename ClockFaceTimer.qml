@@ -391,9 +391,10 @@ Item {
 			}
 
 			onSelectPressed: {
-				clockFace.seconds = 0;
 				controltimer.isTimerRun = false;
 				timePanel.timer.stop();
+				stateTimer.flagstate = stateTimer.flagstate ? false : true;
+				clockFace.seconds = stateTimer.flagstate ? clockFace.defworksec : clockFace.defrelaxsec;
 				log("Timer cancel");
 			}
 		}
