@@ -23,19 +23,24 @@ this.addDoneTask = function (currentIndex) {
     this.tasks[currentIndex].isDone = true;
     this.tasks.push(this.tasks[currentIndex]);
     this.tasks.splice(currentIndex, 1);
-    this.saveTasks();
   }
+  else {
+    // var tt = this.tasks[currentIndex];
+    // tt.isDone = false;
+    this.tasks[currentIndex].isDone = false;
+    // for(var i = this.tasks.length; i < 0; --i){
+    //   if(this.tasks[i].isDone === false ){
+    //     var temp = this.tasks.slice(i, this.tasks.length);
+    //     this.tasks.splice(i, this.tasks.length - i, temp, tt);
+    //
+    //     break;
+    //   }
+    // }
+    // this.tasks.push(this.tasks[currentIndex]);
+    // this.tasks.splice(currentIndex, 1);
+  }
+  this.saveTasks();
 }
-
-// this.sort = function () {
-//   for(var i = 0; i < this.tasks.length; ++i){
-//     if(this.tasks[i].isDone === true ){
-//       this.tasks.push(this.tasks[i]);
-//       this.tasks.splice(i, 1);
-//       //this.saveTasks();
-//     }
-//   }
-// }
 
 this.saveTasks = function () {
   error("saveF");
@@ -56,17 +61,18 @@ this.saveTasks = function () {
 
 this.deleteTask = function (index) {
   error("deleteF");
-  var statistic = this.tasks;
-  this.tasks = [];
-  var j=0;
-  for(var i = 0; i < statistic.length; ++i){
-    if(index != i){
-      this.tasks[j] = statistic[i];
-      j++;
-    }
-  }
+  this.tasks.splice(index, 1);
+  // var statistic = this.tasks;
+  // this.tasks = [];
+  // var j=0;
+  // for(var i = 0; i < statistic.length; ++i){
+  //   if(index != i){
+  //     this.tasks[j] = statistic[i];
+  //     j++;
+  //   }
+  // }
   log("appTasks" + this.tasks);
-  save("appTasks", statistic);
+  save("appTasks", this.tasks);
 }
 
 this.addTask = function (data) {

@@ -4,6 +4,10 @@ import "KeyItem.qml";
 
 Item {
 		id: ePlayerNamePanelItem;
+
+		anchors.horizontalCenter: mainView.horizontalCenter;
+		anchors.verticalCenter: mainView.verticalCenter;
+
 		focus: true;
 		property alias hint: edit.hint;
 		height: 220;
