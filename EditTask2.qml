@@ -5,6 +5,7 @@ import "KeyItem.qml";
 Item {
 	id: ePlayerNamePanelItem;
 	focus: true;
+	visible: false;
 	//property alias hint: edit.hint;
   anchors.horizontalCenter: mainView.horizontalCenter;
   anchors.verticalCenter: mainView.verticalCenter;

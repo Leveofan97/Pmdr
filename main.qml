@@ -58,7 +58,7 @@ Application {
 /*----------------------------------------------------------------------------*/
   onStarted: {
 		controltimerButton.setFocus();
-		edit.setFocus();
+		//edit.setFocus();
     log("Приложение запущено!");
   }
 }
