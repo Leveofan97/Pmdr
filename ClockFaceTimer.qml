@@ -1,10 +1,21 @@
 import "TimersFunctions.js" as TimerFunc;
+import controls.Player;
 
 Item {
 	id: casetimer;
 	x: 510;
 	y: 300;
 	visible: true;
+
+	Player {
+		id: beepaudio;
+		hideSpinner: true;
+		disableControls: true;
+		duration: 5000;
+		isStopped: true;
+		currentUrl: "https://sound-pack.net/download/Sound_15279.mp"
+	}
+
 	Rectangle {
 		id: timercyrcle;
 
@@ -88,7 +99,7 @@ Item {
 			repeat: true;
 
 			property var countbreak: 0;
-			property var newstate: 1;
+			property var newstate;
 
 			onTriggered: {
 				if(clockFace.seconds > 0){
@@ -98,6 +109,7 @@ Item {
 					log("Timer finish");
 					TimerFunc.TimerStop();
 					beep.addNotify();
+					beepaudio.seec();
 					TimerFunc.ChangeTimerState(TimerFunc.CounterBreak());
 				}
 			}
