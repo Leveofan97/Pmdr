@@ -9,7 +9,7 @@ Item{
   		anchors.top: controltimerButton.bottom;
   		anchors.topMargin: 20;
       horizontalAlignment: AlignHCenter;
-      text: "NameTask";
+      text: "Здравствуйте!";
       color: "#ffffff";
       width: 600;
       wrapMode: WordWrap;
@@ -19,14 +19,9 @@ Item{
       anchors.horizontalCenter: taskName.horizontalCenter;
   		anchors.top: taskName.bottom;
       horizontalAlignment: AlignHCenter;
-      text: "Красивый дизайн +";
+      text: "Команда Wassup_team приветствует вас!";
       color: "#ffffff";
       width: 900;
-      // height: 50;
-      // maximumLineCount: 1;
-      // elidedText: "....123";
-      // elideWidth: 200;
-      // elide: ElideRight;
       wrapMode: WordWrap;
 
     }
