@@ -10,6 +10,7 @@ Item {
   anchors.verticalCenter: mainView.verticalCenter;
 	height: 220;
 	width: 400;
+	visible: false;
 	//property variant keysModel;
 	//property bool isUpper;
 
