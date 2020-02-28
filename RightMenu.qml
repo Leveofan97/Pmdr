@@ -248,6 +248,13 @@ Rectangle {
 			log("red1");
 			if(model.count != 0){
 				confirmationBlock.visible = true;
+				casetimer.opacity = 0.1;
+				activeTask.opacity = 0.1;
+				musicButton.opacity = 0.1;
+				redButton.opacity = 0.1;
+				yellowButton.opacity = 0.1;
+				blueButton.opacity = 0.1;
+				faqButton.opacity = 0.1;
 				yes.setFocus();
 			}
 			log("red2");

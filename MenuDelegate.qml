@@ -11,7 +11,7 @@ Item {
 		radius: 10;
 		borderWidth: 2;
 		borderColor: parent.activeFocus ? "#fff" : "#000";
-		opacity: parent.activeFocus ? 1.0 : 0.2;
+		opacity: parent.activeFocus ? 1.0 : 0.4;
 		color: parent.activeFocus ? "#fff" : model.isdone === true ? "#0f0" : "#f00";
 	}
 
