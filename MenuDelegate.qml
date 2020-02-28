@@ -6,7 +6,6 @@ Item {
 	Rectangle {
 		anchors.verticalCenter: parent.verticalCenter;
 		anchors.left: parent;
-		//anchors.rightMargin: 60;
 		width: 20;
 		height: 20;
 		radius: 10;
@@ -19,24 +18,9 @@ Item {
 	Text {
 		anchors.centerIn: parent;
 		width: 200;
-		//height: 30;
-		//horizontalAlignment: AlignHCenter;
-		//try numerable
-		//contentWidth: 20.5;
-    //contentHeight: 3.5;
-		text: tr(model.text); // +",,,"
+		text: tr(model.text);
 		font: bodyFont;
 		color: "#fff";
 		clip: true;
-		//maximumLineCount: 1;
-
-		//elide: ElideRight;
-		//wrapMode: WordWrap;
-		//wrapMode: WrapAnywhere;
-		// onCompleted: {
-		// 	// this.elide = ElideRight;
-		// 	log("test tr");
-		// 	log(this.clip);
-		// }
 	}
 }

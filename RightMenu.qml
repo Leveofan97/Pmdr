@@ -1,5 +1,6 @@
 import "engine.js" as engine;
 import "Confirmation.qml";
+import "EditTask.qml";
 
 Rectangle {
 	id: menu;
@@ -293,5 +294,7 @@ Rectangle {
 	}
 
 	Confirmation{}
+
+	//EditTask{}
 
 }
