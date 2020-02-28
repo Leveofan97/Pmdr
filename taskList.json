@@ -2,46 +2,22 @@
     "tasks":
     [
       {
-    	    "name" : "Задача1",
-    	    "isDone"  : false,
-    	    "difficulty": 1,
-    	    "content" : "qwertyuiop[]asdfghjkl;'zxcvbnm,./'"
-    	},
-      {
-    	    "name" : "Задача2",
-    	    "isDone"  : false,
-    	    "difficulty": 1,
-    	    "content" : "1234567890-="
-    	},
-      {
-    	    "name" : "Задача3",
+    	    "name" : "Лёгкий старт",
     	    "isDone"  : false,
     	    "difficulty": 1,
     	    "content" : "qwerty"
     	},
       {
-    	    "name" : "Задача4",
+    	    "name" : "У нас есть FaQ",
     	    "isDone"  : false,
     	    "difficulty": 1,
-    	    "content" : "Hello World!"
+    	    "content" : "С полным функционалом приложения можете ознакомиться в FaQ"
     	},
       {
-    	    "name" : "Задача5",
+    	    "name" : "Bye Bye",
     	    "isDone"  : false,
     	    "difficulty": 1,
-    	    "content" : "Let's start"
-    	},
-      {
-    	    "name" : "Задача6",
-    	    "isDone"  : false,
-    	    "difficulty": 1,
-    	    "content" : "Bye"
-    	},
-      {
-          "name" : "big name task big name task big name task big name task ",
-          "isDone"  : false,
-          "difficulty": 1,
-          "content" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-      }
+    	    "content" : "Спасибо за внимание!"
+    	}
     ]
 }

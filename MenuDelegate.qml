@@ -22,5 +22,6 @@ Item {
 		font: bodyFont;
 		color: "#fff";
 		clip: true;
+		//wrapMode: WordWrap;
 	}
 }
