@@ -47,15 +47,6 @@ Item {
 		Behavior on color { animation: Animation { duration: 500; } }
 		Behavior on borderColor { animation: Animation { duration: 500; } }
 
-		Audio {
-			id: timefinish;
-			source: "Beep.wav";
-
-			onPlaying: {
-				log("Beep");
-			}
-		}
-
 		NotificatorManager {
 			id: beep;
 			text: "Таймер сработал!";
@@ -65,8 +56,8 @@ Item {
 			id: stateTimer;
 			anchors.centerIn: parent;
 			anchors.bottomMargin: 200;
-			property bool flagstate: true; //true - Work; false - Relax state;
-			text: (flagstate ? "Работа" : "Отдых");
+			property var flagstate: 0; //0 - Work; 1 - Relax state; 2 - big break;
+			text: (flagstate == 0 ? "Работа" : (flagstate == 1 ? "Отдых" : "Перерыв"));
 			color: "#000000";
 			font: titleFont;
 			opacity: timePanel.active ? 1 : 0;
@@ -78,11 +69,12 @@ Item {
 			id: clockFace;
 			anchors.centerIn: parent;
 
-			property var defworksec: 1500;
-			property var defrelaxsec: 300;
+			property var defworksec: 10;//1500;
+			property var defrelaxsec: 3;//300;
+			property var defbigrelsxsec: 5; //900;
 
-			property int seconds: 1500;
-			property int startseconds: 1500;
+			property int seconds: defworksec;
+			property int startseconds: 10;
 			property bool selectflag: false;
 			property string delimiter: seconds % 60 < 10 ? ":0" : ":";
 			text: Math.floor(seconds / 60) + delimiter + seconds % 60;
@@ -95,6 +87,9 @@ Item {
 			interval: 1000;
 			repeat: true;
 
+			property var countbreak: 0;
+			property var newstate: 1;
+
 			onTriggered: {
 				if(clockFace.seconds > 0){
 					clockFace.seconds--;
@@ -102,9 +97,8 @@ Item {
 				}else{
 					log("Timer finish");
 					TimerFunc.TimerStop();
-					timefinish.play();
 					beep.addNotify();
-					TimerFunc.ChangeTimerState();
+					TimerFunc.ChangeTimerState(TimerFunc.CounterBreak());
 				}
 			}
 		}
@@ -120,7 +114,9 @@ Item {
 		onSelectPressed: {
 			if(!controltimer.isTimerRun){
 				clockFace.selectflag = clockFace.selectflag ? false : true;
-				clockFace.seconds = stateTimer.flagstate ? clockFace.defworksec : clockFace.defrelaxsec;
+				clockFace.seconds = (stateTimer.flagstate == 0 ? clockFace.defworksec :
+					(stateTimer.flagstate == 1 ? clockFace.defrelaxsec :
+						clockFace.defbigrelsxsec));
 				if(!clockFace.selectflag){
 					clockFace.startseconds = clockFace.seconds;
 				}
@@ -134,7 +130,7 @@ Item {
 				TimerFunc.DownTimerByMin();
 			}else{
 				if(!controltimer.isTimerRun){
-					TimerFunc.ChangeTimerState();
+					TimerFunc.ChangeTimerState(stateTimer.flagstate - 1);
 				}
 			}
 
@@ -145,7 +141,7 @@ Item {
 				TimerFunc.UpTimerByMin();
 			}else{
 				if(!controltimer.isTimerRun){
-					TimerFunc.ChangeTimerState();
+					TimerFunc.ChangeTimerState(stateTimer.flagstate + 1);
 				}
 			}
 		}
@@ -268,6 +264,8 @@ Item {
 			enabled: true;
 			radius: 23;
 
+			property var newstate: 1;
+
 			Behavior on color { animation: Animation { duration: 500; } }
 			Behavior on borderColor { animation: Animation { duration: 500; } }
 
@@ -294,7 +292,7 @@ Item {
 
 			onSelectPressed: {
 				TimerFunc.TimerStop();
-				TimerFunc.ChangeTimerState();
+				TimerFunc.ChangeTimerState(TimerFunc.CounterBreak());
 				log("Timer cancel");
 			}
 		}
