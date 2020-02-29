@@ -165,14 +165,12 @@ FocusablePanel
       {
         error("right pressed");
         cancelButton.setFocus();
-        focus: false;
       }
 
       onLeftPressed:
       {
         error("left pressed");
         menuList.setFocus();
-        focus: false;
       }
 
       onSelectPressed:
@@ -226,7 +224,7 @@ FocusablePanel
       onRightPressed:
       {
         error("right pressed");
-        cancelButton.setFocus();
+        casetimer.cancelButton.setFocus();
       }
 
       onLeftPressed:
@@ -284,7 +282,7 @@ FocusablePanel
       onRightPressed:
       {
         error("right pressed");
-        cancelButton.setFocus();
+        casetimer.cancelButton.setFocus();
       }
 
       onLeftPressed:
@@ -337,9 +335,9 @@ FocusablePanel
 
       onRightPressed:
       {
-        error("right pressed");
-        cancelButton.setFocus();
-      }
+        log("Оно не работает");
+        cancelButtontwo.setFocus();
+  		}
 
       onLeftPressed:
       {
@@ -353,13 +351,12 @@ FocusablePanel
           faq.visible = true;
           descriptionText.setFocus();
           casetimer.visible = false;
-          menu.opacity = 0.1;
+          rightMenu.opacity = 0.1;
           activeTask.visible = false;
           musicButton.opacity = 0.1;
           redButton.opacity = 0.1;
           yellowButton.opacity = 0.1;
           blueButton.opacity = 0.1;
-          menu.opacity = 0.1;
           faqButton.opacity = 0.1;
       }
 
