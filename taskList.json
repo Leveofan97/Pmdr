@@ -18,6 +18,42 @@
     	    "isDone"  : false,
     	    "difficulty": 1,
     	    "content" : "Спасибо за внимание!"
+    	},
+      {
+    	    "name" : "У нас есть FaQ",
+    	    "isDone"  : false,
+    	    "difficulty": 1,
+    	    "content" : "С полным функционалом приложения можете ознакомиться в FaQ"
+    	},
+      {
+    	    "name" : "Bye Bye",
+    	    "isDone"  : false,
+    	    "difficulty": 1,
+    	    "content" : "Спасибо за внимание!"
+    	},
+      {
+    	    "name" : "У нас есть FaQ",
+    	    "isDone"  : false,
+    	    "difficulty": 1,
+    	    "content" : "С полным функционалом приложения можете ознакомиться в FaQ"
+    	},
+      {
+    	    "name" : "Bye Bye",
+    	    "isDone"  : false,
+    	    "difficulty": 1,
+    	    "content" : "Спасибо за внимание!"
+    	},
+      {
+    	    "name" : "У нас есть FaQ",
+    	    "isDone"  : false,
+    	    "difficulty": 1,
+    	    "content" : "С полным функционалом приложения можете ознакомиться в FaQ"
+    	},
+      {
+    	    "name" : "Bye Bye",
+    	    "isDone"  : false,
+    	    "difficulty": 1,
+    	    "content" : "Спасибо за внимание!"
     	}
     ]
 }

@@ -126,15 +126,22 @@ Item {
 						yellowButton.opacity = 1;
 						blueButton.opacity = 1;
 						faqButton.opacity = 1;
-						menuList.model.append({ text: taskNameEdit.text , isdone: false });
+
 						let data = {
 							name: taskNameEdit.text,
 	            isDone: false,
 	            difficulty: 1,
 	            content: taskContentEdit.text
 						};
+
+						menuList.model.remove(0, menuList.model.count);
 						engine.addTask(data);
+						engine.tasks.forEach(function (task){
+							menuList.model.append( { text: task.name, isdone: task.isDone });
+						});
+
 					}
+					
 					else {
 						taskError.addNotify();
 					}
