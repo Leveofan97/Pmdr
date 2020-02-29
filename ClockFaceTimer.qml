@@ -12,8 +12,6 @@ Item {
 		hideSpinner: true;
 		disableControls: true;
 		duration: 5000;
-		isStopped: true;
-		currentUrl: "https://sound-pack.net/download/Sound_15279.mp"
 	}
 
 	Rectangle {
@@ -109,7 +107,8 @@ Item {
 					log("Timer finish");
 					TimerFunc.TimerStop();
 					beep.addNotify();
-					beepaudio.seec();
+					beepaudio.abort();
+					beepaudio.playUrl("http://download-sounds.ru/wp-content/uploads2/2012/05/13.mp3");
 					TimerFunc.ChangeTimerState(TimerFunc.CounterBreak());
 				}
 			}
