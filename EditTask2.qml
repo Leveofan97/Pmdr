@@ -3,19 +3,14 @@ import "KeyboardModel.qml";
 import "KeyItem.qml";
 
 Item {
-	id: ePlayerNamePanelItem;
+	id: eForm;
 	focus: true;
 	visible: false;
-	//property alias hint: edit.hint;
+	property int curIndex;
   anchors.horizontalCenter: mainView.horizontalCenter;
   anchors.verticalCenter: mainView.verticalCenter;
-	height: 220;
+	height: 300;
 	width: 400;
-	visible: false;
-	//property variant keysModel;
-	//property bool isUpper;
-
-	//signal accepted(text);
 
 	Rectangle {
 		anchors.fill: parent;
@@ -26,21 +21,40 @@ Item {
 		opacity: 0.7;
 	}
 
-	Edit {
-		id: edit;
-		height: 30; // 60
+	Text {
+		id: headline;
+		anchors.verticalCenter: parent.verticalCenter;
+		anchors.horizontalCenter: parent.horizontalCenter;
+		anchors.topMargin: 5;
 		anchors.top: parent.top;
+
+		text: "";
+		font: bodyFont;
+		color: "#fff";
+	}
+
+	SecondaryText {
+		id: taskNameLine;
+		anchors.top: headline.bottom;
 		anchors.left: parent.left;
+		anchors.margins: 15;
+
+		text: "Task Name:";
+		color: "#fff";
+	}
+
+	Edit {
+		id: taskNameEdit;
+		height: 30;
+		anchors.top: headline.bottom;
+		anchors.left: taskNameLine.right;
 		anchors.right: parent.right;
 		anchors.margins: 10;
 		focus: true;
+		borderColor: activeFocus ? "#FFAA33" : "#FFF";
 
 		onDownPressed: {
-			edit2.setFocus();
-		}
-
-		onSelectPressed: {
-			//ePlayerNamePanelItem.accepted(edit.text);
+			taskContentEdit.setFocus();
 		}
 
     onCompleted: {
@@ -49,24 +63,21 @@ Item {
 	}
 
   Edit {
-    id: edit2;
-    anchors.top: edit.bottom;
+    id: taskContentEdit;
+    anchors.top: taskNameEdit.bottom;
     anchors.bottom: saveButtom.top;
     anchors.left: parent.left;
     anchors.right: parent.right;
     anchors.margins: 10;
     focus: true;
+		borderColor: activeFocus ? "#FFAA33" : "#FFF";
 
     onUpPressed: {
-      edit.setFocus();
+      taskNameEdit.setFocus();
     }
 
     onDownPressed: {
       saveButtom.setFocus();
-    }
-
-    onSelectPressed: {
-      //ePlayerNamePanelItem.accepted(edit.text);
     }
 
     onCompleted: {
@@ -74,6 +85,12 @@ Item {
     }
 
   }
+
+	NotificatorManager {
+		id: taskError;
+		text: "TaskName should not be empty!";
+	}
+
 
 	Row {
 		anchors.left: parent.left;
@@ -84,42 +101,110 @@ Item {
 
     KeyItem {
 			id: saveButtom;
-			width: height * 6.8 + parent.spacing;
+			width: height * 6.75 + parent.spacing;
 			text: "Save";
 			borderColor: activeFocus ? colorTheme.activeBorderColor : "#22AB00";
 
+			onUpPressed: {
+        taskContentEdit.setFocus();
+      }
+
+			onRightPressed: {
+				cancelButton.setFocus();
+			}
+
 			onSelectPressed: {
+				taskNameEdit.text = taskNameEdit.text.trim();
+				if(eForm.curIndex === -1){
+					if(taskNameEdit.text.length > 0){
+						eForm.visible = false;
+						addTaskButton.setFocus();
+						casetimer.opacity = 1;
+						activeTask.opacity = 1;
+						musicButton.opacity = 1;
+						redButton.opacity = 1;
+						yellowButton.opacity = 1;
+						blueButton.opacity = 1;
+						faqButton.opacity = 1;
+						menuList.model.append({ text: taskNameEdit.text , isdone: false });
+						let data = {
+							name: taskNameEdit.text,
+	            isDone: false,
+	            difficulty: 1,
+	            content: taskContentEdit.text
+						};
+						engine.addTask(data);
+					}
+					else {
+						taskError.addNotify();
+					}
+				}
+				else {
+					if(taskNameEdit.text.length > 0){
+						eForm.visible = false;
+						addTaskButton.setFocus();
+						casetimer.opacity = 1;
+						activeTask.opacity = 1;
+						musicButton.opacity = 1;
+						redButton.opacity = 1;
+						yellowButton.opacity = 1;
+						blueButton.opacity = 1;
+						faqButton.opacity = 1;
+						menuList.model.set(eForm.curIndex, { text: taskNameEdit.text , isdone: false });
+						engine.tasks[eForm.curIndex] = {
+							name: taskNameEdit.text,
+	            isDone: false,
+	            difficulty: 1,
+	            content: taskContentEdit.text
+						};
+					}
+					else {
+						taskError.addNotify();
+					}
+				}
 
 			}
 		}
 
     KeyItem {
       id: cancelButton;
-      // height: 30;
-      // anchors.top: edit.top;
-      // anchors.bottom: edit.bottom;
-      // anchors.right: parent.right;
-      // anchors.rightMargin: 10;
       text: "Cancel";
-      width: height * 6.8 + parent.spacing;
+      width: height * 6.75 + parent.spacing;
       borderColor: activeFocus ? colorTheme.activeBorderColor : "#EA2022";
 
       onUpPressed: {
-        edit2.setFocus();
+        taskContentEdit.setFocus();
       }
 
+			onLeftPressed: {
+				saveButtom.setFocus();
+			}
+
       onSelectPressed: {
-        //edit.removeChar();
+				eForm.visible = false;
+				addTaskButton.setFocus();
+				casetimer.opacity = 1;
+				activeTask.opacity = 1;
+				musicButton.opacity = 1;
+				redButton.opacity = 1;
+				yellowButton.opacity = 1;
+				blueButton.opacity = 1;
+				faqButton.opacity = 1;
       }
 
     }
 
 
 	show: {
-		ePlayerNamePanelItem.visible = true;
-		edit.text = "";
-		edit.setFocus();
+		eForm.visible = true;
+		taskNameEdit.text = "";
+		taskNameEdit.setFocus();
 	}
+
+
+	onCompleted: {}
+
+  }
 
 	onKeyPressed: {
 		log("key pressed " + key);
@@ -136,6 +221,4 @@ Item {
 		return true;
 	}
 
-	onCompleted: {}
-  }
 }
