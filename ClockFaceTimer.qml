@@ -14,6 +14,11 @@ Item {
 		duration: 5000;
 	}
 
+	NotificatorManager {
+		id: beep;
+		text: "Таймер сработал!";
+	}
+
 	Rectangle {
 		id: timercyrcle;
 
@@ -39,131 +44,125 @@ Item {
 		Behavior on color { animation : Animation {duration: 2000; } }
 
 
-	FocusablePanel {
-		id: timePanel;
+		FocusablePanel {
+			id: timePanel;
 
-		anchors.centerIn: parent;
-
-		width: 125;
-		height: 50;
-		radius: 25;
-
-		enabled: true;
-		property string focusselect: (clockFace.selectflag ? "#EBBAB5" : "#96CEB4");
-		property string colorfocus: active ? focusselect : "#FBE9E7";
-		color: colorfocus;
-
-		Behavior on color { animation: Animation { duration: 500; } }
-		Behavior on borderColor { animation: Animation { duration: 500; } }
-
-		NotificatorManager {
-			id: beep;
-			text: "Таймер сработал!";
-		}
-
-		Text {
-			id: stateTimer;
-			anchors.centerIn: parent;
-			anchors.bottomMargin: 200;
-			property var flagstate: 0; //0 - Work; 1 - Relax state; 2 - big break;
-			text: (flagstate == 0 ? "Работа" : (flagstate == 1 ? "Отдых" : "Перерыв"));
-			color: "#000000";
-			font: titleFont;
-			opacity: timePanel.active ? 1 : 0;
-
-			Behavior on opacity { animation: Animation { duration: 250; } }
-		}
-
-		Text {
-			id: clockFace;
 			anchors.centerIn: parent;
 
-			property var defworksec: 10;//1500;
-			property var defrelaxsec: 3;//300;
-			property var defbigrelsxsec: 5; //900;
+			width: 125;
+			height: 50;
+			radius: 25;
+			enabled: true;
 
-			property int seconds: defworksec;
-			property int startseconds: 10;
-			property bool selectflag: false;
-			property string delimiter: seconds % 60 < 10 ? ":0" : ":";
-			text: Math.floor(seconds / 60) + delimiter + seconds % 60;
-			color: "#000000";
-			font: titleFont;
-		}
+			property string focusselect: (clockFace.selectflag ? "#EBBAB5" : "#96CEB4");
+			property string colorfocus: active ? focusselect : "#FBE9E7";
+			color: colorfocus;
 
-		Timer{
-			id: timer;
-			interval: 1000;
-			repeat: true;
+			Behavior on color { animation: Animation { duration: 500; } }
+			Behavior on borderColor { animation: Animation { duration: 500; } }
 
-			property var countbreak: 0;
-			property var newstate;
+			Text {
+				id: stateTimer;
+				anchors.centerIn: parent;
+				anchors.bottomMargin: 200;
+				property var flagstate: 0; //0 - Work; 1 - Relax state; 2 - big break;
+				text: (flagstate == 0 ? "Работа" : (flagstate == 1 ? "Отдых" : "Перерыв"));
+				color: "#000000";
+				font: titleFont;
+				opacity: timePanel.active ? 1 : 0.4;
 
-			onTriggered: {
-				if(clockFace.seconds > 0){
-					clockFace.seconds--;
-					TimerFunc.colorprocent();
+				Behavior on opacity { animation: Animation { duration: 250; } }
+			}
+
+			Text {
+				id: clockFace;
+				anchors.centerIn: parent;
+
+				property var defworksec: 10;//1500;
+				property var defrelaxsec: 3;//300;
+				property var defbigrelsxsec: 5; //900;
+
+				property int seconds: defworksec;
+				property int startseconds: 10;
+				property bool selectflag: false;
+				property string delimiter: seconds % 60 < 10 ? ":0" : ":";
+				text: Math.floor(seconds / 60) + delimiter + seconds % 60;
+				color: "#000000";
+				font: titleFont;
+			}
+
+			Timer{
+				id: timer;
+				interval: 1000;
+				repeat: true;
+
+				property var countbreak: 0;
+				property var newstate;
+
+				onTriggered: {
+					if(clockFace.seconds > 0){
+						clockFace.seconds--;
+						TimerFunc.colorprocent();
+					}else{
+						log("Timer finish");
+						TimerFunc.TimerStop();
+						beep.addNotify();
+						beepaudio.abort();
+						beepaudio.playUrl("http://download-sounds.ru/wp-content/uploads2/2012/05/13.mp3");
+						TimerFunc.ChangeTimerState(TimerFunc.CounterBreak());
+					}
+				}
+			}
+
+			onDownPressed: {
+				if(clockFace.selectflag){
+					TimerFunc.DownTimerBySec();
 				}else{
-					log("Timer finish");
-					TimerFunc.TimerStop();
-					beep.addNotify();
-					beepaudio.abort();
-					beepaudio.playUrl("http://download-sounds.ru/wp-content/uploads2/2012/05/13.mp3");
-					TimerFunc.ChangeTimerState(TimerFunc.CounterBreak());
+					controltimerButton.setFocus();
 				}
 			}
-		}
 
-		onDownPressed: {
-			if(clockFace.selectflag){
-				TimerFunc.DownTimerBySec();
-			}else{
-				controltimerButton.setFocus();
-			}
-		}
-
-		onSelectPressed: {
-			if(!controltimer.isTimerRun){
-				clockFace.selectflag = clockFace.selectflag ? false : true;
-				clockFace.seconds = (stateTimer.flagstate == 0 ? clockFace.defworksec :
-					(stateTimer.flagstate == 1 ? clockFace.defrelaxsec :
-						clockFace.defbigrelsxsec));
-				if(!clockFace.selectflag){
-					clockFace.startseconds = clockFace.seconds;
-				}
-			}else{
-				error("Timer started");
-			}
-		}
-
-		onLeftPressed: {
-			if(clockFace.selectflag){
-				TimerFunc.DownTimerByMin();
-			}else{
+			onSelectPressed: {
 				if(!controltimer.isTimerRun){
-					TimerFunc.ChangeTimerState(stateTimer.flagstate - 1);
+					clockFace.selectflag = clockFace.selectflag ? false : true;
+					clockFace.seconds = (stateTimer.flagstate == 0 ? clockFace.defworksec :
+						(stateTimer.flagstate == 1 ? clockFace.defrelaxsec :
+							clockFace.defbigrelsxsec));
+					if(!clockFace.selectflag){
+						clockFace.startseconds = clockFace.seconds;
+					}
+				}else{
+					error("Timer started");
 				}
 			}
 
-		}
+			onLeftPressed: {
+				if(clockFace.selectflag){
+					TimerFunc.DownTimerByMin();
+				}else{
+					if(!controltimer.isTimerRun){
+						TimerFunc.ChangeTimerState(stateTimer.flagstate - 1);
+					}
+				}
 
-		onRightPressed: {
-			if(clockFace.selectflag){
-				TimerFunc.UpTimerByMin();
-			}else{
-				if(!controltimer.isTimerRun){
-					TimerFunc.ChangeTimerState(stateTimer.flagstate + 1);
+			}
+
+			onRightPressed: {
+				if(clockFace.selectflag){
+					TimerFunc.UpTimerByMin();
+				}else{
+					if(!controltimer.isTimerRun){
+						TimerFunc.ChangeTimerState(stateTimer.flagstate + 1);
+					}
+				}
+			}
+
+			onUpPressed: {
+				if(clockFace.selectflag){
+					TimerFunc.UpTimerBySec();
 				}
 			}
 		}
-
-		onUpPressed: {
-			if(clockFace.selectflag){
-				TimerFunc.UpTimerBySec();
-			}
-		}
-	}
-
 
 		FocusablePanel {
 			id: controltimerButton;
@@ -191,27 +190,24 @@ Item {
 			}
 
 			onUpPressed: {
-				error("up pressed");
 				timePanel.setFocus();
 			}
 
 			onLeftPressed: {
-				error("left pressed");
 				cancelButton.setFocus();
 			}
 
 			onRightPressed: {
-				error("right pressed");
 				resetButton.setFocus();
 			}
 
 			onSelectPressed: {
 				if(!controltimer.isTimerRun && clockFace.seconds > 0){
 					timePanel.timer.start();
-					log("timer started");
+					log("start");
 				}else{
 					timePanel.timer.stop();
-					log("timer stop");
+					log("pause");
 				}
 				if(clockFace.seconds > 0){
 					controltimer.isTimerRun = (controltimer.isTimerRun ? false : true);
@@ -241,17 +237,14 @@ Item {
 			}
 
 			onUpPressed: {
-				error("up pressed");
 				timePanel.setFocus();
 			}
 
 			onLeftPressed: {
-				error("left pressed");
 				controltimerButton.setFocus();
 			}
 
 			onRightPressed: {
-				error("right pressed");
 				menuList.setFocus();
 			}
 
@@ -260,8 +253,6 @@ Item {
 				log("Timer reset");
 			}
 		}
-
-
 
 		FocusablePanel {
 			id: cancelButton;
@@ -275,8 +266,6 @@ Item {
 			enabled: true;
 			radius: 23;
 
-			property var newstate: 1;
-
 			Behavior on color { animation: Animation { duration: 500; } }
 			Behavior on borderColor { animation: Animation { duration: 500; } }
 
@@ -287,24 +276,21 @@ Item {
 			}
 
 			onUpPressed: {
-				error("up pressed");
 				timePanel.setFocus();
 			}
 
 			onLeftPressed: {
-				error("left pressed");
 				faqButton.setFocus();
 			}
 
 			onRightPressed: {
-				error("right pressed");
 				controltimerButton.setFocus();
 			}
 
 			onSelectPressed: {
 				TimerFunc.TimerStop();
 				TimerFunc.ChangeTimerState(TimerFunc.CounterBreak());
-				log("Timer cancel");
+				log("Time skip");
 			}
 		}
   }
