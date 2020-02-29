@@ -1,9 +1,10 @@
 import "engine.js" as engine;
+import "TaskDelegate.qml";
 import "Confirmation.qml";
-import "EditTask2.qml";
+import "EditTask.qml";
 
 Rectangle {
-	id: menu;
+	id: rightMenu;
 
 	width: 250;
 	height: 600;
@@ -13,14 +14,13 @@ Rectangle {
 
 	radius: 10;
 	rotation: 90;
-	//color: "#CCC0B2";
 
 	Gradient {
 		FocusablePanel {
 			id: addTaskButton;
 
-			anchors.left: menu.left;
-			anchors.top: menu.top;
+			anchors.left: rightMenu.left;
+			anchors.top: rightMenu.top;
 			anchors.topMargin: 20;
 			anchors.leftMargin: 20;
 
@@ -31,10 +31,10 @@ Rectangle {
 	    enabled: true;
 
 			Rectangle {
-				id: but;
+				id: plusAdd;
 
-				anchors.left: menu.left;
-				anchors.top: menu.top;
+				anchors.left: rightMenu.left;
+				anchors.top: rightMenu.top;
 				anchors.topMargin: 20;
 				anchors.leftMargin: 20;
 
@@ -54,7 +54,7 @@ Rectangle {
 
 					orientation: Horizonral;
 
-					anchors.verticalCenter: but.verticalCenter;
+					anchors.verticalCenter: plusAdd.verticalCenter;
 
 					width:140;
 					height:40;
@@ -64,6 +64,7 @@ Rectangle {
 						color: addTaskButton.activeFocus ? "#05878A" : "#ffffff";
 						Behavior on color { animation : Animation {duration: 300; } }
 					}
+
 					GradientStop {
 						position: 1;
 						color: addTaskButton.activeFocus ? "#ffffff" : "#434445";
@@ -94,6 +95,7 @@ Rectangle {
 
 			onSelectPressed: {
 				eForm.visible = true;
+
 				casetimer.opacity = 0.1;
 				activeTask.opacity = 0.1;
 				musicButton.opacity = 0.1;
@@ -101,8 +103,9 @@ Rectangle {
 				yellowButton.opacity = 0.1;
 				blueButton.opacity = 0.1;
 				faqButton.opacity = 0.1;
+
 				eForm.curIndex = -1;
-				headline.text = "Create New Task";
+				headline.text = "Добавление задачи";
 				taskNameEdit.text = "";
 				taskContentEdit.text = "";
 				taskNameEdit.setFocus();
@@ -114,12 +117,11 @@ Rectangle {
 
 
 			Text {
-				id: statist;
-				anchors.horizontalCenter: menu.horizontalCenter;
-				anchors.bottom: menu.bottom;
-				anchors.bottomMargin: 30;
-				//anchors.leftMargin: 20;
+				id: history;
 
+				anchors.horizontalCenter: rightMenu.horizontalCenter;
+				anchors.bottom: rightMenu.bottom;
+				anchors.bottomMargin: 30;
 
 				text: "История...";
 				font: bodyFont;
@@ -127,14 +129,13 @@ Rectangle {
 
 				FocusablePanel {
 					id: historyButton;
-					anchors.horizontalCenter: statist.horizontalCenter;
-					anchors.bottom: statist.bottom;
+					anchors.horizontalCenter: history.horizontalCenter;
+					anchors.bottom: history.bottom;
 					anchors.topMargin: 10;
-					//anchors.leftMargin: 20;
 
 					width:110;
 					height:1;
-					//radius: 10;
+
 					opacity: active ? 1 : 0;
 					color: "#ffffff";
 
@@ -166,11 +167,9 @@ Rectangle {
 				}
 			}
 
-
-
 		orientation: Vertical;
 
-		anchors.verticalCenter: menu.verticalCenter;
+		anchors.verticalCenter: rightMenu.verticalCenter;
 
 		width: 250;
 		height: 400;
@@ -183,31 +182,27 @@ Rectangle {
 		GradientStop {
 			position: 0.45;
 			color: "#2a2a2a";
-			//color: "#859398";
 			Behavior on color { animation : Animation {duration: 2000; } }
 		}
 		GradientStop {
 			position: 0.55;
 			color: "#2a2a2a";
-			//color: "#859398";
 			Behavior on color { animation : Animation {duration: 2000; } }
 		}
 		GradientStop {
 			position: 1;
 			color: "#000000";
-			//color: "#859398";
 			Behavior on color { animation : Animation {duration: 1000; } }
 		}
 	}
 
 	Resource {
 		id: resJSON;
-		url: "apps/Pomodoro/taskList.json";
+		url: "apps/Pomodoro/startTaskList.json";
 
 		onDataChanged: {
 		  engine.load(JSON.parse(this.data));
 		}
-
 	}
 
 	ListView {
@@ -216,14 +211,11 @@ Rectangle {
 		width: 200;
 		height: 400;
 
-		//anchors.leftMargin: 50;
 		anchors.centerIn: parent;
 
 		focus: true;
-
 		model: ListModel {width: 200;}
-
-		delegate: MenuDelegate {width: 250; }
+		delegate: TaskDelegate {width: 250; }
 
 		onCompleted: {
 			engine.tasks.forEach(function (task){
@@ -255,6 +247,7 @@ Rectangle {
 			log("red1");
 			if(model.count != 0){
 				confirmationBlock.visible = true;
+
 				casetimer.opacity = 0.1;
 				activeTask.opacity = 0.1;
 				musicButton.opacity = 0.1;
@@ -262,7 +255,7 @@ Rectangle {
 				yellowButton.opacity = 0.1;
 				blueButton.opacity = 0.1;
 				faqButton.opacity = 0.1;
-				yes.setFocus();
+				yesBtn.setFocus();
 			}
 			log("red2");
 		}
@@ -280,6 +273,7 @@ Rectangle {
 		onYellowPressed: {
 			log("yellow1");
 			eForm.visible = true;
+
 			casetimer.opacity = 0.1;
 			activeTask.opacity = 0.1;
 			musicButton.opacity = 0.1;
@@ -287,11 +281,13 @@ Rectangle {
 			yellowButton.opacity = 0.1;
 			blueButton.opacity = 0.1;
 			faqButton.opacity = 0.1;
+
 			eForm.curIndex = this.currentIndex;
-			headline.text = "Edit Task";
+			headline.text = "Редактирование задачи";
 			taskNameEdit.text = engine.tasks[this.currentIndex].name;
 			taskContentEdit.text = engine.tasks[this.currentIndex].content;
 			taskNameEdit.setFocus();
+
 			log("yellow2");
 		}
 
@@ -320,6 +316,6 @@ Rectangle {
 
 	Confirmation{}
 
-	EditTask2{}
+	EditTask{}
 
 }
