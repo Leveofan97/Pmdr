@@ -93,8 +93,20 @@ Rectangle {
 			}
 
 			onSelectPressed: {
-				menuList.model.append({ text: "New Task" });
-				engine.addTask("Content qwerty");
+				eForm.visible = true;
+				casetimer.opacity = 0.1;
+				activeTask.opacity = 0.1;
+				musicButton.opacity = 0.1;
+				redButton.opacity = 0.1;
+				yellowButton.opacity = 0.1;
+				blueButton.opacity = 0.1;
+				faqButton.opacity = 0.1;
+				eForm.curIndex = -1;
+				headline.text = "Create New Task";
+				taskNameEdit.text = "";
+				taskContentEdit.text = "";
+				taskNameEdit.setFocus();
+
 				log("Добавлена новая задача");
 			}
 		}
@@ -196,11 +208,6 @@ Rectangle {
 		  engine.load(JSON.parse(this.data));
 		}
 
-		// onCompleted: {
-		// 	menuList.load(JSON.parse(this.data));
-		// 	error(engine.tasks[1].name);
-		// }
-
 	}
 
 	ListView {
@@ -272,8 +279,19 @@ Rectangle {
 
 		onYellowPressed: {
 			log("yellow1");
-			model.set(1,{text: "123"});
-			engine.tasks[1].name = "123";
+			eForm.visible = true;
+			casetimer.opacity = 0.1;
+			activeTask.opacity = 0.1;
+			musicButton.opacity = 0.1;
+			redButton.opacity = 0.1;
+			yellowButton.opacity = 0.1;
+			blueButton.opacity = 0.1;
+			faqButton.opacity = 0.1;
+			eForm.curIndex = this.currentIndex;
+			headline.text = "Edit Task";
+			taskNameEdit.text = engine.tasks[this.currentIndex].name;
+			taskContentEdit.text = engine.tasks[this.currentIndex].content;
+			taskNameEdit.setFocus();
 			log("yellow2");
 		}
 

@@ -78,10 +78,10 @@ this.deleteTask = function (index) {
 this.addTask = function (data) {
   error("deleteF");
 
-  this.tasks.push({name: "New Task",
-                 isDone: "false",
-                 difficulty: "123",
-                 content: data
+  this.tasks.push({name: data.name,
+                 isDone: data.isDone,
+                 difficulty: data.difficulty,
+                 content: data.content
   });
 
   log("appTasks" + this.tasks);
