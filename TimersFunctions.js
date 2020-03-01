@@ -34,9 +34,10 @@ this.colorprocent = function(){
     }
 }
 
-this.test = function(){
-  return 1;
-}
+this.audiobeep = [
+  "http://download-sounds.ru/wp-content/uploads2/2012/05/13.mp3",
+  "https://zvukipro.com/uploads/files/2018-10/1541011561_htc_basic.mp3"
+];
 
 this.CounterBreak = function(){
   var newst = 0;

@@ -295,7 +295,12 @@ Item {
 
         onSelectPressed:
         {
-          log("click music!");
+          if(timer.flagURL >= timer.countaudio - 1){
+            timer.flagURL = 0;
+          }else{
+            timer.flagURL++;
+          }
+          log("Мелодия сменилась на " + timer.flagURL);
         }
 
   }
