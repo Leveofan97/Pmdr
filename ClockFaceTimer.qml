@@ -78,12 +78,12 @@ Item {
 				id: clockFace;
 				anchors.centerIn: parent;
 
-				property var defworksec: 10;//1500;
-				property var defrelaxsec: 3;//300;
-				property var defbigrelsxsec: 5; //900;
+				property var defworksec: 1500;
+				property var defrelaxsec: 300;
+				property var defbigrelsxsec: 900;
 
 				property int seconds: defworksec;
-				property int startseconds: 10;
+				property int startseconds: 1500;
 				property bool selectflag: false;
 				property string delimiter: seconds % 60 < 10 ? ":0" : ":";
 				text: Math.floor(seconds / 60) + delimiter + seconds % 60;
@@ -97,7 +97,6 @@ Item {
 				repeat: true;
 
 				property var countbreak: 0;
-				property var newstate;
 				property var flagURL: 0;
 				property var countaudio: TimerFunc.audiobeep.length;
 
