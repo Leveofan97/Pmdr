@@ -78,9 +78,9 @@ Item {
 				id: clockFace;
 				anchors.centerIn: parent;
 
-				property var defworksec: 10;//1500;
-				property var defrelaxsec: 3;//300;
-				property var defbigrelsxsec: 5; //900;
+				property var defworksec: 1500;
+				property var defrelaxsec: 300;
+				property var defbigrelsxsec: 900;
 
 				property int seconds: defworksec;
 				property int startseconds: 10;
