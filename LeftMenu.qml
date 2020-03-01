@@ -18,11 +18,9 @@ Item {
     color: active ? "#fff" : "#0017FD";
     enabled: true;
     Behavior on color { animation: Animation { duration: 500; } }
-    //Behavior on borderColor { animation: Animation { duration: 500; } }
 
     Rectangle {
       id: blue;
-      //property bool active: activeFocus;
       anchors.horizontalCenter: blueButton.horizontalCenter;
       anchors.verticalCenter: blueButton.verticalCenter;
       width: 40;
@@ -52,14 +50,13 @@ Item {
     }
 
     onSelectPressed: {
+      log("Выбрана другая тема");
       blu.visible = true;
       blu.opacity = 1;
       yel.visible = false;
       redcolor.visible = false;
       mainback.visible = false;
-      log("Выбрана синяя тема");
     }
-
   }
 
 
@@ -75,19 +72,18 @@ Item {
         color: active ? "#fff" : "#FDDE00";
         enabled: true;
         Behavior on color { animation: Animation { duration: 500; } }
-        //Behavior on borderColor { animation: Animation { duration: 500; } }
 
-          Rectangle
-          {
-            id: yellow;
-            anchors.top: blue.bottom;
-            anchors.topMargin: 20;
-            anchors.horizontalCenter: yellowButton.horizontalCenter;
-            width: 40;
-            height: 40;
-            radius: 20;
-            color: "#FDDE00"; // yellow
-          }
+        Rectangle
+        {
+          id: yellow;
+          anchors.top: blue.bottom;
+          anchors.topMargin: 20;
+          anchors.horizontalCenter: yellowButton.horizontalCenter;
+          width: 40;
+          height: 40;
+          radius: 20;
+          color: "#FDDE00"; // yellow
+        }
 
         onUpPressed:
         {
@@ -115,7 +111,7 @@ Item {
 
         onSelectPressed:
         {
-          log("Выбрана синяя тема");
+          log("Выбрана другая тема");
           yel.visible = true;
           yel.opacity = 1;
           blu.visible = false;
@@ -138,17 +134,17 @@ Item {
         enabled: true;
         Behavior on color { animation: Animation { duration: 500; } }
 
-          Rectangle
-          {
-            id: black;
-            anchors.top: yellow.bottom;
-            anchors.topMargin: 20;
-            anchors.horizontalCenter: blackButton.horizontalCenter;
-            width: 40;
-            height: 40;
-            radius: 20;
-            color: "#121212"; // black
-          }
+        Rectangle
+        {
+          id: black;
+          anchors.top: yellow.bottom;
+          anchors.topMargin: 20;
+          anchors.horizontalCenter: blackButton.horizontalCenter;
+          width: 40;
+          height: 40;
+          radius: 20;
+          color: "#121212"; // black
+        }
 
         onUpPressed:
         {
