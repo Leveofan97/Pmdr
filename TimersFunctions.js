@@ -1,36 +1,40 @@
 this.colorprocent = function(){
     var delitel = (clockFace.startseconds < 0 ? 1 : clockFace.startseconds);
-    var proc = (clockFace.seconds/delitel) * 100;
+    var delitelsec = (clockFace.seconds < 0 ? 1 : clockFace.seconds);
+    var procwork = (clockFace.seconds/delitel) * 100;
+    var procrelax = (1/delitelsec) * 100;
+    var proc = stateTimer.flagstate ? procrelax : procwork;
+
     //"#64eef9" NOT
     if(proc >= 0 && proc <= 10){
-      timercyrcle.color = "#ff0000";
+      timercyrcle.color = "#ff7676";
     }
     if(proc > 10 && proc <= 20){
-      timercyrcle.color = "#c23d01";
+      timercyrcle.color = "#ff9494";
     }
     if(proc > 20 && proc <= 30){
-      timercyrcle.color = "#a85702";
+      timercyrcle.color = "#ffaf94";
     }
     if(proc > 30 && proc <= 40){
-      timercyrcle.color = "#966903";
+      timercyrcle.color = "#ffca94";
     }
     if(proc > 40 && proc <= 50){
-      timercyrcle.color = "#708f04";
+      timercyrcle.color = "#ffe594";
     }
     if(proc > 50 && proc <= 60){
-      timercyrcle.color = "#5ea105";
+      timercyrcle.color = "#f9ff94";
     }
     if(proc > 60 && proc <= 70){
-      timercyrcle.color = "#45ba06";
+      timercyrcle.color = "#e8ff94";
     }
     if(proc > 70 && proc <= 80){
-      timercyrcle.color = "#26d907";
+      timercyrcle.color = "#d8ff94";
     }
     if(proc > 80 && proc <= 90){
-      timercyrcle.color = "#13ec08";
+      timercyrcle.color = "#bdff94";
     }
     if(proc > 90 && proc <= 100){
-      timercyrcle.color = "#00ff08";
+      timercyrcle.color = "#9cff94";
     }
 }
 
