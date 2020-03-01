@@ -50,12 +50,12 @@ Item {
     }
 
     onSelectPressed: {
+      log("Выбрана другая тема");
       blu.visible = true;
       blu.opacity = 1;
       yel.visible = false;
       redcolor.visible = false;
       mainback.visible = false;
-      log("Выбрана синяя тема");
     }
   }
 
@@ -111,7 +111,7 @@ Item {
 
         onSelectPressed:
         {
-          log("Выбрана синяя тема");
+          log("Выбрана другая тема");
           yel.visible = true;
           yel.opacity = 1;
           blu.visible = false;
