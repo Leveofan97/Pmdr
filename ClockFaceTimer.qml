@@ -97,7 +97,6 @@ Item {
 				repeat: true;
 
 				property var countbreak: 0;
-				property var newstate;
 				property var flagURL: 0;
 				property var countaudio: TimerFunc.audiobeep.length;
 
