@@ -98,6 +98,8 @@ Item {
 
 				property var countbreak: 0;
 				property var newstate;
+				property var flagURL: 0;
+				property var countaudio: TimerFunc.audiobeep.length;
 
 				onTriggered: {
 					if(clockFace.seconds > 0){
@@ -108,7 +110,7 @@ Item {
 						TimerFunc.TimerStop();
 						beep.addNotify();
 						beepaudio.abort();
-						beepaudio.playUrl("http://download-sounds.ru/wp-content/uploads2/2012/05/13.mp3");
+						beepaudio.playUrl(TimerFunc.audiobeep[flagURL]);
 						TimerFunc.ChangeTimerState(TimerFunc.CounterBreak());
 					}
 				}
