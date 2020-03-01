@@ -83,7 +83,7 @@ Item {
 				property var defbigrelsxsec: 900;
 
 				property int seconds: defworksec;
-				property int startseconds: 10;
+				property int startseconds: 1500;
 				property bool selectflag: false;
 				property string delimiter: seconds % 60 < 10 ? ":0" : ":";
 				text: Math.floor(seconds / 60) + delimiter + seconds % 60;
