@@ -2,6 +2,7 @@ import "engine.js" as engine;
 import "TaskDelegate.qml";
 import "Confirmation.qml";
 import "EditTask.qml";
+import "HistoryList.qml";
 
 Rectangle {
 	id: rightMenu;
@@ -163,6 +164,18 @@ Rectangle {
 
 					onSelectPressed: {
 						log("Выбрана история");
+						if (historyList.model.count != 0){
+							historyList.model.remove(0, historyList.model.count);
+						}
+
+						engine.history.forEach(function (task){
+							historyList.model.append( { text: task.name, isdone: task.isDone });
+						});
+						mainView.color = "#006ebd";
+						switcher.visible = false;
+						historyL.visible = true;
+						historyList.setFocus();
+						log("Выбрана история");
 					}
 				}
 			}
@@ -317,5 +330,7 @@ Rectangle {
 	Confirmation{}
 
 	EditTask{}
+
+
 
 }
