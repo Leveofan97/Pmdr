@@ -13,11 +13,18 @@ import "FAQ.qml";
 Application {
 
 // TODO:  сделать рефакторинг кода
-//				сделать графики
+//				сделать графики + история (как новое окно)
 //	   		переверстать адаптивно
 //				P.s. Возможности проверить адаптивность нет !
 	id: mainView;
 	color: "#010101";
+ Item{
+	 id: switcher;
+	 visible: true;
+	 anchors.left: parent.left;
+	 anchors.top: parent.top;
+	 anchors.right: parent.right;
+	 anchors.bottom: parent.bottom;
 /*--------------------------Фон (Gradient)---------------------------------*/
 	Background {}
 	YellowTheme {}
@@ -48,11 +55,15 @@ Application {
 
 /*------------------------Левое меню персонализации---------------------------*/
 
-// TODO:  
+// TODO:
 	LeftMenu {}
-
+}
 /*----------------------------------------------------------------------------*/
-  onStarted: {
+
+	HistoryList{}
+
+
+	onStarted: {
 		controltimerButton.setFocus();
     log("Приложение запущено!");
   }

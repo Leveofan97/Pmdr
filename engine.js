@@ -1,6 +1,8 @@
 
 this.tasks = [];
 
+this.history = [];
+
 this.load = function (data) {
   var statistic;
   if(!(statistic = load("appTasks"))) {
@@ -51,6 +53,12 @@ this.saveTasks = function () {
 }
 
 this.deleteTask = function (index) {
+  this.history.push({name: this.tasks[index].name,
+                 isDone:   this.tasks[index].isDone,
+                 difficulty: this.tasks[index].difficulty,
+                 content: this.tasks[index].content
+  });
+  log("appTasks" + this.history);
   this.tasks.splice(index, 1);
   log("appTasks" + this.tasks);
   this.saveTasks();
