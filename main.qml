@@ -13,11 +13,18 @@ import "FAQ.qml";
 Application {
 
 // TODO:  сделать рефакторинг кода
-//				сделать графики
+//				сделать графики + история (как новое окно)
 //	   		переверстать адаптивно
 //				P.s. Возможности проверить адаптивность нет !
 	id: mainView;
 	color: "#010101";
+ Item{
+	 id: switcher;
+	 visible: true;
+	 anchors.left: parent.left;
+	 anchors.top: parent.top;
+	 anchors.right: parent.right;
+	 anchors.bottom: parent.bottom;
 /*--------------------------Фон (Gradient)---------------------------------*/
 	Background {}
 	YellowTheme {}
@@ -48,11 +55,23 @@ Application {
 
 /*------------------------Левое меню персонализации---------------------------*/
 
+<<<<<<< HEAD
 // TODO:
+=======
+// TODO: 1 кнопка настроек.
+<<<<<<< HEAD
+//				Уменьшить акцент на кнопку Help
+=======
+>>>>>>> 33be2e214bcd9f40de7b6d55e37aecbc6d8e83d7
+>>>>>>> e3f343a23a9d3c7dde0bd2b6b2157852e368815b
 	LeftMenu {}
-
+}
 /*----------------------------------------------------------------------------*/
-  onStarted: {
+
+	HistoryList{}
+
+
+	onStarted: {
 		controltimerButton.setFocus();
 		var a = new Date(),
 		td = a.getDate() + '.' + (a.getMonth()+1) + '.' + a.getFullYear();
