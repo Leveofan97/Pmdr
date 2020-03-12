@@ -282,7 +282,7 @@ Item {
 			}
 
 			onLeftPressed: {
-				faqButton.setFocus();
+				blueButton.setFocus();
 			}
 
 			onRightPressed: {
