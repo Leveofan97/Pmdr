@@ -230,6 +230,7 @@ Rectangle {
 			font: bodyFont;
 			color: "#ffffff";
 		}
+		
 	ListView {
 		id: menuList;
 
