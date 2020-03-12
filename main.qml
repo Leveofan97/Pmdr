@@ -48,12 +48,15 @@ Application {
 
 /*------------------------Левое меню персонализации---------------------------*/
 
-// TODO:  
+// TODO:
 	LeftMenu {}
 
 /*----------------------------------------------------------------------------*/
   onStarted: {
 		controltimerButton.setFocus();
+		var a = new Date(),
+		td = a.getDate() + '.' + (a.getMonth()+1) + '.' + a.getFullYear();
+		today.text = td;
     log("Приложение запущено!");
   }
 }

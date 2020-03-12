@@ -30,7 +30,8 @@ Item {
     width: 350;
 		height: 350;
 		radius: 175;
-
+		borderWidth: 2;
+		borderColor: "#000";
 		Text {
 			anchors.horizontalCenter: timercyrcle.horizontalCenter;
 			anchors.bottom: parent.top;

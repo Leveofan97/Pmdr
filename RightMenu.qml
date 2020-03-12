@@ -205,13 +205,28 @@ Rectangle {
 		}
 	}
 
+	Text {
+			id: today;
+			property int td;
+			anchors.left: rightMenu.left;
+			anchors.top: plusAdd.bottom;
+			anchors.leftMargin: 20;
+			anchors.topMargin: 20;
+
+			text: td;
+			font: bodyFont;
+			color: "#ffffff";
+		}
 	ListView {
 		id: menuList;
 
 		width: 200;
 		height: 400;
 
-		anchors.centerIn: parent;
+		anchors.left: rightMenu.left;
+		anchors.top: today.bottom;
+		anchors.leftMargin: 20;
+		anchors.topMargin: 20;
 
 		focus: true;
 		model: ListModel {width: 200;}
