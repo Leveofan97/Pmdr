@@ -171,9 +171,9 @@ Rectangle {
 						engine.history.forEach(function (task){
 							historyList.model.append( { text: task.name, isdone: task.isDone });
 						});
-						mainView.color = "#006ebd";
+						mainView.color = "#909090";
 						switcher.visible = false;
-						stat.visible = true;
+						statSwitcher.visible = true;
 						historyList.setFocus();
 						log("Выбрана история");
 					}

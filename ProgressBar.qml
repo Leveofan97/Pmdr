@@ -5,11 +5,11 @@ Rectangle {
 	property Color barColor;
 	property int animationDuration: 800;
 
-	width: 35;
+	width: 50;
 	color: active ? colorTheme.focusColor : "#000000";
 	barColor: colorTheme.activeFocusTop;
 	clip: true;
-	radius: width / 5;
+	radius: width / 50;
 
 	Rectangle {
 		id: filledArea;

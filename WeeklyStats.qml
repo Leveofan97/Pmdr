@@ -2,26 +2,29 @@ import "ProgressBar.qml";
 
 Item {
   id: weeklyStats;
-  anchors.verticalCenter: parent.verticalCenter;
-  height: 500;
-  width: 1000;
-	property real step: 100;
+  anchors.top: buttonSpace.bottom;
+  anchors.bottom: parent.bottom;
+  anchors.left: parent.left;
+  anchors.right: parent.right;
+
+  anchors.margins: 30;
+
+	property real step: 75;
 
   Rectangle {
     anchors.fill: parent;
-    color: "#0ff";
-    radius: 8;
+    color: "#f0f0f0";
+    radius: 15;
     borderWidth: 1;
-    borderColor: "#f55";
+    borderColor: "#707070";
   }
-
-  
 
   ProgressBar{
     id: bar;
-    anchors.verticalCenter: parent.verticalCenter;
+    anchors.horizontalCenter: weeklyStats.horizontalCenter;
+    anchors.bottom: parent.bottom;
     anchors.left: parent.left;
-    anchors.margins: 1*weeklyStats.step;
+    anchors.leftMargin: 1*weeklyStats.step;
     active: true;
     barColor: "#f00";
     progress: 0.1;
@@ -30,9 +33,10 @@ Item {
 
   ProgressBar{
     id: bar1;
-    anchors.verticalCenter: parent.verticalCenter;
+    anchors.horizontalCenter: weeklyStats.horizontalCenter;
+    anchors.bottom: parent.bottom;
     anchors.left: parent.left;
-    anchors.margins: 2*weeklyStats.step;
+    anchors.leftMargin: 2*weeklyStats.step;
     active: true;
     barColor: "#f00";
     progress: 0.2;
@@ -41,9 +45,10 @@ Item {
 
   ProgressBar{
     id: bar2;
-    anchors.verticalCenter: parent.verticalCenter;
+    anchors.horizontalCenter: weeklyStats.horizontalCenter;
+    anchors.bottom: parent.bottom;
     anchors.left: parent.left;
-    anchors.margins: 3*weeklyStats.step;
+    anchors.leftMargin: 3*weeklyStats.step;
     active: true;
     barColor: "#f00";
     progress: 0.3;
@@ -52,9 +57,10 @@ Item {
 
   ProgressBar{
     id: bar3;
-    anchors.verticalCenter: parent.verticalCenter;
+    anchors.horizontalCenter: weeklyStats.horizontalCenter;
+    anchors.bottom: parent.bottom;
     anchors.left: parent.left;
-    anchors.margins: 4*weeklyStats.step;
+    anchors.leftMargin: 4*weeklyStats.step;
     active: true;
     barColor: "#f00";
     progress: 0.4;
@@ -63,9 +69,10 @@ Item {
 
   ProgressBar{
     id: bar4;
-    anchors.verticalCenter: parent.verticalCenter;
+    anchors.horizontalCenter: weeklyStats.horizontalCenter;
+    anchors.bottom: parent.bottom;
     anchors.left: parent.left;
-    anchors.margins: 5*weeklyStats.step;
+    anchors.leftMargin: 5*weeklyStats.step;
     active: true;
     barColor: "#f00";
     progress: 0.5;
@@ -74,9 +81,10 @@ Item {
 
   ProgressBar{
     id: bar5;
-    anchors.verticalCenter: parent.verticalCenter;
+    anchors.horizontalCenter: weeklyStats.horizontalCenter;
+    anchors.bottom: parent.bottom;
     anchors.left: parent.left;
-    anchors.margins: 6*weeklyStats.step;
+    anchors.leftMargin: 6*weeklyStats.step;
     active: true;
     barColor: "#f00";
     progress: 0.6;
@@ -85,9 +93,10 @@ Item {
 
   ProgressBar{
     id: bar6;
-    anchors.verticalCenter: parent.verticalCenter;
+    anchors.horizontalCenter: weeklyStats.horizontalCenter;
+    anchors.bottom: parent.bottom;
     anchors.left: parent.left;
-    anchors.margins: 7*weeklyStats.step;
+    anchors.leftMargin: 7*weeklyStats.step;
     active: true;
     barColor: "#f00";
     progress: 0.7;

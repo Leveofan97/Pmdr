@@ -1,14 +1,187 @@
 import "WeeklyStats.qml";
 
 Item {
-	id: stat;
+	id: statSwitcher;
 	visible: false;
 	anchors.left: parent.left;
 	anchors.top: parent.top;
 	anchors.right: parent.right;
 	anchors.bottom: parent.bottom;
 
-	WeeklyStats{}
+	Item {
+		id: statistics;
+		anchors.left: parent.left;
+		anchors.top: parent.top;
+		anchors.right: historyL.left;
+
+		anchors.topMargin: 30;
+		anchors.rightMargin: 30;
+
+		height: 500;
+
+		Rectangle {
+			anchors.fill: parent;
+			color: "#f0f0f0";
+			radius: 15;
+			borderWidth: 1;
+			borderColor: "#707070";
+		}
+
+		SubheadText {
+      id: promotion;
+
+			anchors.left: parent.left;
+			anchors.top: parent.top;
+
+			anchors.topMargin: 15;
+			anchors.leftMargin: 20;
+
+			font: bodyFont;
+      text: "График томатов";
+      color: "#000";
+		}
+
+		SecondaryText {
+			id: record;
+
+			anchors.left: parent.left;
+			anchors.top: promotion.bottom;
+
+			anchors.topMargin: 5;
+			anchors.leftMargin: 20;
+
+			text: "Топ: 5";
+			color: "#505050";
+		}
+
+		SecondaryText {
+			id: average;
+
+			anchors.left: record.right;
+			anchors.top: promotion.bottom;
+
+			anchors.topMargin: 5;
+			anchors.leftMargin: 15;
+
+			text: "Среднее значение: 2.5";
+			color: "#505050";
+		}
+
+		Rectangle{
+			id: line;
+
+			anchors.left: parent.left;
+			anchors.right: parent.right;
+			anchors.top: record.bottom;
+
+			height: 1;
+			anchors.topMargin: 5;
+			anchors.leftMargin: 15;
+			anchors.rightMargin: 15;
+
+			color: "#505050";
+		}
+
+		Rectangle{
+			id: buttonSpace;
+
+			anchors.left: parent.left;
+			anchors.right: parent.right;
+			anchors.top: line.bottom;
+
+			height: 35;
+			radius: height/10;
+
+			anchors.topMargin: 5;
+			anchors.leftMargin: 225;
+			anchors.rightMargin: 225;
+
+			color: "#505050";
+
+			Button{
+				id: daylyBtn;
+
+				width: 150;
+				height: 50;
+				radius: height/10;
+
+				anchors.left: parent.left;
+				anchors.top: parent.top;
+				anchors.right: weeklyBtn.left;
+				anchors.bottom: parent.bottom;
+
+				anchors.bottomMargin: 3;
+				anchors.topMargin: 3;
+				anchors.leftMargin: 3;
+				anchors.rightMargin: 3;
+
+				text: "daylyBtn";
+			}
+
+			Button{
+				id: weeklyBtn;
+
+		    width: 150;
+		    height: 50;
+		    radius: height/10;
+
+				anchors.left: daylyBtn.right;
+				anchors.top: parent.top;
+				anchors.right: monthlyBtn.left;
+				anchors.bottom: parent.bottom;
+
+				anchors.bottomMargin: 3;
+		    anchors.topMargin: 3;
+		    anchors.leftMargin: 3;
+				anchors.rightMargin: 3;
+
+		    text: "weeklyBtn";
+			}
+
+			Button{
+				id: monthlyBtn;
+
+		    width: 150;
+		    height: 50;
+		    radius: height/10;
+
+				anchors.left: weeklyBtn.right;
+				anchors.top: parent.top;
+				anchors.right: parent.right;
+				anchors.bottom: parent.bottom;
+
+				anchors.bottomMargin: 3;
+		    anchors.topMargin: 3;
+		    anchors.leftMargin: 3;
+				anchors.rightMargin: 3;
+
+		    text: "monthlyBtn";
+			}
+
+		}
+
+		WeeklyStats{}
+
+	}
+
+	Item {
+		  id: activeTask2;
+			anchors.left: parent.left;
+			anchors.top: statistics.bottom;
+			anchors.right: historyL.left;
+			anchors.bottom: parent.bottom;
+			anchors.topMargin: 15;
+			anchors.rightMargin: 30;
+			anchors.bottomMargin: 30;
+
+			Rectangle {
+				anchors.fill: parent;
+				color: "#f0f0f0";
+				radius: 15;
+				borderWidth: 1;
+				borderColor: "#707070";
+			}
+	}
 
 	Item {
 		id: historyL;
