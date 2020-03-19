@@ -53,12 +53,14 @@ this.saveTasks = function () {
 }
 
 this.deleteTask = function (index) {
-  this.history.push({name: this.tasks[index].name,
-                 isDone:   this.tasks[index].isDone,
-                 difficulty: this.tasks[index].difficulty,
-                 content: this.tasks[index].content
-  });
-  log("appTasks" + this.history);
+  if(this.tasks[index].isDone === true){
+    this.history.push({name: this.tasks[index].name,
+                   isDone:   this.tasks[index].isDone,
+                   difficulty: this.tasks[index].difficulty,
+                   content: this.tasks[index].content
+    });
+    log("appTasks" + this.history);
+  }
   this.tasks.splice(index, 1);
   log("appTasks" + this.tasks);
   this.saveTasks();

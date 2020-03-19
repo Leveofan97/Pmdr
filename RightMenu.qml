@@ -173,7 +173,7 @@ Rectangle {
 						});
 						mainView.color = "#006ebd";
 						switcher.visible = false;
-						historyL.visible = true;
+						stat.visible = true;
 						historyList.setFocus();
 						log("Выбрана история");
 					}
@@ -230,7 +230,7 @@ Rectangle {
 			font: bodyFont;
 			color: "#ffffff";
 		}
-		
+
 	ListView {
 		id: menuList;
 

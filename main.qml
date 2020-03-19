@@ -18,6 +18,14 @@ Application {
 //				P.s. Возможности проверить адаптивность нет !
 	id: mainView;
 	color: "#010101";
+
+Item{
+	id: switcher;
+	visible: true;
+	anchors.left: parent.left;
+	anchors.top: parent.top;
+	anchors.right: parent.right;
+	anchors.bottom: parent.bottom;
 /*--------------------------Фон (Gradient)---------------------------------*/
 	Background {}
 	YellowTheme {}
@@ -50,6 +58,9 @@ Application {
 
 // TODO: Убрать фокус на FAQ при переходе с таймера
 	LeftMenu {}
+}
+
+HistoryList{}
 
 /*----------------------------------------------------------------------------*/
   onStarted: {
