@@ -43,28 +43,34 @@ Item {
 
 		SecondaryText {
 			id: record;
-
+			property int max;
 			anchors.left: parent.left;
 			anchors.top: promotion.bottom;
 
 			anchors.topMargin: 5;
 			anchors.leftMargin: 20;
 
-			text: "Топ: 5";
+			text: "Топ: " + max;
 			color: "#505050";
+			onCompleted: {
+				this.max = engine.weekMaxProgress;
+			}
 		}
 
 		SecondaryText {
 			id: average;
-
+			property string mid;
 			anchors.left: record.right;
 			anchors.top: promotion.bottom;
 
 			anchors.topMargin: 5;
 			anchors.leftMargin: 15;
 
-			text: "Среднее значение: 2.5";
+			text: "Среднее значение: " + mid;
 			color: "#505050";
+			onCompleted: {
+				this.mid = engine.weekMidProgress;
+			}
 		}
 
 		Rectangle{
@@ -90,7 +96,7 @@ Item {
 			anchors.top: line.bottom;
 
 			height: 35;
-			radius: height/10;
+			radius: height/5;
 
 			anchors.topMargin: 5;
 			anchors.leftMargin: 225;
@@ -103,7 +109,7 @@ Item {
 
 				width: 150;
 				height: 50;
-				radius: height/10;
+				radius: height/5;
 
 				anchors.left: parent.left;
 				anchors.top: parent.top;
@@ -115,7 +121,11 @@ Item {
 				anchors.leftMargin: 3;
 				anchors.rightMargin: 3;
 
-				text: "daylyBtn";
+				text: "Dayly";
+
+				onRightPressed: {
+					weeklyBtn.setFocus();
+				}
 			}
 
 			Button{
@@ -123,7 +133,8 @@ Item {
 
 		    width: 150;
 		    height: 50;
-		    radius: height/10;
+		    radius: height/5;
+
 
 				anchors.left: daylyBtn.right;
 				anchors.top: parent.top;
@@ -135,7 +146,20 @@ Item {
 		    anchors.leftMargin: 3;
 				anchors.rightMargin: 3;
 
-		    text: "weeklyBtn";
+		    text: "Weekly";
+
+				onLeftPressed: {
+					daylyBtn.setFocus();
+				}
+
+				onRightPressed: {
+					monthlyBtn.setFocus();
+				}
+
+				onSelectPressed: {
+					log("weekly");
+				}
+
 			}
 
 			Button{
@@ -143,7 +167,7 @@ Item {
 
 		    width: 150;
 		    height: 50;
-		    radius: height/10;
+		    radius: height/5;
 
 				anchors.left: weeklyBtn.right;
 				anchors.top: parent.top;
@@ -155,9 +179,13 @@ Item {
 		    anchors.leftMargin: 3;
 				anchors.rightMargin: 3;
 
-		    text: "monthlyBtn";
-			}
+		    text: "Monthly";
 
+				onLeftPressed: {
+					weeklyBtn.setFocus();
+				}
+
+			}
 		}
 
 		WeeklyStats{}

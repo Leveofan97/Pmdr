@@ -174,7 +174,10 @@ Rectangle {
 						mainView.color = "#909090";
 						switcher.visible = false;
 						statSwitcher.visible = true;
-						historyList.setFocus();
+						//historyList.setFocus();
+						weeklyBtn.visible = true;
+						weeklyBtn.setFocus();
+						bar.reset();
 						log("Выбрана история");
 					}
 				}
@@ -215,6 +218,7 @@ Rectangle {
 
 		onDataChanged: {
 		  engine.load(JSON.parse(this.data));
+			engine.someFF(JSON.parse(this.data));
 		}
 	}
 

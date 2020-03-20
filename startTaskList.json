@@ -55,5 +55,36 @@
     	    "difficulty": 1,
     	    "content" : "Спасибо за внимание!"
     	}
+    ],
+    "weekProgress":
+    [
+      {
+        "day": "Пн",
+        "count": 4
+      },
+      {
+        "day": "Вт",
+        "count": 4
+      },
+      {
+        "day": "Ср",
+        "count": 5
+      },
+      {
+        "day": "Чт",
+        "count": 1
+      },
+      {
+        "day": "Пт",
+        "count": 2
+      },
+      {
+        "day": "Сб",
+        "count": 2
+      },
+      {
+        "day": "Вс",
+        "count": 5
+      }
     ]
 }
