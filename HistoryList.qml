@@ -140,7 +140,7 @@ Item {
 					weeklyStats.opacity = 0;
 					daylyStats.opacity = 1;
 					monthlyStats.opacity = 0;
-
+					
 					engine.loadDay();
 					record.max = engine.weekMaxProgress;
 					average.mid = engine.dayProgress.count;
@@ -150,6 +150,7 @@ Item {
 
 				function refreshDay(){
 					dayBar.ttextUnderBar = engine.dayProgress.day;
+					dayBar.progress = engine.dayProgress.count/engine.weekMaxProgress;
 				}
 
 			}
