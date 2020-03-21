@@ -3,11 +3,15 @@ this.tasks = [];
 
 this.history = [];
 
-this.dayProgress = [];
+this.dayProgress = {};
 
 this.weekProgress = [];
 this.weekMaxProgress = 0;
 this.weekMidProgress = 0;
+
+this.monthProgress = [];
+this.monthMaxProgress = 0;
+this.monthMidProgress = 0;
 
 this.allStats = [];
 
@@ -157,7 +161,7 @@ this.loadWeek = function () {
   this.weekMaxProgress = 0;
   let jj =1;
   for (var i = 0; i < 7; ++i){
-    let Di = new Date(this.allStats[this.allStats.length - (i+jj)].day);
+    var Di = new Date(this.allStats[this.allStats.length - (i+jj)].day);
     log(DW(i) + " == " + this.FF(Di));
     if (DW(i) === this.FF(Di)){
       this.weekProgress[i] = this.allStats[this.allStats.length - (i+jj)];
@@ -192,10 +196,54 @@ this.loadWeek = function () {
 }
 
 this.loadDay = function (){
-  this.dayProgress = [];
-  var D = new Date;
-  this.dayProgress = this.allStats[this.allStats.length - 1];
-  log(" day " + this.dayProgress.day + " " + this.dayProgress.count);
+  this.dayProgress = {};
+
+  var D = new Date(this.allStats[this.allStats.length - 1].day);
+  this.dayProgress.day = getWeekDay(D);
+
+  this.dayProgress.count = this.allStats[this.allStats.length - 1].count;
+
+  log("day " + this.dayProgress.day + " " + this.dayProgress.count);
+}
+
+this.loadMonth = function () {
+  this.monthProgress = [];
+  this.monthMaxProgress = 0;
+  this.monthMidProgress = 0;
+  let jj =1;
+  for (var i = 0; i < 31 && i < this.allStats.length+Math.abs(jj-1); ++i){
+    let Di = new Date(this.allStats[this.allStats.length - (i+jj)].day);
+    log(DW(i) + " == " + this.FF(Di));
+    if (DW(i) === this.FF(Di)){
+      this.monthProgress[i] = this.allStats[this.allStats.length - (i+jj)];
+    }
+    else{
+      let D33 = new Date;
+      let D23 = new Date(D33.getFullYear(), D33.getMonth(), D33.getDate()-i);
+      let delta = (D23 - Di) / 86400000;
+      log(delta + " " + i);
+      for (var j = 0; j < delta && i < 31; ++j, ++i){
+        jj--;
+        log("i = " + i);
+        let D24 = new Date(D33.getFullYear(), D33.getMonth(), D33.getDate()-i);
+        let temp = this.FF(D24);
+        this.monthProgress.push({day: temp,
+                                count: 0
+        });
+      }
+      i--;
+    }
+  }
+  for (var i = 0; i < 31; ++i){
+    this.monthMidProgress += this.monthProgress[i].count;
+    if(this.monthProgress[i].count > this.monthMaxProgress)
+      this.monthMaxProgress = this.monthProgress[i].count;
+    log(this.monthProgress[i].day + " " + this.monthProgress[i].count);
+  }
+  this.monthMidProgress /= this.monthProgress.length;
+  this.monthMidProgress = this.monthMidProgress.toFixed(2);
+
+  // this.saveWeekProgress();
 }
 
 this.saveWeekProgress = function () {

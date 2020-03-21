@@ -19,13 +19,13 @@ Item {
     weeklyStats.st = engine.dayProgress.count/4;
   }
 
-  Rectangle {
-    anchors.fill: parent;
-    color: "#f0f0f0";
-    radius: 15;
-    borderWidth: 1;
-    borderColor: "#707070";
-  }
+  // Rectangle {
+  //   anchors.fill: parent;
+  //   color: "#f0f0f0";
+  //   radius: 15;
+  //   borderWidth: 1;
+  //   borderColor: "#707070";
+  // }
 
   ProgressBar{
     id: dayBar;

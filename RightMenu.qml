@@ -176,10 +176,12 @@ Rectangle {
 						statSwitcher.visible = true;
 						weeklyStats.opacity = 1;
 						daylyStats.opacity = 0;
-						//historyList.setFocus();
-						weeklyBtn.visible = true;
+						monthlyStats.opacity = 0;
+
 						weeklyBtn.setFocus();
-						bar.reset();
+						engine.loadWeek();
+						weeklyBtn.refreshWeek();
+
 						log("Выбрана история");
 					}
 				}
@@ -352,7 +354,5 @@ Rectangle {
 	Confirmation{}
 
 	EditTask{}
-
-
 
 }

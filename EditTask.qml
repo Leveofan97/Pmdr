@@ -234,4 +234,16 @@ Item {
 		return true;
 	}
 
+	onBackPressed: {
+		eForm.visible = false;
+		addTaskButton.setFocus();
+		casetimer.opacity = 1;
+		activeTask.opacity = 1;
+		musicButton.opacity = 1;
+		redButton.opacity = 1;
+		yellowButton.opacity = 1;
+		blueButton.opacity = 1;
+		faqButton.opacity = 1;
+  }
+
 }
