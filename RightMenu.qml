@@ -104,6 +104,7 @@ Rectangle {
 				yellowButton.opacity = 0.1;
 				blueButton.opacity = 0.1;
 				faqButton.opacity = 0.1;
+				settingButton.opacity = 0.1;
 
 				eForm.curIndex = -1;
 				headline.text = "Добавление задачи";
@@ -318,6 +319,7 @@ Rectangle {
 			yellowButton.opacity = 0.1;
 			blueButton.opacity = 0.1;
 			faqButton.opacity = 0.1;
+			settingButton.opacity = 0.1;
 
 			eForm.curIndex = this.currentIndex;
 			headline.text = "Редактирование задачи";

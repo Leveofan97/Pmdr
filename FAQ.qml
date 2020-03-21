@@ -94,6 +94,7 @@ ScrollingText {
         blueButton.opacity = 1;
         faqButton.opacity = 1;
         rightMenu.opacity = 1;
+        settingButton.opacity = 1;
       }
     }
 }
