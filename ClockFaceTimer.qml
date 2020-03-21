@@ -1,4 +1,5 @@
 import "TimersFunctions.js" as TimerFunc;
+import "engine.js" as engine;
 import controls.Player;
 
 Item {
@@ -111,6 +112,9 @@ Item {
 						beep.addNotify();
 						beepaudio.abort();
 						beepaudio.playUrl(TimerFunc.audiobeep[flagURL]);
+						if(!stateTimer.flagstate){
+							engine.todayCountIncrement();
+						}
 						TimerFunc.ChangeTimerState(TimerFunc.CounterBreak());
 					}
 				}
