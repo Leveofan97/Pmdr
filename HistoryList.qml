@@ -1,8 +1,8 @@
 import "WeeklyStats.qml";
-
+import "DaylyStats.qml";
 Item {
 	id: statSwitcher;
-	visible: false;
+	visible: true;
 	anchors.left: parent.left;
 	anchors.top: parent.top;
 	anchors.right: parent.right;
@@ -126,6 +126,18 @@ Item {
 				onRightPressed: {
 					weeklyBtn.setFocus();
 				}
+
+				onSelectPressed: {
+					weeklyStats.opacity = 0;
+					daylyStats.opacity = 1;
+
+					engine.loadDay();
+					record.max = engine.weekMaxProgress;
+					average.mid = engine.dayProgress.count;
+					refreshDay();
+					log("weekly");
+				}
+
 			}
 
 			Button{
@@ -157,7 +169,39 @@ Item {
 				}
 
 				onSelectPressed: {
+					weeklyStats.opacity = 1;
+					daylyStats.opacity = 0;
+					engine.loadWeek();
+					refreshWeek();
 					log("weekly");
+				}
+
+				function Today(dateString) {
+					let date = new Date(dateString);
+					let days = ["Вс", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб"];
+				  return days[date.getDay()];
+				}
+
+				function refreshWeek() {
+					average.mid = engine.weekMidProgress;
+					record.max = engine.weekMaxProgress;
+
+			    weeklyStats.st = engine.weekMaxProgress/4;
+
+			    bar.ttextUnderBar = Today(engine.weekProgress[6].day);
+			    bar.progress = engine.weekProgress[6].count/engine.weekMaxProgress;
+		      bar1.ttextUnderBar = Today(engine.weekProgress[5].day);
+		      bar1.progress = engine.weekProgress[5].count/engine.weekMaxProgress;
+					bar2.ttextUnderBar = Today(engine.weekProgress[4].day);
+			    bar2.progress = engine.weekProgress[4].count/engine.weekMaxProgress;
+		      bar3.ttextUnderBar = Today(engine.weekProgress[3].day);
+		      bar3.progress = engine.weekProgress[3].count/engine.weekMaxProgress;
+					bar4.ttextUnderBar = Today(engine.weekProgress[2].day);
+			    bar4.progress = engine.weekProgress[2].count/engine.weekMaxProgress;
+		      bar5.ttextUnderBar = Today(engine.weekProgress[1].day);
+		      bar5.progress = engine.weekProgress[1].count/engine.weekMaxProgress;
+					bar6.ttextUnderBar = Today(engine.weekProgress[0].day);
+		      bar6.progress = engine.weekProgress[0].count/engine.weekMaxProgress;
 				}
 
 			}
@@ -188,6 +232,7 @@ Item {
 			}
 		}
 
+		DaylyStats{}
 		WeeklyStats{}
 
 	}
