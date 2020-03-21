@@ -2,7 +2,7 @@ import "WeeklyStats.qml";
 import "DaylyStats.qml";
 Item {
 	id: statSwitcher;
-	visible: true;
+	visible: false;
 	anchors.left: parent.left;
 	anchors.top: parent.top;
 	anchors.right: parent.right;
