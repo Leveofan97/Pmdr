@@ -43,7 +43,7 @@ Item {
 
     onRightPressed: {
       log("right pressed");
-      casetimer.cancelButton.setFocus();
+      casetimer.controltimerButton.setFocus();
     }
 
     onLeftPressed: {
@@ -102,7 +102,7 @@ Item {
         onRightPressed:
         {
           log("right pressed");
-          casetimer.cancelButton.setFocus();
+          casetimer.controltimerButton.setFocus();
         }
 
         onLeftPressed:
@@ -162,7 +162,7 @@ Item {
         onRightPressed:
         {
           log("right pressed");
-          casetimer.cancelButton.setFocus();
+          casetimer.controltimerButton.setFocus();
           focus: false;
         }
 
@@ -224,7 +224,7 @@ Item {
         onRightPressed:
         {
           log("right pressed");
-          casetimer.cancelButton.setFocus();
+          casetimer.controltimerButton.setFocus();
         }
 
         onLeftPressed:
@@ -282,7 +282,7 @@ Item {
         onRightPressed:
         {
           log("right pressed");
-          casetimer.cancelButton.setFocus();
+          casetimer.controltimerButton.setFocus();
         }
 
         onLeftPressed:
@@ -312,6 +312,7 @@ Item {
         width: 45;
         height: 45;
         radius: 23;
+        opacity: 1;
         color: active ? "#8FBC8B" : "#121212";
         enabled: true;
         Behavior on color { animation: Animation { duration: 500; } }
@@ -340,7 +341,7 @@ Item {
         onRightPressed:
         {
           log("right pressed");
-          casetimer.cancelButton.setFocus();
+          casetimer.controltimerButton.setFocus();
         }
 
         onLeftPressed:
@@ -361,6 +362,7 @@ Item {
   				yellowButton.opacity = 0.1;
   				blueButton.opacity = 0.1;
   				faqButton.opacity = 0.1;
+  				settingButton.opacity = 0.1;
   				headlineSetting.text = "Настройки";
           closeButton.setFocus();
         }
@@ -405,7 +407,7 @@ Item {
         onRightPressed:
         {
           log("right pressed");
-          casetimer.cancelButton.setFocus();
+          casetimer.controltimerButton.setFocus();
         }
 
         onLeftPressed:
@@ -426,6 +428,7 @@ Item {
           redButton.opacity = 0.1;
           yellowButton.opacity = 0.1;
           blueButton.opacity = 0.1;
+  				settingButton.opacity = 0.1;
           faqButton.opacity = 0.1;
         }
 

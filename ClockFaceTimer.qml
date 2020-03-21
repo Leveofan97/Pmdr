@@ -137,13 +137,15 @@ Item {
 			Image {
 		 		id: controltimer;
 				property bool isTimerRun: false;
-				property string control: (this.isTimerRun ? "pause" : "play");
+				property string control: stateTimer.flagstate ?
+																			(this.isTimerRun ? "cancel" : "play") :
+																				(this.isTimerRun ? "pause" : "play");
 				source: "apps/Pomodoro/img/"+control+".png";
 				anchors.centerIn: parent;
 			}
 
 			onLeftPressed: {
-				cancelButton.setFocus();
+				blueButton.setFocus();
 			}
 
 			onRightPressed: {
@@ -155,8 +157,15 @@ Item {
 					timePanel.timer.start();
 					log("start");
 				}else{
-					timePanel.timer.stop();
-					log("pause");
+					if(stateTimer.flagstate){
+						TimerFunc.TimerStop();
+						TimerFunc.ChangeTimerState(TimerFunc.CounterBreak());
+						isTimerRun = false;
+						log("Time skip");
+					}else{
+						timePanel.timer.stop();
+						log("pause");
+					}
 				}
 				if(clockFace.seconds > 0){
 					controltimer.isTimerRun = (controltimer.isTimerRun ? false : true);
@@ -196,42 +205,6 @@ Item {
 			onSelectPressed: {
 				TimerFunc.TimerStop();
 				log("Timer reset");
-			}
-		}
-
-		FocusablePanel {
-			id: cancelButton;
-			anchors.left: parent.left;
-			anchors.bottom: parent.bottom;
-			opacity: active ? 1 : 0.7;
-			color: active ? "#05878A" : "#121212";
-
-			width: 46;
-			height: 46;
-			enabled: true;
-			radius: 23;
-
-			Behavior on color { animation: Animation { duration: 500; } }
-			Behavior on borderColor { animation: Animation { duration: 500; } }
-
-			Image {
-		 		id: cancel;
-				source: "apps/Pomodoro/img/cancel.png";
-				anchors.centerIn: parent;
-			}
-
-			onLeftPressed: {
-				blueButton.setFocus();
-			}
-
-			onRightPressed: {
-				controltimerButton.setFocus();
-			}
-
-			onSelectPressed: {
-				TimerFunc.TimerStop();
-				TimerFunc.ChangeTimerState(TimerFunc.CounterBreak());
-				log("Time skip");
 			}
 		}
   }

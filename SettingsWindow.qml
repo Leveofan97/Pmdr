@@ -239,6 +239,10 @@ Item {
 				yellowButton.opacity = 1;
 				blueButton.opacity = 1;
 				faqButton.opacity = 1;
+				settingButton.opacity = 1;
+				clockFace.seconds = stateTimer.flagstate == 0 ?
+									clockFace.defworksec : stateTimer.flagstate == 1 ?
+												clockFace.defrelaxsec : clockFace.defbigrelsxsec;
 			}
 		}
 	}
