@@ -246,17 +246,22 @@ this.loadMonth = function () {
   // this.saveWeekProgress();
 }
 
-this.saveWeekProgress = function () {
+this.todayCountIncrement = function (){
+  this.allStats[this.allStats.length - 1].count++;
+  this.saveAllStats();
+}
+
+this.saveAllStats = function () {
   var statistic = [];
   var temp;
 
-  for(var i = 0; i < this.weekProgress.length; ++i) {
-    temp = this.weekProgress[i];
+  for(var i = 0; i < this.allStats.length; ++i) {
+    temp = this.allStats[i];
     statistic.push({day: temp.day,
                    count: temp.count
     });
   }
 
-  log("weekProgress" + statistic);
-  save("weekProgress", statistic);
+  log("allStats" + statistic);
+  save("allStats", statistic);
 }
