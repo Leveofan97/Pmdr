@@ -1,3 +1,5 @@
+import "SettingsWindow.qml";
+
 Item {
   id: custom;
 
@@ -274,7 +276,7 @@ Item {
         onDownPressed:
         {
           log("down pressed");
-          faqButton.setFocus();
+          settingButton.setFocus();
         }
 
         onRightPressed:
@@ -303,6 +305,70 @@ Item {
 
   FocusablePanel
   {
+        id: settingButton;
+        anchors.right: custom.right;
+        anchors.horizontalCenter: settImage.horizontalCenter;
+        anchors.verticalCenter: settImage.verticalCenter;
+        width: 45;
+        height: 45;
+        radius: 23;
+        color: active ? "#8FBC8B" : "#121212";
+        enabled: true;
+        Behavior on color { animation: Animation { duration: 500; } }
+
+        Image
+        {
+          id:settImage;
+          anchors.top: musicImage.bottom;
+          anchors.topMargin: 20;
+          anchors.horizontalCenter: settingButton.horizontalCenter;
+          source: "apps/Pomodoro/img/music.png";
+        }
+
+        onUpPressed:
+        {
+          log("up pressed");
+          musicButton.setFocus();
+        }
+
+        onDownPressed:
+        {
+          log("down pressed");
+          faqButton.setFocus();
+        }
+
+        onRightPressed:
+        {
+          log("right pressed");
+          casetimer.cancelButton.setFocus();
+        }
+
+        onLeftPressed:
+        {
+          log("left pressed");
+          menuList.setFocus();
+        }
+
+        onSelectPressed:
+        {
+          log("PressSettings");
+          settingsWin.visible = true;
+          log("Visible");
+  				casetimer.opacity = 0.1;
+  				activeTask.opacity = 0.1;
+  				musicButton.opacity = 0.1;
+  				redButton.opacity = 0.1;
+  				yellowButton.opacity = 0.1;
+  				blueButton.opacity = 0.1;
+  				faqButton.opacity = 0.1;
+  				headlineSetting.text = "Настройки";
+          closeButton.setFocus();
+        }
+
+  }
+
+  FocusablePanel
+  {
         id: faqButton;
         anchors.right: custom.right;
         anchors.horizontalCenter: faqImage.horizontalCenter;
@@ -318,7 +384,7 @@ Item {
         Image
         {
           id: faqImage;
-          anchors.top: musicImage.bottom;
+          anchors.top: settImage.bottom;
           anchors.topMargin: 20;
           anchors.horizontalCenter: faqButton.horizontalCenter;
           source: "apps/Pomodoro/img/faq.png";
@@ -327,7 +393,7 @@ Item {
         onUpPressed:
         {
           log("up pressed");
-          musicButton.setFocus();
+          settingButton.setFocus();
         }
 
         onDownPressed:
@@ -364,4 +430,7 @@ Item {
         }
 
   }
+
+  SettingsWindow{}
+
 }

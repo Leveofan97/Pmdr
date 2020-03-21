@@ -115,55 +115,6 @@ Item {
 					}
 				}
 			}
-
-			onDownPressed: {
-				if(clockFace.selectflag){
-					TimerFunc.DownTimerBySec();
-				}else{
-					controltimerButton.setFocus();
-				}
-			}
-
-			onSelectPressed: {
-				if(!controltimer.isTimerRun){
-					clockFace.selectflag = clockFace.selectflag ? false : true;
-					clockFace.seconds = (stateTimer.flagstate == 0 ? clockFace.defworksec :
-						(stateTimer.flagstate == 1 ? clockFace.defrelaxsec :
-							clockFace.defbigrelsxsec));
-					if(!clockFace.selectflag){
-						clockFace.startseconds = clockFace.seconds;
-					}
-				}else{
-					error("Timer started");
-				}
-			}
-
-			onLeftPressed: {
-				if(clockFace.selectflag){
-					TimerFunc.DownTimerByMin();
-				}else{
-					if(!controltimer.isTimerRun){
-						TimerFunc.ChangeTimerState(stateTimer.flagstate - 1);
-					}
-				}
-
-			}
-
-			onRightPressed: {
-				if(clockFace.selectflag){
-					TimerFunc.UpTimerByMin();
-				}else{
-					if(!controltimer.isTimerRun){
-						TimerFunc.ChangeTimerState(stateTimer.flagstate + 1);
-					}
-				}
-			}
-
-			onUpPressed: {
-				if(clockFace.selectflag){
-					TimerFunc.UpTimerBySec();
-				}
-			}
 		}
 
 		FocusablePanel {
@@ -189,10 +140,6 @@ Item {
 				property string control: (this.isTimerRun ? "pause" : "play");
 				source: "apps/Pomodoro/img/"+control+".png";
 				anchors.centerIn: parent;
-			}
-
-			onUpPressed: {
-				timePanel.setFocus();
 			}
 
 			onLeftPressed: {
@@ -238,10 +185,6 @@ Item {
 				anchors.centerIn: parent;
 			}
 
-			onUpPressed: {
-				timePanel.setFocus();
-			}
-
 			onLeftPressed: {
 				controltimerButton.setFocus();
 			}
@@ -275,10 +218,6 @@ Item {
 		 		id: cancel;
 				source: "apps/Pomodoro/img/cancel.png";
 				anchors.centerIn: parent;
-			}
-
-			onUpPressed: {
-				timePanel.setFocus();
 			}
 
 			onLeftPressed: {
