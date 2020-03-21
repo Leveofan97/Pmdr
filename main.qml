@@ -68,7 +68,14 @@ HistoryList{}
 		var a = new Date(),
 		td = a.getDate() + '.' + (a.getMonth()+1) + '.' + a.getFullYear();
 		today.text = td;
-		
+
+		var itd = a.getFullYear() + '-' + (a.getMonth()+1) + '-' + a.getDate();
+		if (itd !== engine.allStats[engine.allStats.length - 1].day){
+			engine.allStats.push({day: itd,
+	                   					count: 0
+	    });
+		}
+
     log("Приложение запущено!");
   }
 }

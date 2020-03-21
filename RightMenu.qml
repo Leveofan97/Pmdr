@@ -174,6 +174,8 @@ Rectangle {
 						mainView.color = "#909090";
 						switcher.visible = false;
 						statSwitcher.visible = true;
+						weeklyStats.opacity = 1;
+						daylyStats.opacity = 0;
 						//historyList.setFocus();
 						weeklyBtn.visible = true;
 						weeklyBtn.setFocus();
@@ -218,7 +220,7 @@ Rectangle {
 
 		onDataChanged: {
 		  engine.load(JSON.parse(this.data));
-			engine.someFF(JSON.parse(this.data));
+			engine.loadAllStats(JSON.parse(this.data));
 		}
 	}
 

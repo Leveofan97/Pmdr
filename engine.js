@@ -3,9 +3,13 @@ this.tasks = [];
 
 this.history = [];
 
+this.dayProgress = [];
+
 this.weekProgress = [];
 this.weekMaxProgress = 0;
 this.weekMidProgress = 0;
+
+this.allStats = [];
 
 this.load = function (data) {
   var statistic;
@@ -76,15 +80,20 @@ this.addTask = function (data) {
   this.saveTasks();
 }
 
-function getWeekDay(date){
+function getWeekDay(date) {
   let days = ["Вс", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб"];
-  return days[date];
+  return days[date.getDay()];
 }
 
 this.today = function() {
   let D = new Date;
-  let i = D.getDay();
-  return getWeekDay(i);
+  //let i = D.getDay();
+  return getWeekDay(D);
+}
+
+this.FF = function(D) {
+  var itd = D.getFullYear() + '-' + (D.getMonth()+1) + '-' + D.getDate();
+  return itd;
 }
 
 this.someFF = function (data) {
@@ -92,7 +101,7 @@ this.someFF = function (data) {
   if(!(statistic = load("weekProgress"))) {
       statistic = data["weekProgress"];
   }
-// Переписать с датами! и сделай на месяц!
+
   let D = new Date;
   let toD = this.today();
   var i = statistic.findIndex(item => item.day === toD);
@@ -116,6 +125,77 @@ this.someFF = function (data) {
 
   this.saveWeekProgress();
 
+}
+
+this.loadAllStats = function (data) {
+  var statistic;
+  if(!(statistic = load("allStats"))) {
+      statistic = data["allStats"];
+  }
+
+  for(var i = 0; i < statistic.length; ++i) {
+    this.allStats.push({day: statistic[i].day,
+                        count: statistic[i].count
+    });
+  }
+//this.loadWeek();
+  if(engine.allStats.length==0) this.allStats = data["allStats"];
+}
+
+function DW(j) {
+  let D = new Date;
+  let D2 = new Date(D.getFullYear(), D.getMonth(), D.getDate()-j);
+  var tdi = D2.getFullYear() + '-' + (D2.getMonth()+1) + '-' + (D2.getDate());
+  return tdi;
+}
+
+
+// rewrite
+this.loadWeek = function () {
+  this.weekProgress = [];
+  this.weekMidProgress = 0;
+  this.weekMaxProgress = 0;
+  let jj =1;
+  for (var i = 0; i < 7; ++i){
+    let Di = new Date(this.allStats[this.allStats.length - (i+jj)].day);
+    log(DW(i) + " == " + this.FF(Di));
+    if (DW(i) === this.FF(Di)){
+      this.weekProgress[i] = this.allStats[this.allStats.length - (i+jj)];
+    }
+    else{
+      let D33 = new Date;
+      let D23 = new Date(D33.getFullYear(), D33.getMonth(), D33.getDate()-i);
+      let delta = (D23 - Di) / 86400000;
+      log(delta + " " + i);
+      for (var j = 0; j < delta && i < 7; ++j, ++i){
+        jj--;
+        log("i = " + i);
+        let D24 = new Date(D33.getFullYear(), D33.getMonth(), D33.getDate()-i);
+        let temp = this.FF(D24);
+        this.weekProgress.push({day: temp,
+                                count: 0
+        });
+      }
+      i--;
+    }
+  }
+  for (var i = 0; i < 7; ++i){
+    this.weekMidProgress += this.weekProgress[i].count;
+    if(this.weekProgress[i].count > this.weekMaxProgress)
+      this.weekMaxProgress = this.weekProgress[i].count;
+    log(this.weekProgress[i].day + " " + this.weekProgress[i].count);
+  }
+  this.weekMidProgress /= this.weekProgress.length;
+  this.weekMidProgress = this.weekMidProgress.toFixed(2);
+
+  // this.saveWeekProgress();
+}
+
+this.loadDay = function (){
+  this.dayProgress = [];
+  var D = new Date;
+  this.dayProgress = this.allStats[this.allStats.length - 1];
+  log(" day " + this.dayProgress.day + " " + this.dayProgress.count);
 }
 
 this.saveWeekProgress = function () {
