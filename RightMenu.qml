@@ -125,7 +125,7 @@ Rectangle {
 				anchors.bottom: rightMenu.bottom;
 				anchors.bottomMargin: 30;
 
-				text: "История...";
+				text: "Статистика...";
 				font: bodyFont;
 				color: "#ffffff";
 
