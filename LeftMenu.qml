@@ -55,6 +55,8 @@ Item {
       log("Выбрана другая тема");
       blu.visible = true;
       blu.opacity = 1;
+      activeTask.taskName.color = "#000";
+      activeTask.taskContent.color = "#000";
       yel.visible = false;
       redcolor.visible = false;
       mainback.visible = false;
@@ -116,6 +118,8 @@ Item {
           log("Выбрана другая тема");
           yel.visible = true;
           yel.opacity = 1;
+          activeTask.taskName.color = "#000";
+          activeTask.taskContent.color = "#000";
           blu.visible = false;
           mainback.visible = false;
           redcolor.visible = false;
@@ -178,6 +182,8 @@ Item {
           log("Выбрана другая тема!");
           mainback.visible = true;
           mainback.opacity = 1;
+          activeTask.taskName.color = "#fff";
+          activeTask.taskContent.color = "#fff";
           blu.visible = false;
           yel.visible = false;
           redcolor.visible = false;
@@ -238,6 +244,8 @@ Item {
           log("Выбрана другая тема!");
           redcolor.visible = true;
           redcolor.opacity = 1;
+          activeTask.taskName.color = "#fff";
+          activeTask.taskContent.color = "#fff";
           blu.visible = false;
           yel.visible = false;
           mainback.visible = false;
