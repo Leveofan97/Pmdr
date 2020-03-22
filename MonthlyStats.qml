@@ -16,7 +16,10 @@ Item {
 	property real step: 24;
 
   onCompleted: {
-    monthlyStats.st = engine.monthMaxProgress/4;
+    if (engine.monthMaxProgress/4 === 0)
+      monthlyStats.st = 0.25;
+    else
+      monthlyStats.st = engine.monthMaxProgress/4;
   }
 
   // Rectangle {

@@ -16,7 +16,10 @@ Item {
 	property real step: 90;
 
   onCompleted: {
-    weeklyStats.st = engine.dayProgress.count/4;
+    if (engine.dayProgress.count/4 === 0)
+      daylyStats.st = 0.25;
+    else
+      daylyStats.st = engine.weekMaxProgress/4;
   }
 
   // Rectangle {
@@ -69,7 +72,7 @@ Item {
 
       anchors.leftMargin: 15;
       anchors.rightMargin: 15;
-      text: 4*weeklyStats.st;
+      text: 4*daylyStats.st;
       color: "#505050";
     }
   }
@@ -97,7 +100,7 @@ Item {
 
       anchors.leftMargin: 15;
       anchors.rightMargin: 15;
-      text: 3*weeklyStats.st;
+      text: 3*daylyStats.st;
       color: "#505050";
     }
   }
@@ -125,7 +128,7 @@ Item {
 
       anchors.leftMargin: 15;
       anchors.rightMargin: 15;
-      text: 2*weeklyStats.st;
+      text: 2*daylyStats.st;
       color: "#505050";
     }
   }
@@ -153,7 +156,7 @@ Item {
 
 			anchors.leftMargin: 15;
       anchors.rightMargin: 15;
-			text: weeklyStats.st;
+			text: daylyStats.st;
 			color: "#505050";
 		}
   }
@@ -163,7 +166,7 @@ Item {
 
     anchors.left: parent.left;
     anchors.right: parent.right;
-    anchors.top: weeklyStats.bottom;
+    anchors.top: daylyStats.bottom;
 
     height: 1;
 

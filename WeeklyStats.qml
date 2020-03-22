@@ -16,7 +16,10 @@ Item {
 	property real step: 90;
 
   onCompleted: {
-    weeklyStats.st = engine.weekMaxProgress/4;
+    if (engine.weekMaxProgress.count/4 === 0)
+      weeklyStats.st = 0.25;
+    else
+      weeklyStats.st = engine.weekMaxProgress/4;
   }
 
   // Rectangle {
