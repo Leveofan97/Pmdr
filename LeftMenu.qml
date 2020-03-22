@@ -323,7 +323,7 @@ Item {
           anchors.top: musicImage.bottom;
           anchors.topMargin: 20;
           anchors.horizontalCenter: settingButton.horizontalCenter;
-          source: "apps/Pomodoro/img/music.png";
+          source: "apps/Pomodoro/img/setting.png";
         }
 
         onUpPressed:
