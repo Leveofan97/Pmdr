@@ -60,6 +60,7 @@ Rectangle{
       yellowButton.opacity = 1;
       blueButton.opacity = 1;
       faqButton.opacity = 1;
+      settingButton.opacity = 1;
     }
 
   }
@@ -97,9 +98,10 @@ Rectangle{
       yellowButton.opacity = 1;
       blueButton.opacity = 1;
       faqButton.opacity = 1;
+      settingButton.opacity = 1;
     }
   }
-  
+
   onBackPressed: {
     menuList.setFocus();
     confirmationBlock.visible = false;
@@ -111,5 +113,6 @@ Rectangle{
     yellowButton.opacity = 1;
     blueButton.opacity = 1;
     faqButton.opacity = 1;
+    settingButton.opacity = 1;
   }
 }

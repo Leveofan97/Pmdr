@@ -247,6 +247,7 @@ Item {
 		yellowButton.opacity = 1;
 		blueButton.opacity = 1;
 		faqButton.opacity = 1;
+		settingButton.opacity = 1;
   }
 
 }

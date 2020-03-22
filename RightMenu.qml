@@ -293,6 +293,8 @@ Rectangle {
 				yellowButton.opacity = 0.1;
 				blueButton.opacity = 0.1;
 				faqButton.opacity = 0.1;
+				settingButton.opacity = 0.1;
+
 				yesBtn.setFocus();
 			}
 			log("red2");

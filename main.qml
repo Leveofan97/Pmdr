@@ -62,6 +62,7 @@ Item{
 HistoryList{}
 
 /*----------------------------------------------------------------------------*/
+
   onStarted: {
 		controltimerButton.setFocus();
 		var a = new Date(),

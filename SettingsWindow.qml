@@ -215,7 +215,7 @@ Item {
 
 		KeyItem {
 			id: closeButton;
-			
+
 			width: height * 6.75 + parent.spacing;
 			text: "Закрыть";
 			borderColor: activeFocus ? colorTheme.activeBorderColor : "#EA2022";
@@ -257,6 +257,21 @@ Item {
 		} else return false;
 
 		return true;
+	}
+
+	onBackPressed: {
+		menuList.setFocus();
+		confirmationBlock.visible = false;
+		settingsWin.visible = false;
+		settingButton.setFocus();
+		casetimer.opacity = 1;
+		activeTask.opacity = 1;
+		musicButton.opacity = 1;
+		redButton.opacity = 1;
+		yellowButton.opacity = 1;
+		blueButton.opacity = 1;
+		faqButton.opacity = 1;
+		settingButton.opacity = 1;
 	}
 
 }
