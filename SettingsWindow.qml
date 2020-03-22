@@ -85,7 +85,7 @@ Item {
 
 		anchors.top: settingTimeWorkLine.top;
 		anchors.horizontalCenter: settingTimeWorkLine.horizontalCenter;
-		anchors.leftMargin: 350;
+		anchors.leftMargin: 400;
 
 
 		width: 70;
@@ -96,9 +96,9 @@ Item {
 		Text {
 			id: settingTimeWorkFocusText;
 
-			anchors.top: parent.top;
+			//anchors.top: parent.top;
 			anchors.horizontalCenter: settingTimeWorkLine.horizontalCenter;
-			anchors.leftMargin: 350;
+			anchors.leftMargin: 400;
 
 
 			property string delimiter: clockFace.defworksec % 60 < 10 ? ":0" : ":";
@@ -125,7 +125,7 @@ Item {
 
 		anchors.top: settingTimeRelaxLine.top;
 		anchors.horizontalCenter: settingTimeRelaxLine.horizontalCenter;
-		anchors.leftMargin: 350;
+		anchors.leftMargin: 400;
 
 
 		width: 70;
@@ -138,7 +138,7 @@ Item {
 
 			anchors.top: parent.top;
 			anchors.horizontalCenter: settingTimeRelaxLine.horizontalCenter;
-			anchors.leftMargin: 355;
+			anchors.leftMargin: 400;
 
 			property string delimiter: clockFace.defrelaxsec % 60 < 10 ? ":0" : ":";
 			text: Math.floor(clockFace.defrelaxsec / 60) + delimiter + clockFace.defrelaxsec % 60;
@@ -168,7 +168,7 @@ Item {
 
 		anchors.top: settingTimeBreakLine.top;
 		anchors.horizontalCenter: settingTimeBreakLine.horizontalCenter;
-		anchors.leftMargin: 330;
+		anchors.leftMargin: 375;
 
 
 		width: 70;
@@ -181,7 +181,7 @@ Item {
 
 			anchors.top: parent.top;
 			anchors.horizontalCenter: settingTimeBreakLine.horizontalCenter;
-			anchors.leftMargin: 335;
+			anchors.leftMargin: 375;
 
 			property string delimiter: clockFace.defbigrelsxsec % 60 < 10 ? ":0" : ":";
 			text: Math.floor(clockFace.defbigrelsxsec / 60) + delimiter + clockFace.defbigrelsxsec % 60;
@@ -207,8 +207,7 @@ Item {
 	}
 
 	Row {
-		anchors.left: parent.left;
-		anchors.right: parent.right;
+		anchors.horizontalCenter: parent.horizontalCenter;
 		anchors.bottom: parent.bottom;
 		anchors.margins: 10;
 
@@ -216,7 +215,7 @@ Item {
 
 		KeyItem {
 			id: closeButton;
-
+			
 			width: height * 6.75 + parent.spacing;
 			text: "Закрыть";
 			borderColor: activeFocus ? colorTheme.activeBorderColor : "#EA2022";

@@ -29,14 +29,11 @@ this.colorprocent = function(){
     }
     if(proc > 70 && proc <= 80){
       timercyrcle.color = "#d8ff94";
-      timercyrcle.height = 150;
     }
     if(proc > 80 && proc <= 90){
       timercyrcle.color = "#bdff94";
-      timercyrcle.height = 250;
     }
     if(proc > 90 && proc <= 100){
-      timercyrcle.height = 350;
       timercyrcle.color = "#9cff94";
     }
 }
