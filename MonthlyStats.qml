@@ -15,13 +15,6 @@ Item {
 
 	property real step: 24;
 
-  onCompleted: {
-    if (engine.monthMaxProgress/4 === 0)
-      monthlyStats.st = 0.25;
-    else
-      monthlyStats.st = engine.monthMaxProgress/4;
-  }
-
   // Rectangle {
   //   anchors.fill: parent;
   //   color: "#f0f0f0";
@@ -38,14 +31,10 @@ Item {
     anchors.leftMargin: 1*monthlyStats.step;
     active: true;
     barColor: "#f00";
-    progress: 0.1;
+    progress: 0.5;
     height: 300;
     width: 16;
     ttextUnderBar: "";
-    onCompleted: {
-      mbar.ttextUnderBar = engine.monthProgress[1].day;
-      mbar.progress = engine.monthProgress[1].count/engine.monthMaxProgress;
-    }
 
   }
 
@@ -57,14 +46,10 @@ Item {
     anchors.leftMargin: 2*monthlyStats.step;
     active: true;
     barColor: "#f00";
-    progress: 0.2;
+    progress: 0.5;
     height: 300;
     width: 16;
     ttextUnderBar: "";
-    onCompleted: {
-      mbar1.ttextUnderBar = engine.monthProgress[2].day;
-      mbar1.progress = engine.monthProgress[2].count/engine.monthMaxProgress;
-    }
   }
 
   ProgressBar{
@@ -75,14 +60,10 @@ Item {
     anchors.leftMargin: 3*monthlyStats.step;
     active: true;
     barColor: "#f00";
-    progress: 0.3;
+    progress: 0.5;
     height: 300;
     width: 16;
     ttextUnderBar: "";
-    onCompleted: {
-      mbar2.ttextUnderBar = engine.monthProgress[3].day;
-      mbar2.progress = engine.monthProgress[3].count/engine.monthMaxProgress;
-    }
   }
 
   ProgressBar{
@@ -93,14 +74,10 @@ Item {
     anchors.leftMargin: 4*monthlyStats.step;
     active: true;
     barColor: "#f00";
-    progress: 0.4;
+    progress: 0.5;
     height: 300;
     width: 16;
     ttextUnderBar: "";
-    onCompleted: {
-      mbar3.ttextUnderBar = engine.monthProgress[4].day;
-      mbar3.progress = engine.monthProgress[4].count/engine.monthMaxProgress;
-    }
   }
 
   ProgressBar{
@@ -115,10 +92,6 @@ Item {
     height: 300;
     width: 16;
     ttextUnderBar: "";
-    onCompleted: {
-      mbar4.ttextUnderBar = engine.monthProgress[5].day;
-      mbar4.progress = engine.monthProgress[5].count/engine.monthMaxProgress;
-    }
   }
 
   ProgressBar{
@@ -129,14 +102,10 @@ Item {
     anchors.leftMargin: 6*monthlyStats.step;
     active: true;
     barColor: "#f00";
-    progress: 0.6;
+    progress: 0.5;
     height: 300;
     width: 16;
     ttextUnderBar: "";
-    onCompleted: {
-      mbar5.ttextUnderBar = engine.monthProgress[6].day;
-      mbar5.progress = engine.monthProgress[6].count/engine.monthMaxProgress;
-    }
   }
 
   ProgressBar{
@@ -147,14 +116,10 @@ Item {
     anchors.leftMargin: 7*monthlyStats.step;
     active: true;
     barColor: "#f00";
-    progress: 0.7;
+    progress: 0.5;
     height: 300;
     width: 16;
     ttextUnderBar: "";
-    onCompleted: {
-      mbar6.ttextUnderBar = engine.monthProgress[0].day;
-      mbar6.progress = engine.monthProgress[0].count/engine.monthMaxProgress;
-    }
   }
 
   ProgressBar{
@@ -165,15 +130,10 @@ Item {
     anchors.leftMargin: 8*monthlyStats.step;
     active: true;
     barColor: "#f00";
-    progress: 0.1;
+    progress: 0.5;
     height: 300;
     width: 16;
     ttextUnderBar: "";
-    onCompleted: {
-      mbar7.ttextUnderBar = engine.monthProgress[1].day;
-      mbar7.progress = engine.monthProgress[1].count/engine.monthMaxProgress;
-    }
-
   }
 
   ProgressBar{
@@ -184,14 +144,10 @@ Item {
     anchors.leftMargin: 9*monthlyStats.step;
     active: true;
     barColor: "#f00";
-    progress: 0.2;
+    progress: 0.5;
     height: 300;
     width: 16;
     ttextUnderBar: "";
-    onCompleted: {
-      mbar8.ttextUnderBar = engine.monthProgress[2].day;
-      mbar8.progress = engine.monthProgress[2].count/engine.monthMaxProgress;
-    }
   }
 
   ProgressBar{
@@ -202,14 +158,10 @@ Item {
     anchors.leftMargin: 10*monthlyStats.step;
     active: true;
     barColor: "#f00";
-    progress: 0.3;
+    progress: 0.5;
     height: 300;
     width: 16;
     ttextUnderBar: "";
-    onCompleted: {
-      mbar9.ttextUnderBar = engine.monthProgress[3].day;
-      mbar9.progress = engine.monthProgress[3].count/engine.monthMaxProgress;
-    }
   }
 
   ProgressBar{
@@ -220,14 +172,10 @@ Item {
     anchors.leftMargin: 11*monthlyStats.step;
     active: true;
     barColor: "#f00";
-    progress: 0.4;
+    progress: 0.5;
     height: 300;
     width: 16;
     ttextUnderBar: "";
-    onCompleted: {
-      mbar10.ttextUnderBar = engine.monthProgress[4].day;
-      mbar10.progress = engine.monthProgress[4].count/engine.monthMaxProgress;
-    }
   }
 
   ProgressBar{
@@ -242,10 +190,6 @@ Item {
     height: 300;
     width: 16;
     ttextUnderBar: "";
-    onCompleted: {
-      mbar11.ttextUnderBar = engine.monthProgress[5].day;
-      mbar11.progress = engine.monthProgress[5].count/engine.monthMaxProgress;
-    }
   }
 
   ProgressBar{
@@ -256,14 +200,10 @@ Item {
     anchors.leftMargin: 13*monthlyStats.step;
     active: true;
     barColor: "#f00";
-    progress: 0.6;
+    progress: 0.5;
     height: 300;
     width: 16;
     ttextUnderBar: "";
-    onCompleted: {
-      mbar12.ttextUnderBar = engine.monthProgress[6].day;
-      mbar12.progress = engine.monthProgress[6].count/engine.monthMaxProgress;
-    }
   }
 
   ProgressBar{
@@ -274,14 +214,10 @@ Item {
     anchors.leftMargin: 14*monthlyStats.step;
     active: true;
     barColor: "#f00";
-    progress: 0.7;
+    progress: 0.5;
     height: 300;
     width: 16;
     ttextUnderBar: "";
-    onCompleted: {
-      mbar13.ttextUnderBar = engine.monthProgress[0].day;
-      mbar13.progress = engine.monthProgress[0].count/engine.monthMaxProgress;
-    }
   }
 
   ProgressBar{
@@ -292,15 +228,10 @@ Item {
     anchors.leftMargin: 15*monthlyStats.step;
     active: true;
     barColor: "#f00";
-    progress: 0.1;
+    progress: 0.5;
     height: 300;
     width: 16;
     ttextUnderBar: "";
-    onCompleted: {
-      mbar14.ttextUnderBar = engine.monthProgress[1].day;
-      mbar14.progress = engine.monthProgress[1].count/engine.monthMaxProgress;
-    }
-
   }
 
   ProgressBar{
@@ -311,14 +242,10 @@ Item {
     anchors.leftMargin: 16*monthlyStats.step;
     active: true;
     barColor: "#f00";
-    progress: 0.2;
+    progress: 0.5;
     height: 300;
     width: 16;
     ttextUnderBar: "";
-    onCompleted: {
-      mbar15.ttextUnderBar = engine.monthProgress[2].day;
-      mbar15.progress = engine.monthProgress[2].count/engine.monthMaxProgress;
-    }
   }
 
   ProgressBar{
@@ -329,14 +256,10 @@ Item {
     anchors.leftMargin: 17*monthlyStats.step;
     active: true;
     barColor: "#f00";
-    progress: 0.3;
+    progress: 0.5;
     height: 300;
     width: 16;
     ttextUnderBar: "";
-    onCompleted: {
-      mbar16.ttextUnderBar = engine.monthProgress[3].day;
-      mbar16.progress = engine.monthProgress[3].count/engine.monthMaxProgress;
-    }
   }
 
   ProgressBar{
@@ -347,14 +270,10 @@ Item {
     anchors.leftMargin: 18*monthlyStats.step;
     active: true;
     barColor: "#f00";
-    progress: 0.4;
+    progress: 0.5;
     height: 300;
     width: 16;
     ttextUnderBar: "";
-    onCompleted: {
-      mbar17.ttextUnderBar = engine.monthProgress[4].day;
-      mbar17.progress = engine.monthProgress[4].count/engine.monthMaxProgress;
-    }
   }
 
   ProgressBar{
@@ -369,10 +288,6 @@ Item {
     height: 300;
     width: 16;
     ttextUnderBar: "";
-    onCompleted: {
-      mbar18.ttextUnderBar = engine.monthProgress[5].day;
-      mbar18.progress = engine.monthProgress[5].count/engine.monthMaxProgress;
-    }
   }
 
   ProgressBar{
@@ -383,14 +298,10 @@ Item {
     anchors.leftMargin: 20*monthlyStats.step;
     active: true;
     barColor: "#f00";
-    progress: 0.6;
+    progress: 0.5;
     height: 300;
     width: 16;
     ttextUnderBar: "";
-    onCompleted: {
-      mbar19.ttextUnderBar = engine.monthProgress[6].day;
-      mbar19.progress = engine.monthProgress[6].count/engine.monthMaxProgress;
-    }
   }
 
   ProgressBar{
@@ -401,14 +312,10 @@ Item {
     anchors.leftMargin: 21*monthlyStats.step;
     active: true;
     barColor: "#f00";
-    progress: 0.7;
+    progress: 0.5;
     height: 300;
     width: 16;
     ttextUnderBar: "";
-    onCompleted: {
-      mbar20.ttextUnderBar = engine.monthProgress[0].day;
-      mbar20.progress = engine.monthProgress[0].count/engine.monthMaxProgress;
-    }
   }
 
   ProgressBar{
@@ -419,15 +326,10 @@ Item {
     anchors.leftMargin: 22*monthlyStats.step;
     active: true;
     barColor: "#f00";
-    progress: 0.1;
+    progress: 0.5;
     height: 300;
     width: 16;
     ttextUnderBar: "";
-    onCompleted: {
-      mbar21.ttextUnderBar = engine.monthProgress[1].day;
-      mbar21.progress = engine.monthProgress[1].count/engine.monthMaxProgress;
-    }
-
   }
 
   ProgressBar{
@@ -438,14 +340,10 @@ Item {
     anchors.leftMargin: 23*monthlyStats.step;
     active: true;
     barColor: "#f00";
-    progress: 0.2;
+    progress: 0.5;
     height: 300;
     width: 16;
     ttextUnderBar: "";
-    onCompleted: {
-      mbar22.ttextUnderBar = engine.monthProgress[2].day;
-      mbar22.progress = engine.monthProgress[2].count/engine.monthMaxProgress;
-    }
   }
 
   ProgressBar{
@@ -456,14 +354,10 @@ Item {
     anchors.leftMargin: 24*monthlyStats.step;
     active: true;
     barColor: "#f00";
-    progress: 0.3;
+    progress: 0.5;
     height: 300;
     width: 16;
     ttextUnderBar: "";
-    onCompleted: {
-      mbar23.ttextUnderBar = engine.monthProgress[3].day;
-      mbar23.progress = engine.monthProgress[3].count/engine.monthMaxProgress;
-    }
   }
 
   ProgressBar{
@@ -474,14 +368,10 @@ Item {
     anchors.leftMargin: 25*monthlyStats.step;
     active: true;
     barColor: "#f00";
-    progress: 0.4;
+    progress: 0.5;
     height: 300;
     width: 16;
     ttextUnderBar: "";
-    onCompleted: {
-      mbar24.ttextUnderBar = engine.monthProgress[4].day;
-      mbar24.progress = engine.monthProgress[4].count/engine.monthMaxProgress;
-    }
   }
 
   ProgressBar{
@@ -496,10 +386,6 @@ Item {
     height: 300;
     width: 16;
     ttextUnderBar: "";
-    onCompleted: {
-      mbar25.ttextUnderBar = engine.monthProgress[5].day;
-      mbar25.progress = engine.monthProgress[5].count/engine.monthMaxProgress;
-    }
   }
 
   ProgressBar{
@@ -510,14 +396,10 @@ Item {
     anchors.leftMargin: 27*monthlyStats.step;
     active: true;
     barColor: "#f00";
-    progress: 0.6;
+    progress: 0.5;
     height: 300;
     width: 16;
     ttextUnderBar: "";
-    onCompleted: {
-      mbar26.ttextUnderBar = engine.monthProgress[6].day;
-      mbar26.progress = engine.monthProgress[6].count/engine.monthMaxProgress;
-    }
   }
 
   ProgressBar{
@@ -528,14 +410,10 @@ Item {
     anchors.leftMargin: 28*monthlyStats.step;
     active: true;
     barColor: "#f00";
-    progress: 0.7;
+    progress: 0.5;
     height: 300;
     width: 16;
     ttextUnderBar: "";
-    onCompleted: {
-      mbar27.ttextUnderBar = engine.monthProgress[0].day;
-      mbar27.progress = engine.monthProgress[0].count/engine.monthMaxProgress;
-    }
   }
 
   ProgressBar{
@@ -546,15 +424,10 @@ Item {
     anchors.leftMargin: 29*monthlyStats.step;
     active: true;
     barColor: "#f00";
-    progress: 0.1;
+    progress: 0.5;
     height: 300;
     width: 16;
     ttextUnderBar: "";
-    onCompleted: {
-      mbar28.ttextUnderBar = engine.monthProgress[1].day;
-      mbar28.progress = engine.monthProgress[1].count/engine.monthMaxProgress;
-    }
-
   }
 
   ProgressBar{
@@ -565,14 +438,10 @@ Item {
     anchors.leftMargin: 30*monthlyStats.step;
     active: true;
     barColor: "#f00";
-    progress: 0.2;
+    progress: 0.5;
     height: 300;
     width: 16;
     ttextUnderBar: "";
-    onCompleted: {
-      mbar29.ttextUnderBar = engine.monthProgress[2].day;
-      mbar29.progress = engine.monthProgress[2].count/engine.monthMaxProgress;
-    }
   }
 
   ProgressBar{
@@ -583,14 +452,11 @@ Item {
     anchors.leftMargin: 31*monthlyStats.step;
     active: true;
     barColor: "#f00";
-    progress: 0.2;
+    progress: 0.5;
     height: 300;
     width: 16;
     ttextUnderBar: "";
-    onCompleted: {
-      mbar30.ttextUnderBar = engine.monthProgress[2].day;
-      mbar30.progress = engine.monthProgress[2].count/engine.monthMaxProgress;
-    }
+
   }
 
   Rectangle{

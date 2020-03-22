@@ -15,13 +15,6 @@ Item {
 
 	property real step: 90;
 
-  onCompleted: {
-    if (engine.dayProgress.count/4 === 0)
-      daylyStats.st = 0.25;
-    else
-      daylyStats.st = engine.weekMaxProgress/4;
-  }
-
   // Rectangle {
   //   anchors.fill: parent;
   //   color: "#f0f0f0";
@@ -38,14 +31,9 @@ Item {
     anchors.leftMargin: 1*daylyStats.step;
     active: true;
     barColor: "#f00";
-    progress: 0.1;
+    progress: 0.5;
     height: 300;
     ttextUnderBar: "";
-    onCompleted: {
-      dayBar.ttextUnderBar = engine.dayProgress.day;
-      dayBar.progress = engine.dayProgress.count/engine.weekMaxProgress;
-    }
-
   }
 
 

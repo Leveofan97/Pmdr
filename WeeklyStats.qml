@@ -15,13 +15,6 @@ Item {
 
 	property real step: 90;
 
-  onCompleted: {
-    if (engine.weekMaxProgress.count/4 === 0)
-      weeklyStats.st = 0.25;
-    else
-      weeklyStats.st = engine.weekMaxProgress/4;
-  }
-
   // Rectangle {
   //   anchors.fill: parent;
   //   color: "#f0f0f0";
@@ -38,14 +31,9 @@ Item {
     anchors.leftMargin: 1*weeklyStats.step;
     active: true;
     barColor: "#f00";
-    progress: 0.1;
+    progress: 0.5;
     height: 300;
     ttextUnderBar: "";
-    onCompleted: {
-      bar.ttextUnderBar = engine.weekProgress[1].day;
-      bar.progress = engine.weekProgress[1].count/engine.weekMaxProgress;
-    }
-
   }
 
   ProgressBar{
@@ -56,13 +44,9 @@ Item {
     anchors.leftMargin: 2*weeklyStats.step;
     active: true;
     barColor: "#f00";
-    progress: 0.2;
+    progress: 0.5;
     height: 300;
     ttextUnderBar: "";
-    onCompleted: {
-      bar1.ttextUnderBar = engine.weekProgress[2].day;
-      bar1.progress = engine.weekProgress[2].count/engine.weekMaxProgress;
-    }
   }
 
   ProgressBar{
@@ -73,13 +57,9 @@ Item {
     anchors.leftMargin: 3*weeklyStats.step;
     active: true;
     barColor: "#f00";
-    progress: 0.3;
+    progress: 0.5;
     height: 300;
     ttextUnderBar: "";
-    onCompleted: {
-      bar2.ttextUnderBar = engine.weekProgress[3].day;
-      bar2.progress = engine.weekProgress[3].count/engine.weekMaxProgress;
-    }
   }
 
   ProgressBar{
@@ -90,13 +70,9 @@ Item {
     anchors.leftMargin: 4*weeklyStats.step;
     active: true;
     barColor: "#f00";
-    progress: 0.4;
+    progress: 0.5;
     height: 300;
     ttextUnderBar: "";
-    onCompleted: {
-      bar3.ttextUnderBar = engine.weekProgress[4].day;
-      bar3.progress = engine.weekProgress[4].count/engine.weekMaxProgress;
-    }
   }
 
   ProgressBar{
@@ -110,10 +86,6 @@ Item {
     progress: 0.5;
     height: 300;
     ttextUnderBar: "";
-    onCompleted: {
-      bar4.ttextUnderBar = engine.weekProgress[5].day;
-      bar4.progress = engine.weekProgress[5].count/engine.weekMaxProgress;
-    }
   }
 
   ProgressBar{
@@ -124,13 +96,9 @@ Item {
     anchors.leftMargin: 6*weeklyStats.step;
     active: true;
     barColor: "#f00";
-    progress: 0.6;
+    progress: 0.5;
     height: 300;
     ttextUnderBar: "";
-    onCompleted: {
-      bar5.ttextUnderBar = engine.weekProgress[6].day;
-      bar5.progress = engine.weekProgress[6].count/engine.weekMaxProgress;
-    }
   }
 
   ProgressBar{
@@ -141,13 +109,9 @@ Item {
     anchors.leftMargin: 7*weeklyStats.step;
     active: true;
     barColor: "#f00";
-    progress: 0.7;
+    progress: 0.5;
     height: 300;
     ttextUnderBar: "";
-    onCompleted: {
-      bar6.ttextUnderBar = engine.weekProgress[0].day;
-      bar6.progress = engine.weekProgress[0].count/engine.weekMaxProgress;
-    }
   }
 
   Rectangle{
