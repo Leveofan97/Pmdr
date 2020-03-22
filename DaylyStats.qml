@@ -1,7 +1,7 @@
 import "ProgressBar.qml";
 
 Item {
-  id: weeklyStats;
+  id: daylyStats;
   property real st;
   anchors.top: buttonSpace.bottom;
   anchors.bottom: parent.bottom;
@@ -16,7 +16,7 @@ Item {
 	property real step: 90;
 
   onCompleted: {
-    weeklyStats.st = engine.weekMaxProgress/4;
+    weeklyStats.st = engine.dayProgress.count/4;
   }
 
   // Rectangle {
@@ -28,124 +28,23 @@ Item {
   // }
 
   ProgressBar{
-    id: bar;
-    anchors.horizontalCenter: weeklyStats.horizontalCenter;
+    id: dayBar;
+    anchors.horizontalCenter: daylyStats.horizontalCenter;
     anchors.bottom: parent.bottom;
     anchors.left: parent.left;
-    anchors.leftMargin: 1*weeklyStats.step;
+    anchors.leftMargin: 1*daylyStats.step;
     active: true;
     barColor: "#f00";
     progress: 0.1;
     height: 300;
     ttextUnderBar: "";
     onCompleted: {
-      bar.ttextUnderBar = engine.weekProgress[1].day;
-      bar.progress = engine.weekProgress[1].count/engine.weekMaxProgress;
+      dayBar.ttextUnderBar = engine.dayProgress.day;
+      dayBar.progress = engine.dayProgress.count/engine.weekMaxProgress;
     }
 
   }
 
-  ProgressBar{
-    id: bar1;
-    anchors.horizontalCenter: weeklyStats.horizontalCenter;
-    anchors.bottom: parent.bottom;
-    anchors.left: parent.left;
-    anchors.leftMargin: 2*weeklyStats.step;
-    active: true;
-    barColor: "#f00";
-    progress: 0.2;
-    height: 300;
-    ttextUnderBar: "";
-    onCompleted: {
-      bar1.ttextUnderBar = engine.weekProgress[2].day;
-      bar1.progress = engine.weekProgress[2].count/engine.weekMaxProgress;
-    }
-  }
-
-  ProgressBar{
-    id: bar2;
-    anchors.horizontalCenter: weeklyStats.horizontalCenter;
-    anchors.bottom: parent.bottom;
-    anchors.left: parent.left;
-    anchors.leftMargin: 3*weeklyStats.step;
-    active: true;
-    barColor: "#f00";
-    progress: 0.3;
-    height: 300;
-    ttextUnderBar: "";
-    onCompleted: {
-      bar2.ttextUnderBar = engine.weekProgress[3].day;
-      bar2.progress = engine.weekProgress[3].count/engine.weekMaxProgress;
-    }
-  }
-
-  ProgressBar{
-    id: bar3;
-    anchors.horizontalCenter: weeklyStats.horizontalCenter;
-    anchors.bottom: parent.bottom;
-    anchors.left: parent.left;
-    anchors.leftMargin: 4*weeklyStats.step;
-    active: true;
-    barColor: "#f00";
-    progress: 0.4;
-    height: 300;
-    ttextUnderBar: "";
-    onCompleted: {
-      bar3.ttextUnderBar = engine.weekProgress[4].day;
-      bar3.progress = engine.weekProgress[4].count/engine.weekMaxProgress;
-    }
-  }
-
-  ProgressBar{
-    id: bar4;
-    anchors.horizontalCenter: weeklyStats.horizontalCenter;
-    anchors.bottom: parent.bottom;
-    anchors.left: parent.left;
-    anchors.leftMargin: 5*weeklyStats.step;
-    active: true;
-    barColor: "#f00";
-    progress: 0.5;
-    height: 300;
-    ttextUnderBar: "";
-    onCompleted: {
-      bar4.ttextUnderBar = engine.weekProgress[5].day;
-      bar4.progress = engine.weekProgress[5].count/engine.weekMaxProgress;
-    }
-  }
-
-  ProgressBar{
-    id: bar5;
-    anchors.horizontalCenter: weeklyStats.horizontalCenter;
-    anchors.bottom: parent.bottom;
-    anchors.left: parent.left;
-    anchors.leftMargin: 6*weeklyStats.step;
-    active: true;
-    barColor: "#f00";
-    progress: 0.6;
-    height: 300;
-    ttextUnderBar: "";
-    onCompleted: {
-      bar5.ttextUnderBar = engine.weekProgress[6].day;
-      bar5.progress = engine.weekProgress[6].count/engine.weekMaxProgress;
-    }
-  }
-
-  ProgressBar{
-    id: bar6;
-    anchors.horizontalCenter: weeklyStats.horizontalCenter;
-    anchors.bottom: parent.bottom;
-    anchors.left: parent.left;
-    anchors.leftMargin: 7*weeklyStats.step;
-    active: true;
-    barColor: "#f00";
-    progress: 0.7;
-    height: 300;
-    ttextUnderBar: "";
-    onCompleted: {
-      bar6.ttextUnderBar = engine.weekProgress[0].day;
-      bar6.progress = engine.weekProgress[0].count/engine.weekMaxProgress;
-    }
-  }
 
   Rectangle{
     id: line4;

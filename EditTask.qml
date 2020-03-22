@@ -138,6 +138,7 @@ Item {
 						yellowButton.opacity = 1;
 						blueButton.opacity = 1;
 						faqButton.opacity = 1;
+	  				settingButton.opacity = 1;
 
 						let data = {
 							name: taskNameEdit.text,
@@ -168,6 +169,7 @@ Item {
 						yellowButton.opacity = 1;
 						blueButton.opacity = 1;
 						faqButton.opacity = 1;
+	  				settingButton.opacity = 1;
 
 						menuList.model.set(eForm.curIndex, { text: taskNameEdit.text , isdone: false });
 						engine.tasks[eForm.curIndex] = {
@@ -209,6 +211,7 @@ Item {
 				yellowButton.opacity = 1;
 				blueButton.opacity = 1;
 				faqButton.opacity = 1;
+				settingButton.opacity = 1;
       }
 
     }
@@ -233,5 +236,17 @@ Item {
 
 		return true;
 	}
+
+	onBackPressed: {
+		eForm.visible = false;
+		addTaskButton.setFocus();
+		casetimer.opacity = 1;
+		activeTask.opacity = 1;
+		musicButton.opacity = 1;
+		redButton.opacity = 1;
+		yellowButton.opacity = 1;
+		blueButton.opacity = 1;
+		faqButton.opacity = 1;
+  }
 
 }

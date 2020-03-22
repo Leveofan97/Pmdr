@@ -104,6 +104,7 @@ Rectangle {
 				yellowButton.opacity = 0.1;
 				blueButton.opacity = 0.1;
 				faqButton.opacity = 0.1;
+				settingButton.opacity = 0.1;
 
 				eForm.curIndex = -1;
 				headline.text = "Добавление задачи";
@@ -174,7 +175,14 @@ Rectangle {
 						mainView.color = "#909090";
 						switcher.visible = false;
 						statSwitcher.visible = true;
-						historyList.setFocus();
+						weeklyStats.opacity = 1;
+						daylyStats.opacity = 0;
+						monthlyStats.opacity = 0;
+
+						weeklyBtn.setFocus();
+						engine.loadWeek();
+						weeklyBtn.refreshWeek();
+
 						log("Выбрана история");
 					}
 				}
@@ -215,6 +223,7 @@ Rectangle {
 
 		onDataChanged: {
 		  engine.load(JSON.parse(this.data));
+			engine.loadAllStats(JSON.parse(this.data));
 		}
 	}
 
@@ -310,6 +319,7 @@ Rectangle {
 			yellowButton.opacity = 0.1;
 			blueButton.opacity = 0.1;
 			faqButton.opacity = 0.1;
+			settingButton.opacity = 0.1;
 
 			eForm.curIndex = this.currentIndex;
 			headline.text = "Редактирование задачи";
@@ -346,7 +356,5 @@ Rectangle {
 	Confirmation{}
 
 	EditTask{}
-
-
 
 }

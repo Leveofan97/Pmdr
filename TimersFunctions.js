@@ -87,54 +87,34 @@ this.ChangeTimerState = function(newstate){
       clockFace.defbigrelsxsec));
 }
 
-function SetDefValues() {
-  if(stateTimer.flagstate){
-    if (stateTimer.flagstate == 1) {
-      clockFace.defrelaxsec = clockFace.seconds;
+function SetDefValues(seconds, state) {
+  if(state){
+    if (state == 1) {
+      clockFace.defrelaxsec = seconds;
     }else{
-      clockFace.defbigrelsxsec = clockFace.seconds;
+      clockFace.defbigrelsxsec = seconds;
     }
   }else{
-    clockFace.defworksec = clockFace.seconds;
+    clockFace.defworksec = seconds;
   }
 }
 
-this.DownTimerBySec = function(){
-  if(clockFace.seconds > 29){
-    clockFace.seconds -= 30;
+this.DownTimerBySec = function(seconds, state){
+  if(seconds > 59){
+    seconds -= 60;
   }else{
-    clockFace.seconds = 0;
+    seconds = 0;
     error("Minimum or not selected");
   }
-  SetDefValues();
+  SetDefValues(seconds, state);
 }
 
-this.DownTimerByMin = function(){
-  if(clockFace.seconds > 299){
-    clockFace.seconds -= 300;
+this.UpTimerBySec = function(seconds, state){
+  if(seconds < 5359){
+    seconds += 60;
   }else{
-    clockFace.seconds = 0;
-    error("Minimum or not selected");
-  }
-  SetDefValues();
-}
-
-this.UpTimerByMin = function(){
-  if(clockFace.seconds < 5101){
-    clockFace.seconds += 300;
-  }else{
-    clockFace.seconds = 5400;
+    seconds = 5400;
     error("Maximum or not selected");
   }
-  SetDefValues();
-}
-
-this.UpTimerBySec = function(){
-  if(clockFace.seconds < 5329){
-    clockFace.seconds += 30;
-  }else{
-    clockFace.seconds = 5400;
-    error("Maximum or not selected");
-  }
-  SetDefValues();
+  SetDefValues(seconds, state);
 }

@@ -89,7 +89,7 @@ Rectangle{
 
       menuList.setFocus();
       confirmationBlock.visible = false;
-      
+
       casetimer.opacity = 1;
       activeTask.opacity = 1;
       musicButton.opacity = 1;
@@ -98,5 +98,18 @@ Rectangle{
       blueButton.opacity = 1;
       faqButton.opacity = 1;
     }
+  }
+  
+  onBackPressed: {
+    menuList.setFocus();
+    confirmationBlock.visible = false;
+
+    casetimer.opacity = 1;
+    activeTask.opacity = 1;
+    musicButton.opacity = 1;
+    redButton.opacity = 1;
+    yellowButton.opacity = 1;
+    blueButton.opacity = 1;
+    faqButton.opacity = 1;
   }
 }
