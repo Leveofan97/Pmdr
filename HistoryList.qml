@@ -4,18 +4,17 @@ import "MonthlyStats.qml";
 
 Item {
 	id: statSwitcher;
-	visible: false;
 	anchors.left: parent.left;
 	anchors.top: parent.top;
 	anchors.right: parent.right;
 	anchors.bottom: parent.bottom;
+	visible: false;
 
 	Item {
 		id: statistics;
 		anchors.left: parent.left;
 		anchors.top: parent.top;
 		anchors.right: historyL.left;
-
 		anchors.topMargin: 15;
 		anchors.rightMargin: 30;
 
@@ -31,10 +30,8 @@ Item {
 
 		SubheadText {
       id: promotion;
-
 			anchors.left: parent.left;
 			anchors.top: parent.top;
-
 			anchors.topMargin: 15;
 			anchors.leftMargin: 20;
 
@@ -48,7 +45,6 @@ Item {
 			property int max;
 			anchors.left: parent.left;
 			anchors.top: promotion.bottom;
-
 			anchors.topMargin: 5;
 			anchors.leftMargin: 20;
 
@@ -64,7 +60,6 @@ Item {
 			property string mid;
 			anchors.left: record.right;
 			anchors.top: promotion.bottom;
-
 			anchors.topMargin: 5;
 			anchors.leftMargin: 15;
 
@@ -77,65 +72,49 @@ Item {
 
 		Rectangle{
 			id: line;
-
 			anchors.left: parent.left;
 			anchors.right: parent.right;
 			anchors.top: record.bottom;
-
-			height: 1;
 			anchors.topMargin: 5;
 			anchors.leftMargin: 15;
 			anchors.rightMargin: 15;
 
+			height: 1;
 			color: "#505050";
 		}
 
 		Rectangle{
 			id: buttonSpace;
-
+			anchors.topMargin: 5;
+			anchors.leftMargin: 225;
+			anchors.rightMargin: 225;
 			anchors.left: parent.left;
 			anchors.right: parent.right;
 			anchors.top: line.bottom;
 
 			height: 35;
 			radius: height/5;
-
-			anchors.topMargin: 5;
-			anchors.leftMargin: 225;
-			anchors.rightMargin: 225;
-
 			color: "#505050";
 
 			Button{
 				id: daylyBtn;
-
-				width: 150;
-				height: 50;
-				radius: height/5;
-
 				anchors.left: parent.left;
 				anchors.top: parent.top;
 				anchors.right: weeklyBtn.left;
 				anchors.bottom: parent.bottom;
-
 				anchors.bottomMargin: 3;
 				anchors.topMargin: 3;
 				anchors.leftMargin: 3;
 				anchors.rightMargin: 3;
 
+				width: 150;
+				height: 50;
+				radius: height/5;
 				text: "Dayly";
 
 				onRightPressed: {
 					weeklyBtn.setFocus();
 				}
-
-				// onBackPressed: {
-				// 	mainView.color = "#010101";
-				// 	switcher.visible = true;
-		    //   historyButton.setFocus();
-		    //   statSwitcher.visible = false;
-		    // }
-
 				onSelectPressed: {
 					weeklyStats.opacity = 0;
 					daylyStats.opacity = 1;
@@ -158,22 +137,18 @@ Item {
 
 			Button{
 				id: weeklyBtn;
-
-		    width: 150;
-		    height: 50;
-		    radius: height/5;
-
-
 				anchors.left: daylyBtn.right;
 				anchors.top: parent.top;
 				anchors.right: monthlyBtn.left;
 				anchors.bottom: parent.bottom;
-
 				anchors.bottomMargin: 3;
 		    anchors.topMargin: 3;
 		    anchors.leftMargin: 3;
 				anchors.rightMargin: 3;
 
+		    width: 150;
+		    height: 50;
+		    radius: height/5;
 		    text: "Weekly";
 
 				onLeftPressed: {
@@ -183,14 +158,6 @@ Item {
 				onRightPressed: {
 					monthlyBtn.setFocus();
 				}
-
-				// onBackPressed: {
-				// 	mainView.color = "#010101";
-				// 	switcher.visible = true;
-		    //   historyButton.setFocus();
-		    //   statSwitcher.visible = false;
-		    // }
-
 				onSelectPressed: {
 					weeklyStats.opacity = 1;
 					daylyStats.opacity = 0;
@@ -227,26 +194,22 @@ Item {
 					bar6.ttextUnderBar = weeklyBtn.Today(engine.weekProgress[0].day);
 		      bar6.progress = engine.weekProgress[0].count/engine.weekMaxProgress;
 				}
-
 			}
 
 			Button{
 				id: monthlyBtn;
-
-		    width: 150;
-		    height: 50;
-		    radius: height/5;
-
 				anchors.left: weeklyBtn.right;
 				anchors.top: parent.top;
 				anchors.right: parent.right;
 				anchors.bottom: parent.bottom;
-
 				anchors.bottomMargin: 3;
-		    anchors.topMargin: 3;
-		    anchors.leftMargin: 3;
+				anchors.topMargin: 3;
+				anchors.leftMargin: 3;
 				anchors.rightMargin: 3;
 
+		    width: 150;
+		    height: 50;
+		    radius: height/5;
 		    text: "Monthly";
 
 				onLeftPressed: {
@@ -256,14 +219,6 @@ Item {
 				onRightPressed: {
 					historyList.setFocus();
 				}
-
-				// onBackPressed: {
-				// 	mainView.color = "#010101";
-				// 	switcher.visible = true;
-		    //   historyButton.setFocus();
-		    //   statSwitcher.visible = false;
-		    // }
-
 				onSelectPressed:{
 					weeklyStats.opacity = 0;
 					daylyStats.opacity = 0;
@@ -347,16 +302,12 @@ Item {
 		      mbar29.progress = engine.monthProgress[1].count/engine.monthMaxProgress;
 					mbar30.ttextUnderBar = Today(engine.monthProgress[0].day);
 		      mbar30.progress = engine.monthProgress[0].count/engine.monthMaxProgress;
-
 				}
-
 			}
 		}
-
 		DaylyStats{}
 		WeeklyStats{}
 		MonthlyStats{}
-
 	}
 
 	Item {
@@ -379,44 +330,36 @@ Item {
 
 			SubheadText {
 					id: taskNameH;
-
 					property int elem: 0;
-
 					width: 600;
 					anchors.horizontalCenter: parent.horizontalCenter;
 					anchors.top: parent.top;
 					anchors.topMargin: 5;
-
 					horizontalAlignment: AlignHCenter;
 					text: "Здравствуйте!";
 					color: "#000";
 					wrapMode: WordWrap;
 
 				SecondaryText {
-					id: taskContentH;
-					width: 900;
 					anchors.horizontalCenter: taskNameH.horizontalCenter;
 					anchors.top: taskNameH.bottom;
-
+					id: taskContentH;
+					width: 900;
 					horizontalAlignment: AlignHCenter;
-					text: "Тут находится история выполненых задач и графики!";
+					text: "Тут находится история выполненных задач и графики!";
 					color: "#000";
 					wrapMode: WordWrap;
-
 				}
 			}
-
 	}
 
 	Item {
 		id: historyL;
-	  focus: true;
-		//visible: false;
-		width: 250;
-		height: 630;
-
 		anchors.verticalCenter: parent.verticalCenter;
 		anchors.right: parent.right;
+	  focus: true;
+		width: 250;
+		height: 630;
 
 	  Rectangle {
 			anchors.fill: parent;
@@ -426,15 +369,28 @@ Item {
 			borderWidth: 2;
 			borderColor: historyList.activeFocus? "#f00":"#f55";
 		}
-
+		Text {
+			id: listHp;
+			anchors.horizontalCenter: parent.horizontalCenter;
+			anchors.top: parent.top;
+			anchors.topMargin: 15;
+			font: bodyFont;
+			text: "Список выполненных";
+			color: "#fff";
+		}
+		Text {
+			id: listH;
+			anchors.horizontalCenter: parent.horizontalCenter;
+			anchors.top: listHp.bottom;
+			font: bodyFont;
+			text: "задач";
+			color: "#fff";
+		}
 	  ListView {
 	    id: historyList;
-
+ 			anchors.centerIn: parent;
 	    width: 200;
 	    height: 400;
-
-	    anchors.centerIn: parent;
-
 	    focus: true;
 	    model: ListModel {width: 200;}
 	    delegate: TaskDelegate {width: 250; }
@@ -446,15 +402,11 @@ Item {
 			onLeftPressed: {
 				monthlyBtn.setFocus();
 			}
-
-
-
 	    onSelectPressed: {
 	      taskNameH.elem = this.currentIndex;
 	      taskNameH.text = engine.history[this.currentIndex].name;
 	      taskContentH.text = engine.history[this.currentIndex].content;
 	    }
-
 	  }
 	}
 	onBackPressed: {
