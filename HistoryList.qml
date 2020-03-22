@@ -110,7 +110,7 @@ Item {
 				width: 150;
 				height: 50;
 				radius: height/5;
-				text: "Dayly";
+				text: "День";
 
 				onRightPressed: {
 					weeklyBtn.setFocus();
@@ -149,7 +149,7 @@ Item {
 		    width: 150;
 		    height: 50;
 		    radius: height/5;
-		    text: "Weekly";
+		    text: "Неделя";
 
 				onLeftPressed: {
 					daylyBtn.setFocus();
@@ -210,7 +210,7 @@ Item {
 		    width: 150;
 		    height: 50;
 		    radius: height/5;
-		    text: "Monthly";
+		    text: "Месяц";
 
 				onLeftPressed: {
 					weeklyBtn.setFocus();
