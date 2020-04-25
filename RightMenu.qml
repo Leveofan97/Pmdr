@@ -3,6 +3,7 @@ import "TaskDelegate.qml";
 import "Confirmation.qml";
 import "EditTask.qml";
 import "HistoryList.qml";
+import "ClockFaceTimer.qml";
 
 Rectangle {
 	id: rightMenu;
@@ -342,6 +343,11 @@ Rectangle {
 			taskName.elem = this.currentIndex;
 			taskName.text = engine.tasks[this.currentIndex].name;
 			taskContent.text = engine.tasks[this.currentIndex].content;
+			if(!controltimer.isTimerRun){
+				stateTimer.flagstate = 0;
+				timer.countbreak = 0;
+				clockFace.seconds = clockFace.defworksec;
+			}
 		}
 
 		function removeTask() {
