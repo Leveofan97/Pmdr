@@ -75,7 +75,7 @@ Item {
 		anchors.topMargin: 130;
 		anchors.leftMargin: 10;
 
-		text: "Время перерыва: ";
+		text: "Время перерыва*: ";
 		font: bodyFont;
 		color: "#fff";
 	}
@@ -204,6 +204,21 @@ Item {
 		onUpPressed: {
 			settingTimeRelaxFocus.setFocus();
 		}
+	}
+
+	SecondaryText {
+		id: footnote;
+
+		anchors.left: parent.left;
+		anchors.horizontalCenter: parent.horizontalCenter;
+		anchors.bottom: closeButton.top;
+		anchors.bottomMargin: 50;
+		anchors.leftMargin: 10;
+		anchors.rightMargin: 10;
+		width: 380;
+		text: "*Перерыв наступает после каждого 4-го цикла работы";
+		color: "#fff";
+		wrapMode: WordWrap;
 	}
 
 	Row {

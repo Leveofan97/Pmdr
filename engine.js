@@ -44,6 +44,19 @@ this.addDoneTask = function (currentIndex) {
   else
     this.tasks.splice(this.tasks.length, 0, temp);
 
+  if(temp.isDone === true){
+    this.history.push({name: temp.name,
+                   isDone:   temp.isDone,
+                   difficulty: temp.difficulty,
+                   content: temp.content
+    });
+    log("appTasks" + this.history);
+  }
+  else {
+    var id = this.history.indexOf(temp);
+    this.history.splice(id,1);
+  }
+  save("History", this.history);
   this.saveTasks();
 }
 
@@ -65,14 +78,14 @@ this.saveTasks = function () {
 }
 
 this.deleteTask = function (index) {
-  if(this.tasks[index].isDone === true){
-    this.history.push({name: this.tasks[index].name,
-                   isDone:   this.tasks[index].isDone,
-                   difficulty: this.tasks[index].difficulty,
-                   content: this.tasks[index].content
-    });
-    log("appTasks" + this.history);
-  }
+  // if(this.tasks[index].isDone === true){
+  //   this.history.push({name: this.tasks[index].name,
+  //                  isDone:   this.tasks[index].isDone,
+  //                  difficulty: this.tasks[index].difficulty,
+  //                  content: this.tasks[index].content
+  //   });
+  //   log("appTasks" + this.history);
+  // }
   this.tasks.splice(index, 1);
   log("appTasks" + this.tasks);
   this.saveTasks();
