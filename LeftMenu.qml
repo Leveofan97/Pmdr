@@ -29,6 +29,17 @@ Item {
       height: 40;
       radius: 20;
       color: "#0017FD";
+      FocusablePanel {
+        id: innerblueButton;
+        anchors.horizontalCenter: blue.horizontalCenter;
+        anchors.verticalCenter: blue.verticalCenter;
+        width: 6;
+        height: 6;
+        radius: 3;
+        color: active ? "#fff" : "#0017FD";
+        enabled: true;
+        Behavior on color { animation: Animation { duration: 500; } }
+      }
     }
 
     onUpPressed: {
@@ -87,6 +98,18 @@ Item {
           height: 40;
           radius: 20;
           color: "#FDDE00"; // yellow
+
+          FocusablePanel {
+            id: inneryellowButton;
+            anchors.horizontalCenter: yellow.horizontalCenter;
+            anchors.verticalCenter: yellow.verticalCenter;
+            width: 6;
+            height: 6;
+            radius: 3;
+            color: active ? "#121212" : "#FDDE00";
+            enabled: true;
+            Behavior on color { animation: Animation { duration: 500; } }
+          }
         }
 
         onUpPressed:
@@ -150,6 +173,17 @@ Item {
           height: 40;
           radius: 20;
           color: "#121212"; // black
+          FocusablePanel {
+            id: innerblackButton;
+            anchors.horizontalCenter: black.horizontalCenter;
+            anchors.verticalCenter: black.verticalCenter;
+            width: 6;
+            height: 6;
+            radius: 3;
+            color: active ? "#fff" : "#121212";
+            enabled: true;
+            Behavior on color { animation: Animation { duration: 500; } }
+          }
         }
 
         onUpPressed:
@@ -213,6 +247,18 @@ Item {
           height: 40;
           radius: 20;
           color: "#ff0000"; // red
+
+        FocusablePanel {
+            id: innerredButton;
+            anchors.horizontalCenter: red.horizontalCenter;
+            anchors.verticalCenter: red.verticalCenter;
+            width: 6;
+            height: 6;
+            radius: 3;
+            color: active ? "#fff" : "#ff0000";
+            enabled: true;
+            Behavior on color { animation: Animation { duration: 500; } }
+          }
         }
 
         onUpPressed:
