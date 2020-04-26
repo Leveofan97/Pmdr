@@ -30,6 +30,21 @@ this.load = function (data) {
   }
 
   if(engine.tasks.length==0) this.tasks = data["tasks"];
+
+  var statHistory;
+  if(!(statHistory = load("History"))) {
+      statHistory = data["History"];
+  }
+
+  for(var i = 0; i < statistic.length; ++i) {
+    this.history.push({name: statHistory[i].name,
+                     isDone:   statHistory[i].isDone,
+                     difficulty: parseInt(statHistory[i].difficulty, 10),
+                     content: statHistory[i].content
+    });
+  }
+
+  if(engine.history.length==0) this.history = data["History"];
 }
 
 this.addDoneTask = function (currentIndex) {
@@ -45,15 +60,16 @@ this.addDoneTask = function (currentIndex) {
     this.tasks.splice(this.tasks.length, 0, temp);
 
   if(temp.isDone === true){
-    this.history.push({name: temp.name,
-                   isDone:   temp.isDone,
-                   difficulty: temp.difficulty,
-                   content: temp.content
+    this.history.unshift({ name: temp.name,
+                           isDone:   temp.isDone,
+                           difficulty: temp.difficulty,
+                           content: temp.content
     });
-    log("appTasks" + this.history);
+    log("HistoryList" + this.history);
   }
   else {
-    var id = this.history.indexOf(temp);
+    var id = this.history.findIndex(item => item.name === temp.name && item.content === temp.content);
+    log("id = " + id);
     this.history.splice(id,1);
   }
   save("History", this.history);
