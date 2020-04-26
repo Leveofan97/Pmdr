@@ -309,6 +309,8 @@ Item {
         height: 45;
         radius: 23;
         color: active ? "#8FBC8B" : "#121212";
+        borderWidth: 1;
+  			borderColor: active ? "#000" : "#121212";
         enabled: true;
         Behavior on color { animation: Animation { duration: 500; } }
 
