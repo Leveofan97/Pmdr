@@ -134,7 +134,8 @@ Item {
 			radius: 23;
 			opacity: active ? 1 : 0.7;
 			color: active ? "#05878A" : "#121212";
-
+			borderWidth: 1;
+			borderColor: active ? "#000" : "#121212";
 			Behavior on color { animation: Animation { duration: 500; } }
 			Behavior on borderColor { animation: Animation { duration: 500; } }
 
@@ -188,6 +189,8 @@ Item {
 			height: 46;
 			enabled: true;
 			radius: 23;
+			borderWidth: 1;
+			borderColor: active ? "#000" : "#121212";
 
 			Behavior on color { animation: Animation { duration: 500; } }
 			Behavior on borderColor { animation: Animation { duration: 500; } }
