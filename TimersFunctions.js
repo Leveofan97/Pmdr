@@ -97,10 +97,10 @@ function SetDefValues(seconds, state) {
 }
 
 this.DownTimerBySec = function(seconds, state){
-  if(seconds > 59){
+  if(seconds > 119){
     seconds -= 60;
   }else{
-    seconds = 0;
+    seconds = 60;
     error("Minimum or not selected");
   }
   SetDefValues(seconds, state);
