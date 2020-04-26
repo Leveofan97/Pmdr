@@ -136,7 +136,7 @@ Rectangle {
 					anchors.bottom: history.bottom;
 					anchors.topMargin: 10;
 
-					width:110;
+					width:150;
 					height:1;
 
 					opacity: active ? 1 : 0;
