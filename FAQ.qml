@@ -106,4 +106,16 @@ ScrollingText {
         settingButton.opacity = 1;
       }
     }
+    onBackPressed: {
+      faq.visible = false;
+      casetimer.visible = true;
+      activeTask.visible = true;
+      musicButton.opacity = 1;
+      redButton.opacity = 1;
+      yellowButton.opacity = 1;
+      blueButton.opacity = 1;
+      faqButton.opacity = 1;
+      rightMenu.opacity = 1;
+      settingButton.opacity = 1;
+  	}
 }
